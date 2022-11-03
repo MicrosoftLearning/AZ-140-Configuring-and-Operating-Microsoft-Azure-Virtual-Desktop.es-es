@@ -101,7 +101,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la hoja **az140-22a-profiles \| Control de acceso (IAM)** , seleccione **+ Agregar** y, en el menú desplegable, seleccione **Agregar asignación de roles.**
 1. En la hoja **Agregar asignación de roles**, seleccione **Colaborador de recursos compartidos de SMB de datos de archivos de almacenamiento** y luego **Siguiente**:
 1. En la hoja **Miembros**, seleccione  **Asignar acceso a** y luego haga clic en **+ Seleccionar miembros**.
-1. En la hoja **Seleccionar miembros**, en el cuadro de texto **Seleccionar**, escriba **az140-wvd-ausers** y luego haga clic en **Seleccionar**.
+1. En el panel **Select Members**, (Seleccionar miembros) en el cuadro de texto **Select** (Seleccionar), escriba **az140-wvd-ausers** y luego haga clic en **Select** (Seleccionar).
 1. En la hoja **Miembros**, seleccione **Revisar y asignar** dos veces.
 1. Repita los pasos del 3 al 8 anteriores y especifique la configuración siguiente:
 
