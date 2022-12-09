@@ -95,7 +95,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En Azure Portal, busque y seleccione **Bastions** y, en la hoja **Bastions**, seleccione **+ Crear**.
 1. En la pestaña **Básico** de la hoja **Crear una instancia de Bastion**, especifique la siguiente configuración y seleccione **Revisar y crear**:
 
-   |Configuración|Valor|
+   |Configuración|Value|
    |---|---|
    |Subscription|nombre de la suscripción de Azure que usa en este laboratorio|
    |Resource group|**az140-25-RG**|
@@ -269,7 +269,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En el equipo de laboratorio, en Azure Portal, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar **Redes virtuales** y navegar a ellas y, en la hoja **Redes virtuales**, seleccione **az140-adds-vnet11**. 
 1. En la hoja **az140-adds-vnet11**, seleccione **Subredes**, y en la hoja **Subredes**, seleccione **+ Subred**. Después, en la hoja **Agregar subred**, especifique la siguiente configuración (deje todas las demás opciones con sus valores predeterminados) y haga clic en **Guardar**:
 
-   |Configuración|Valor|
+   |Configuración|Value|
    |---|---|
    |Nombre|**hp4-Subnet**|
    |Intervalo de direcciones de subred|**10.0.4.0/24**|
@@ -277,7 +277,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En el equipo de laboratorio, en Azure Portal, en la ventana del explorador web que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop**; en la hoja **Azure Virtual Desktop**, seleccione **Grupos de hosts** y, en la hoja **Azure Virtual Desktop \| Grupos de hosts**, seleccione **+Crear**. 
 1. En la pestaña **Aspectos básicos** de la hoja **Crear un grupo de hosts**, especifique la siguiente configuración y seleccione **Siguiente: Máquinas virtuales >** :
 
-   |Configuración|Valor|
+   |Configuración|Value|
    |---|---|
    |Subscription|nombre de la suscripción de Azure que usa en este laboratorio|
    |Resource group|**az140-25-RG**|
