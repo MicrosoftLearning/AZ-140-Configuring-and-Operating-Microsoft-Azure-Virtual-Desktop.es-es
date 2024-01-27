@@ -1,335 +1,274 @@
 ---
 lab:
   title: "Laboratorio: Implementación del escalado automático en grupos de hosts (AD\_DS)"
-  module: 'Module 5: Monitor and Maintain a WVD Infrastructure'
+  module: 'Module 5: Monitor and Maintain an AVD Infrastructure'
 ---
 
-# <a name="lab---implement-autoscaling-in-host-pools-ad-ds"></a>Laboratorio: Implementación del escalado automático en grupos de hosts (AD DS)
-# <a name="student-lab-manual"></a>Manual de laboratorio para alumnos
+# Laboratorio: Implementación del escalado automático en grupos de hosts (AD DS)
+# Manual de laboratorio para alumnos
 
-## <a name="lab-dependencies"></a>Dependencias de laboratorio
+## Dependencias de laboratorio
 
 - Una suscripción de Azure que usará en este laboratorio.
-- Una cuenta Microsoft o una cuenta de Azure AD con el rol Propietario o Colaborador en la suscripción de Azure que va a usar en este laboratorio y con el rol Administrador global en el inquilino de Azure AD asociado a esa suscripción de Azure.
-- Haber completado el laboratorio **Preparación de una implementación de Azure Virtual Desktop (AD DS)**
+- Una cuenta Microsoft o una cuenta de Microsoft Entra con el rol Propietario o Colaborador en la suscripción de Azure que va a usar en este laboratorio y con el rol Administrador global en el inquilino de Microsoft Entra asociado a esa suscripción de Azure.
+- Haber completado el laboratorio **Preparación de una implementación de Azure Virtual Desktop (AD DS)**
 - Haber completado el laboratorio **Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (AD DS)**
 
-## <a name="estimated-time"></a>Tiempo estimado
+## Tiempo estimado
 
 60 minutos
 
-## <a name="lab-scenario"></a>Escenario del laboratorio
+## Escenario del laboratorio
 
 Debe configurar el escalado automático de los hosts de sesión de Azure Virtual Desktop en un entorno de Active Directory Domain Services (AD DS).
 
-## <a name="objectives"></a>Objetivos
+## Objetivos
   
 Después de completar este laboratorio, podrá:
 
 - Configurar el escalado automático de hosts de sesión de Azure Virtual Desktop
 - Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
 
-## <a name="lab-files"></a>Archivos de laboratorio
+## Archivos de laboratorio
 
 - None
 
-## <a name="instructions"></a>Instructions
+## Instrucciones
 
-### <a name="exercise-1-configure-autoscaling-of-azure-virtual-desktop-session-hosts"></a>Ejercicio 1: Configurar el escalado automático de hosts de sesión de Azure Virtual Desktop
+### Ejercicio 1: Configurar el escalado automático de hosts de sesión de Azure Virtual Desktop
 
 Las tareas principales de este ejercicio son las siguientes:
 
-1. Preparar el escalado automático de hosts de sesión de Azure Virtual Desktop
-1. Crear y configurar una cuenta de Azure Automation
-1. Crear una aplicación de Azure Logic
+1. Preparación para escalar hosts de sesión de Azure Virtual Desktop
+2. Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
 
-#### <a name="task-1-prepare-for-autoscaling-of-azure-virtual-desktop-session-hosts"></a>Tarea 1: Preparar el escalado automático de hosts de sesión de Azure Virtual Desktop
+#### Tarea 1: Preparación para escalar hosts de sesión de Azure Virtual Desktop
 
 1. En el equipo de laboratorio, inicie un explorador web, vaya a [Azure Portal](https://portal.azure.com) e inicie sesión con las credenciales de una cuenta de usuario con el rol Propietario en la suscripción que va a usar en este laboratorio.
-1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra la sesión del shell de **PowerShell** en el panel de **Cloud Shell**.
-1. En la sesión de PowerShell del panel de Cloud Shell, ejecute lo siguiente para iniciar las máquinas virtuales de Azure del host de sesión de Azure Virtual Desktop que vamos a usar en este laboratorio:
+1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
+
+   >**Nota**: Los grupos de hosts que planea usar con escalabilidad automática deben configurarse con un valor no predeterminado del **parámetro MaxSessionLimit**. Puede establecer este valor en la configuración del grupo de host en Azure Portal o ejecutando los cmdlets **Update-AzWvdHostPool** de Azure PowerShell, como en este ejemplo. También puede establecerlo explícitamente al crear un grupo en Azure Portal o al ejecutar el cmdlet **New-AzWvdHostPool**. cmdlet de Azure PowerShell.
+
+1. Desde la sesión de PowerShell en el panel de Cloud Shell, ejecute el siguiente comando para establecer el valor del parámetro **MaxSessionLimit** del grupo de hosts **az140-21-hp1** en **2**: 
 
    ```powershell
-   Get-AzVM -ResourceGroup 'az140-21-RG' | Start-AzVM -NoWait
+   Update-AzWvdHostPool -ResourceGroupName 'az140-21-RG' `
+   -Name az140-21-hp1 `
+   -MaxSessionLimit 2
    ```
 
-   >**Nota**: El comando se ejecuta de forma asincrónica (según determina el parámetro -NoWait). Aunque podrá ejecutar otro comando de PowerShell inmediatamente después en la misma sesión de PowerShell, las máquinas virtuales de Azure tardarán unos minutos en iniciarse. 
+   >**Nota**: En este laboratorio, el valor del parámetro **MaxSessionLimit** se establece artificialmente bajo para facilitar el desencadenamiento del comportamiento de escalado automático.
 
-#### <a name="task-2-create-and-configure-an-azure-automation-account"></a>Tarea 2: Crear y configurar una cuenta de Azure Automation
+   >**Nota**: Antes de crear su primer plan de escalado, necesitará asignar el rol **Colaborador de encendido y apagado de virtualización de escritorio** de RBAC a Azure Virtual Desktop con su suscripción a Azure como ámbito de destino. 
 
-1. En el equipo de laboratorio, inicie un explorador web, vaya a [Azure Portal](https://portal.azure.com) e inicie sesión con las credenciales de una cuenta de usuario con el rol Propietario en la suscripción que va a usar en este laboratorio.
-1. En Azure Portal, busque y seleccione **Máquinas virtuales** y, en la hoja **Máquinas virtuales**, haga clic en **az140-dc-vm11**.
-1. En la hoja **az140-dc-vm11**, seleccione **Conectar**; en el menú desplegable, seleccione **Bastion**; en la pestaña **Bastion** de la hoja **az140-dc-vm11 \| Conectar**, seleccione **Usar Bastion**.
-1. Cuando se le solicite, proporcione las credenciales siguientes y seleccione **Conectar**:
+1. En la ventana del navegador que muestra Azure Portal, cierre el panel de Cloud Shell.
+1. En Azure Portal, busque y seleccione **Suscripciones** y, de la lista de suscripciones, seleccione la que contiene los recursos de Azure Virtual Desktop. 
+1. En la página de suscripción, seleccione **Control de acceso (IAM)**.
+1. En la página **Control de acceso (IAM)**, en la barra de herramientas, seleccione el botón **+ Agregar**, después seleccione **Agregar asignación de rol** en el menú desplegable.
+1. En la pestaña **Rol** del asistente **Agregar asignación de rol**, busque y seleccione el rol **Colaborador de encendido y apagado de virtualización de escritorio** y haga clic en **Siguiente**.
+1. En la pestaña **Miembros** del asistente **Agregar asignación de funciones**, seleccione **+ Seleccionar miembros**, busque y seleccione **Azure Virtual Desktop** o **Windows Virtual Desktop**, haga clic en **Seleccionar** y haga clic en **Siguiente**.
+
+   >**Nota**: El valor depende de cuándo se registró por primera vez el proveedor de recursos **Microsoft.DesktopVirtualization** en su inquilino de Azure.
+
+1. En la pestaña **Revisar y asignar**, seleccione **Revisar y asignar**.
+
+#### Tarea 2: Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
+
+1. En su equipo de laboratorio, en el navegador que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop**. 
+1. En la página **Azure Virtual Desktop**, seleccione **Planes de escalado** y después seleccione **+ Crear**.
+1. En la pestaña **Aspectos básicos** del asistente **Crear un plan de escalado**, especifique la siguiente información y seleccione **Programaciones siguientes >** (deje los demás con sus valores predeterminados):
 
    |Configuración|Value|
    |---|---|
-   |Nombre de usuario|**Estudiante**|
-   |Contraseña|**Pa55w.rd1234**|
+   |Resource group|el nombre **az140-51-RG** de un nuevo grupo de recursos|
+   |Nombre|**az140-51-scaling-plan**|
+   |Location|la misma región de Azure en la que implementó los hosts de sesión en los laboratorios anteriores|
+   |Nombre descriptivo|**plan de escalado az140-51**|
+   |Zona horaria|la zona horaria local|
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, inicie **Windows PowerShell ISE** como administrador.
-1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para iniciar sesión en la suscripción de Azure:
+   >**Nota**: Las etiquetas de exclusión permiten designar un nombre de etiqueta para los hosts de sesión que desea excluir de las operaciones de escalado. Por ejemplo, es posible que quiera etiquetar las máquinas virtuales que están establecidas en modo de purga para que la escalabilidad automática no invalide dicho modo durante el mantenimiento mediante la etiqueta de exclusión "excludeFromScaling". 
 
-   ```powershell
-   Connect-AzAccount
-   ```
+1. En la pestaña **Programaciones** del asistente para **Crear un plan de escalado**, seleccione **+ Añadir programación**.
+1. En la pestaña **General** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
 
-1. Cuando se le solicite, inicie sesión con las credenciales de Azure AD de la cuenta de usuario con el rol Propietario en la suscripción que usa en este laboratorio.
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para descargar el script de PowerShell que utilizará para crear la cuenta de Azure Automation que forma parte de la solución de escalado automático:
+   |Configuración|Valor|
+   |---|---|
+   |Nombre de programación|**az140-51-schedule**|
+   |Repetir|**7 seleccionado** (seleccione todos los días de la semana)|
 
-   ```powershell
-   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-   $labFilesfolder = 'C:\Allfiles\Labs\05'
-   New-Item -ItemType Directory -Path $labFilesfolder -Force
-   Set-Location -Path $labFilesfolder
-   $uri = 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script/CreateOrUpdateAzAutoAccount.ps1'
-   Invoke-WebRequest -Uri $Uri -OutFile '.\CreateOrUpdateAzAutoAccount.ps1'
-   ```
+1. En la pestaña **Aumento** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para establecer los valores de las variables que asignará a los parámetros de script:
+   |Configuración|Valor|
+   |---|---|
+   |Hora de inicio (sistema de 24horas)|la hora actual menos 9horas|
+   |Algoritmo de equilibrio de carga|**Ancho primero**|
+   |Porcentaje mínimo de hosts (%)|**20**|
+   |Umbral de capacidad (%)|**60**|
 
-   ```powershell
-   $aadTenantId = (Get-AzContext).Tenant.Id
-   $subscriptionId = (Get-AzContext).Subscription.Id
-   $resourceGroupName = 'az140-51-RG'
-   $location = (Get-AzVirtualNetwork -ResourceGroupName 'az140-11-RG' -Name 'az140-adds-vnet11').Location
-   $suffix = Get-Random
-   $automationAccountName = "az140-automation-51$suffix"
-   $workspaceName = "az140-workspace-51$suffix"
-   ```
+   >**Nota**: La preferencia de equilibrio de carga que seleccione aquí invalidará la que seleccionó para la configuración del grupo de hosts original.
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para crear el grupo de recursos que utilizará en este laboratorio:
+   >**Nota**: El porcentaje mínimo de hosts designa el porcentaje de hosts de sesión en los que desea permanecer siempre activado. Si el porcentaje especificado no es un número entero, se redondea al número entero más cercano. 
 
-   ```powershell
-   New-AzResourceGroup -ResourceGroupName $resourceGroupName -Location $location
-   ```
+   >**Nota**: El umbral de capacidad representa el porcentaje de capacidad del grupo de hosts disponible que desencadenará una acción de escalado que tendrá lugar. Por ejemplo, si dos hosts de sesión del grupo de hosts con un límite máximo de sesión de 20 están activados, la capacidad del grupo de hosts disponible es 40. Si establece el umbral de capacidad en el 75 % y los hosts de sesión tienen más de 30 sesiones de usuario, se activará un tercer host de sesión durante la escalabilidad automática. Esto cambiará la capacidad del grupo de host disponible de 40 a 60.
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para crear el área de trabajo de Azure Log Analytics que utilizará en este laboratorio:
+1. En la pestaña **Horas punta** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
 
-   ```powershell
-   New-AzOperationalInsightsWorkspace -Location $location -Name $workspaceName -ResourceGroupName $resourceGroupName
-   ```
+   |Configuración|Valor|
+   |---|---|
+   |Hora de inicio (sistema de 24horas)|la hora actual menos 8 horas|
+   |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, seleccione el archivo del menú superior, abra el script **C:\\Allfiles\\Labs\\05\\CreateOrUpdateAzAutoAccount.ps1** e introduzca el código entre las líneas **82** y **86** en el comentario de múltiples líneas y guárdelo con el aspecto siguiente:
+   >**Nota**: La hora de inicio designa la hora de finalización de la fase de aumento.
 
-   ```powershell
-   <#
-   # Get the Role Assignment of the authenticated user
-   $RoleAssignments = Get-AzRoleAssignment -SignInName $AzContext.Account -ExpandPrincipalGroups
-   if (!($RoleAssignments | Where-Object { $_.RoleDefinitionName -in @('Owner', 'Contributor') })) {
-    throw 'Authenticated user should have the Owner/Contributor permissions to the subscription'
-   }
-   #>
-   ```
+   >**Nota**: El valor de umbral de capacidad de esta fase viene determinado por el valor de umbral de capacidad de aumento.
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, abra una nueva pestaña en el panel de scripts de **Administrador: Windows PowerShell ISE**, pegue el script siguiente y ejecútelo para crear la cuenta de Azure Automation que forma parte de la solución de escalado automático:
+1. En la pestaña **Descenso** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
 
-   ```powershell
-   $Params = @{
-     "AADTenantId" = $aadTenantId
-     "SubscriptionId" = $subscriptionId 
-     "UseARMAPI" = $true
-     "ResourceGroupName" = $resourceGroupName
-     "AutomationAccountName" = $automationAccountName
-     "Location" = $location
-     "WorkspaceName" = $workspaceName
-   }
+   |Configuración|Valor|
+   |---|---|
+   |Hora de inicio (sistema de 24horas)|la hora actual menos 2 horas|
+   |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+   |Porcentaje mínimo de hosts (%)|**10**
+          |
+   |Umbral de capacidad (%)|**90**|
+   |Forzar el cierre de sesión de los usuarios|**Sí**|
+   |Tiempo de retraso antes de cerrar la sesión de los usuarios y apagar las VM (min)|**30**|
 
-   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-   .\CreateOrUpdateAzAutoAccount.ps1 @Params
-   ```
+   >**Nota**: Si se habilita la opción **Forzar cierre de sesión de usuarios**, la escalabilidad automática pondrá el host de sesión con el menor número de sesiones de usuario en modo de purga, enviará a todas las sesiones de usuario activas una notificación sobre el cierre inminente y las cerrará por la fuerza una vez transcurrido el tiempo de retraso especificado. Después de que se cierren todas las sesiones de usuario durante la escalabilidad automática, desasigne la máquina virtual. 
 
-   >**Nota**: Espere a que se complete el script. Esto puede tardar unos 10 minutos.
+   >**Nota**: Si no ha habilitado la desconexión forzada durante el descenso, los hosts de sesión que no tengan sesiones activas o desconectadas serán reasignados.
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, en el panel de scripts de **Administrador: Windows PowerShell ISE**, revise la salida del script. 
+1. En la pestaña **Horas valle** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Añadir**.
 
-   >**Nota**: La salida incluye un URI de webhook, el identificador del área de trabajo de Log Analytics y los valores de clave principal correspondientes que debe proporcionar al aprovisionar la aplicación de Azure Logic que forma parte de la solución de escalado automático. 
-   
-   >**Nota**: Registre el valor del URI de webhook. Lo necesitará más adelante en este laboratorio.
+   |Configuración|Valor|
+   |---|---|
+   |Hora de inicio (sistema de 24horas)|la hora actual menos 1 hora|
+   |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
 
-1. Para comprobar la configuración de la cuenta de Azure Automation, en la sesión de Escritorio remoto a **az140-dc-vm11**, inicie Microsoft Edge y vaya a [Azure Portal](https://portal.azure.com). Si se le solicita, inicie sesión con las credenciales de Azure AD de la cuenta de usuario con el rol Propietario en la suscripción que usa en este laboratorio.
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, en la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Cuentas de Automation** y, en la hoja **Cuentas de Automation**, seleccione la entrada que representa la cuenta de Azure Automation recién aprovisionada (con el nombre que empieza por el prefijo **az140-automation-51**).
-1. En la hoja Cuenta de Automation, en el menú vertical del lado izquierdo, en la sección **Automatización de procesos**, seleccione **Runbooks** y, en la lista de runbooks, compruebe la presencia del runbook **WVDAutoScaleRunbookARMBased**.
-1. En la hoja Cuenta de Automation, en el menú vertical del lado izquierdo, en la sección **Configuración de la cuenta**, seleccione **Cuentas de ejecución** y, en la lista de cuentas de la derecha, junto a **+ Cuenta de ejecución de Azure**, haga clic en **Crear**.
-1. En la hoja **Agregar cuenta de ejecución de Azure**, haga clic en **Crear** y compruebe que la cuenta nueva se creó correctamente.
+   >**Nota**: El valor del umbral de capacidad en esta fase viene determinado por el valor del umbral de capacidad de descenso.
 
-#### <a name="task-3-create-an-azure-logic-app"></a>Tarea 3: Crear una aplicación de Azure Logic
+1. De nuevo en la pestaña **Programaciones** del asistente de **Creación de un plan de escalado**, seleccione **Siguiente: Asignaciones del grupo de hosts >**:
+1. En la página **Asignaciones de grupos de host**, en la lista desplegable **Seleccionar grupo de host**, seleccione **az140-21-hp1**, asegúrese de que la casilla **Habilitar escalabilidad automática** está activada, seleccione **Revisar y crear** y, después, seleccione **Crear**.
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, cambie a la ventana **Administrador: Windows PowerShell ISE** y, en el panel del script de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para descargar el script de PowerShell que utilizará para crear la aplicación de Azure Logic que forma parte de la solución de escalado automático:
 
-   ```powershell
-   $labFilesfolder = 'C:\Allfiles\Labs\05'
-   Set-Location -Path $labFilesfolder
-   $uri = "https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script/CreateOrUpdateAzLogicApp.ps1"
-   Invoke-WebRequest -Uri $uri -OutFile ".\CreateOrUpdateAzLogicApp.ps1"
-   ```
-
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, seleccione el **Archivo** del menú superior y abra el script **C:\\Allfiles\\Labs\\05\\CreateOrUpdateAzLogicApp.ps1**, introduzca el código entre las líneas **134** y **138** en el comentario de múltiples líneas y guárdelo con el aspecto siguiente:
-
-   ```powershell
-   <#
-   # Get the Role Assignment of the authenticated user
-   $RoleAssignments = Get-AzRoleAssignment -SignInName $AzContext.Account -ExpandPrincipalGroups
-   if (!($RoleAssignments | Where-Object { $_.RoleDefinitionName -in @('Owner', 'Contributor') })) {
-    throw 'Authenticated user should have the Owner/Contributor permissions to the subscription'
-   }
-   #>
-   ```
-
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para establecer los valores de las variables que quiere asignar a los parámetros de script (sustituya el marcador de posición `<webhook_URI>` por el valor del URI de webhook que anotó anteriormente en este laboratorio):
-
-   ```powershell
-   $AADTenantId = (Get-AzContext).Tenant.Id
-   $AzSubscription = (Get-AzContext).Subscription.Id
-   $ResourceGroup = Get-AzResourceGroup -Name 'az140-51-RG'
-   $WVDHostPool = Get-AzResource -ResourceType "Microsoft.DesktopVirtualization/hostpools" -Name 'az140-21-hp1'
-   $LogAnalyticsWorkspace = (Get-AzOperationalInsightsWorkspace -ResourceGroupName $ResourceGroup.ResourceGroupName)[0]
-   $LogAnalyticsWorkspaceId = $LogAnalyticsWorkspace.CustomerId
-   $LogAnalyticsWorkspaceKeys = (Get-AzOperationalInsightsWorkspaceSharedKey -ResourceGroupName $ResourceGroup.ResourceGroupName -Name $LogAnalyticsWorkspace.Name)
-   $LogAnalyticsPrimaryKey = $LogAnalyticsWorkspaceKeys.PrimarySharedKey
-   $RecurrenceInterval = 2
-   $BeginPeakTime = '1:00'
-   $EndPeakTime = '1:01'
-   $TimeDifference = '0:00'
-   $SessionThresholdPerCPU = 1
-   $MinimumNumberOfRDSH = 1
-   $MaintenanceTagName = 'CustomMaintenance'
-   $LimitSecondsToForceLogOffUser = 5
-   $LogOffMessageTitle = 'Autoscaling'
-   $LogOffMessageBody = 'Forcing logoff due to autoscaling'
-
-   $AutoAccount = (Get-AzAutomationAccount -ResourceGroupName $ResourceGroup.ResourceGroupName)[0]
-   $AutoAccountConnection = Get-AzAutomationConnection -ResourceGroupName $AutoAccount.ResourceGroupName -AutomationAccountName $AutoAccount.AutomationAccountName
-
-   $WebhookURIAutoVar = '<webhook_URI>'
-   ```
-
-   >**Nota**: Los valores de los parámetros están orientados a acelerar el comportamiento del escalado automático. En el entorno de producción, debe ajustarlos para que coincidan con sus requisitos específicos.
-
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para crear la aplicación de Azure Logic que forma parte de la solución de escalado automático:
-
-   ```powershell
-   $Params = @{
-     "AADTenantId"                   = $AADTenantId                             # Optional. If not specified, it will use the current Azure context
-     "SubscriptionID"                = $AzSubscription.Id                       # Optional. If not specified, it will use the current Azure context
-     "ResourceGroupName"             = $ResourceGroup.ResourceGroupName         # Optional. Default: "WVDAutoScaleResourceGroup"
-     "Location"                      = $ResourceGroup.Location                  # Optional. Default: "West US2"
-     "UseARMAPI"                     = $true
-     "HostPoolName"                  = $WVDHostPool.Name
-     "HostPoolResourceGroupName"     = $WVDHostPool.ResourceGroupName           # Optional. Default: same as ResourceGroupName param value
-     "LogAnalyticsWorkspaceId"       = $LogAnalyticsWorkspaceId                 # Optional. If not specified, script will not log to the Log Analytics
-     "LogAnalyticsPrimaryKey"        = $LogAnalyticsPrimaryKey                  # Optional. If not specified, script will not log to the Log Analytics
-     "ConnectionAssetName"           = $AutoAccountConnection.Name              # Optional. Default: "AzureRunAsConnection"
-     "RecurrenceInterval"            = $RecurrenceInterval                      # Optional. Default: 15
-     "BeginPeakTime"                 = $BeginPeakTime                           # Optional. Default: "09:00"
-     "EndPeakTime"                   = $EndPeakTime                             # Optional. Default: "17:00"
-     "TimeDifference"                = $TimeDifference                          # Optional. Default: "-7:00"
-     "SessionThresholdPerCPU"        = $SessionThresholdPerCPU                  # Optional. Default: 1
-     "MinimumNumberOfRDSH"           = $MinimumNumberOfRDSH                     # Optional. Default: 1
-     "MaintenanceTagName"            = $MaintenanceTagName                      # Optional.
-     "LimitSecondsToForceLogOffUser" = $LimitSecondsToForceLogOffUser           # Optional. Default: 1
-     "LogOffMessageTitle"            = $LogOffMessageTitle                      # Optional. Default: "Machine is about to shut down."
-     "LogOffMessageBody"             = $LogOffMessageBody                       # Optional. Default: "Your session will be logged off. Please save and close everything."
-     "WebhookURI"                    = $WebhookURIAutoVar
-   }
-
-   .\CreateOrUpdateAzLogicApp.ps1 @Params
-   ```
-
-   >**Nota**: Espere a que se complete el script. Esto puede tardar unos 2 minutos.
-
-1. Para comprobar la configuración de la aplicación de Azure Logic, en la sesión de Escritorio remoto a **az140-dc-vm11**, cambie a la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Logic Apps** y, en la hoja **Logic Apps**, seleccione la entrada que representa la aplicación de Azure Logic recién aprovisionada denominada **az140-21-hp1_Autoscale_Scheduler**.
-1. En la hoja **az140-21-hp1_Autoscale_Scheduler**, en el menú vertical del lado izquierdo, en la sección **Herramientas de desarrollo**, seleccione **Diseñador de aplicaciones lógicas**. 
-1. En el panel del diseñador, haga clic en el rectángulo con la etiqueta **Periodicidad** y tenga en cuenta que puede usarlo para controlar la frecuencia con la que se evalúa la necesidad del escalado automático. 
-
-### <a name="exercise-2-verify-and-review-autoscaling-of-azure-virtual-desktop-session-hosts"></a>Ejercicio 2: Verificación y revisión del escalado automático de hosts de sesión de Azure Virtual Desktop
+### Ejercicio 2: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
 
 Las tareas principales de este ejercicio son las siguientes:
 
+1. Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
 1. Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
-1. Usar Azure Log Analytics para realizar un seguimiento de los eventos de Azure Virtual Desktop
 
-#### <a name="task-1-verify-autoscaling-of-azure-virtual-desktop-session-hosts"></a>Tarea 1: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
+#### Tarea 1: Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
 
-1. Para comprobar el escalado automático de los hosts de sesión de Azure Virtual Desktop, en la sesión de Escritorio remoto a **az140-dc-vm11**, en la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Máquinas virtuales** y, en la hoja **Máquinas virtuales**, revise el estado de las tres máquinas virtuales de Azure en el grupo de recursos **az140-21-RG**.
-1. Compruebe que dos de las tres máquinas virtuales de Azure están en proceso de desasignarse o que ya están **detenidas (desasignadas)** .
+1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
 
-   >**Nota**: En cuanto compruebe que el escalado automático funciona, debe deshabilitar la aplicación de Azure Logic para minimizar los cargos correspondientes.
+   >**Nota**: Usará una cuenta de Azure Storage para almacenar eventos de escalado automático. Puede crearlo directamente desde Azure Portal o usar Azure PowerShell como se muestra en esta tarea.
 
-1. Para deshabilitar la aplicación de Azure Logic, en la sesión de Escritorio remoto a **az140-dc-vm11**, cambie a la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Logic Apps** y, en la hoja **Logic Apps**, seleccione la entrada que representa la aplicación de Azure Logic recién aprovisionada denominada **az140-21-hp1_Autoscale_Scheduler**.
-1. En la hoja **az140-21-hp1_Autoscale_Scheduler**, en la barra de herramientas, haga clic en **Deshabilitar**. 
-1. En la hoja **az140-21-hp1_Autoscale_Scheduler**, en la sección **Essentials**, revise la información, incluido el número de ejecuciones correctas en las últimas 24 horas y la sección **Resumen** que proporciona la frecuencia de periodicidad. 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, en la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Cuentas de Automation** y, en la hoja **Cuentas de Automation**, seleccione la entrada que representa la cuenta de Azure Automation recién aprovisionada (con el nombre que empieza por el prefijo **az140-automation-51**).
-1. En la hoja **Cuenta de Automation**, en el menú vertical del lado izquierdo, en la sección **Automatización de procesos**, seleccione **Trabajos** y revise la lista de trabajos correspondientes a invocaciones individuales del runbook **WVDAutoScaleRunbookARMBased**.
-1. Seleccione el trabajo más reciente y, en su hoja, haga clic en el encabezado de pestaña **Todos los registros**. Se mostrará una lista detallada de los pasos de ejecución del trabajo.
+1. En la sesión de PowerShell del panel Cloud Shell, ejecute los siguientes comandos para crear una cuenta de Azure Storage:
 
-#### <a name="task-2-use-azure-log-analytics-to-track-azure-virtual-desktop-events"></a>Tarea 2: Usar Azure Log Analytics para realizar un seguimiento de los eventos de Azure Virtual Desktop
-
->**Nota**: Puede usar Log Analytics para analizar el escalado automático y cualquier otro evento de Azure Virtual Desktop.
-
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, en la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Áreas de trabajo de Log Analytics** y, en la hoja **Áreas de trabajo de Log Analytics**, seleccione la entrada que representa el área de trabajo de Azure Log Analytics usada en este laboratorio (cuyo nombre comienza con el prefijo **az140-workspace-51**).
-1. En la hoja Área de trabajo de Log Analytics, en el menú vertical del lado izquierdo, en la sección **General**, haga clic en **Registros** y, si es necesario, cierre la ventana **Le damos la bienvenida a Log Analytics** y vaya al panel **Consulta**.
-1. En el panel **Consultas**, en el menú vertical **Todas las consultas** del lado izquierdo, seleccione **Azure Virtual Desktop** y revise las consultas predefinidas.
-1. Cierre el panel **Consultas**. Esto mostrará automáticamente la pestaña **Nueva consulta 1**.
-1. En la ventana de consulta, pegue la consulta siguiente y haga clic en **Ejecutar** para mostrar todos los eventos del grupo de hosts usado en este laboratorio:
-
-   ```kql
-   WVDTenantScale_CL
-   | where hostpoolName_s == "az140-21-hp1"
-   | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
+   ```powershell
+   $resourceGroupName = 'az140-51-RG'
+   $location = (Get-AzResourceGroup -ResourceGroupName $resourceGroupName).Location
+   $suffix = Get-Random
+   $storageAccountName = "az140st51$suffix"
+   New-AzStorageAccount -Location $location -Name $storageAccountName -ResourceGroupName $resourceGroupName -SkuName Standard_LRS
    ```
 
-   >**Nota**: Si había un carácter de canalización adicional (|) en la segunda línea al usar la construcción cortada y pegada, quítelo para evitar un error. Esto podría aplicarse a cada consulta.
-   >**Nota**: Si no ve ningún resultado, espere unos minutos e inténtelo de nuevo.
+   >**Nota**: Espere hasta que se aprovisione la cuenta de almacenamiento.
 
-1. En la ventana de consulta, pegue la consulta siguiente, haga clic en **Ejecutar** para mostrar el número total de hosts de sesión actualmente en ejecución y de sesiones de usuario activas en el grupo de hosts de destino:
+1. En la ventana del navegador que muestra Azure Portal, cierre el panel de Cloud Shell.
+1. En el equipo de laboratorio, en el explorador que muestra Azure Portal, vaya a la página del plan de escalado que creó en el ejercicio anterior.
+1. En la página **az140-51-scaling-plan**, seleccione **Configuración de diagnóstico** y después seleccione **+Añadir configuración de diagnóstico**.
+1. En la página **Configuración de diagnóstico**, en el cuadro de texto **Nombre de la configuración de diagnóstico**, escriba **az140-51-scaling-plan-diagnostics** y, en la sección **Grupos de categorías**, seleccione **allLogs**. 
+1. En la misma página, en la sección **Detalles del destino**, seleccione **Archivar en una cuenta de almacenamiento** y, en la lista desplegable **Cuenta de almacenamiento**, seleccione el nombre de la cuenta de almacenamiento que empiece por el prefijo **az140st51**.
+1. Seleccione **Guardar**.
 
-   ```kql
-   WVDTenantScale_CL
-   | where logmessage_s contains "Number of running session hosts:"
-     or logmessage_s contains "Number of user sessions:"
-     or logmessage_s contains "Number of user sessions per Core:"
-   | where hostpoolName_s == "az140-21-hp1"
-   | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
+#### Tarea 2: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
+
+1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
+1. Desde la sesión de PowerShell en el panel de Cloud Shell, ejecute el siguiente comando para iniciar la sesión del host de Azure Virtual Desktop de las máquinas virtuales de Azure que usará en este laboratorio:
+
+   ```powershell
+   Get-AzVM -ResourceGroup 'az140-21-RG' | Start-AzVM
    ```
 
-1. En la ventana de consulta, pegue la consulta siguiente y haga clic en **Ejecutar** para mostrar el estado de todas las máquinas virtuales del host de sesión en un grupo de hosts:
+   >**Nota**: Espere hasta que se ejecuten las máquinas virtuales de Azure del host de sesión.
 
-   ```kql
-   WVDTenantScale_CL
-   | where logmessage_s contains "Session host:"
-   | where hostpoolName_s == "az140-21-hp1"
-   | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
+1. En el equipo del laboratorio, en la ventana del explorador web que muestra Azure Portal, navegue hasta la página del grupo de hosts **az140-21-hp1**.
+1. En la página **az140-21-hp1**, seleccione **Host de sesión**.
+1. Espere hasta que se enumere al menos un host de sesión con el estado **Apagado**.
+
+   >**Nota**: Es posible que tenga que actualizar la página para actualizar el estado de los hosts de sesión.
+
+   >**Nota**: Si todos los hosts de sesión siguen disponibles, vuelva a la página **az140-51-scaling-plan** y reduzca el valor de la configuración **Porcentaje mínimo de hosts (%)** **Descenso**.
+
+   >**Nota**: Una vez que cambie el estado de uno o varios hosts de sesión, los registros de escalado automático deben estar disponibles en la cuenta de Azure Storage. 
+
+1. En Azure Portal, busque y seleccione **Cuentas de almacenamiento** y, en la página **Cuentas de almacenamiento**, seleccione la entrada que representa la cuenta de almacenamiento creada anteriormente en este ejercicio (cuyo nombre comienza con el prefijo **az140st51**).
+1. En la página de la cuenta de almacenamiento, seleccione **Contenedores**.
+1. En la lista de contenedores, seleccione **insights-logs-autoscale**.
+1. En la página **insights-logs-autoscale**, navegue por la jerarquía de carpetas hasta llegar a la entrada que representa un blob con formato JSON almacenado en el contenedor.
+1. Seleccione la entrada de blob, seleccione el icono de puntos suspensivos situado en el extremo derecho de la página y, en el menú desplegable, seleccione **Descargar**.
+1. En el equipo de laboratorio, abra el blob descargado en un editor de texto de su elección y examine su contenido. Debería poder encontrar referencias a eventos de escalado automático. 
+
+   >**Nota**: Este es un contenido de blob de ejemplo que incluye referencias a eventos de escalado automático:
+
+   ```json
+   host_Ring    "R0"
+   Level    4
+   ActivityId   "00000000-0000-0000-0000-000000000000"
+   time "2023-03-26T19:35:46.0074598Z"
+   resourceId   "/SUBSCRIPTIONS/AAAAAAAE-0000-1111-2222-333333333333/RESOURCEGROUPS/AZ140-51-RG/PROVIDERS/MICROSOFT.DESKTOPVIRTUALIZATION/SCALINGPLANS/AZ140-51-SCALING-PLAN"
+   operationName    "ScalingEvaluationSummary"
+   category "Autoscale"
+   resultType   "Succeeded"
+   level    "Informational"
+   correlationId    "ddd3333d-90c2-478c-ac98-b026d29e24d5"
+   properties   
+   Message  "Active session hosts are at 0.00% capacity (0 sessions across 3 active session hosts). This is below the minimum capacity threshold of 90%. 2 session hosts can be drained and deallocated."
+   HostPoolArmPath  "/subscriptions/aaaaaaaa-0000-1111-2222-333333333333/resourcegroups/az140-21-rg/providers/microsoft.desktopvirtualization/hostpools/az140-21-hp1"
+   ScalingEvaluationStartTime   "2023-03-26T19:35:43.3593413Z"
+   TotalSessionHostCount    "3"
+   UnhealthySessionHostCount    "0"
+   ExcludedSessionHostCount "0"
+   ActiveSessionHostCount   "3"
+   SessionCount "0"
+   CurrentSessionOccupancyPercent   "0"
+   CurrentActiveSessionHostsPercent "100"
+   Config.ScheduleName  "az140-51-schedule"
+   Config.SchedulePhase "OffPeak"
+   Config.MaxSessionLimitPerSessionHost "2"
+   Config.CapacityThresholdPercent  "90"
+   Config.MinActiveSessionHostsPercent  "5"
+   DesiredToScaleSessionHostCount   "-2"
+   EligibleToScaleSessionHostCount  "1"
+   ScalingReasonType    "DeallocateVMs_BelowMinSessionThreshold"
+   BeganForceLogoffOnSessionHostCount   "0"
+   BeganDeallocateVmCount   "1"
+   BeganStartVmCount    "0"
+   TurnedOffDrainModeCount  "0"
+   TurnedOnDrainModeCount   "1"
    ```
 
-1. En la ventana de consulta, pegue la consulta siguiente y haga clic en **Ejecutar** para mostrar los errores y advertencias relacionados con el escalado:
 
-   ```kql
-   WVDTenantScale_CL
-   | where logmessage_s contains "ERROR:" or logmessage_s contains "WARN:"
-   | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
-   ```
-
->**Nota**: Omita el mensaje de error relacionado con `TenantId`
-
-### <a name="exercise-3-stop-and-deallocate-azure-vms-provisioned-in-the-lab"></a>Ejercicio 3: Detención y desasignación de máquinas virtuales de Azure aprovisionadas en el laboratorio
+### Ejercicio 3: Detener y desasignar máquinas virtuales de Azure aprovisionadas en el laboratorio
 
 Las tareas principales de este ejercicio son las siguientes:
 
-1. Detener y desasignar máquinas virtuales de Azure aprovisionadas en el laboratorio
+1. Detención y desasignación de máquinas virtuales de Azure aprovisionadas en el laboratorio
 
->**Nota**: En este ejercicio, desasignará las máquinas virtuales de Azure aprovisionadas en este laboratorio para minimizar los cargos de proceso correspondientes.
+>**Nota**: En este ejercicio, anulará la asignación de las máquinas virtuales de Azure usadas en este laboratorio para minimizar las cargas de proceso correspondientes.
 
-#### <a name="task-1-deallocate-azure-vms-provisioned-in-the-lab"></a>Tarea 1: Desasignar máquinas virtuales de Azure aprovisionadas en el laboratorio
+#### Tarea 1: Desasignar máquinas virtuales de Azure aprovisionadas en el laboratorio
 
-1. Cambie al equipo de laboratorio y, en la ventana del explorador web donde se muestra Azure Portal, abra la sesión del shell de **PowerShell** en el panel de **Cloud Shell**.
-1. En la sesión de PowerShell, en el panel Cloud Shell, ejecute lo siguiente para enumerar todas las máquinas virtuales de Azure creadas en este laboratorio:
+1. Cambie al equipo de laboratorio y, en la ventana del explorador web donde se muestra Azure Portal, abra la sesión de **PowerShell** en el panel de **Cloud Shell**.
+1. En la sesión de PowerShell, en el panel de Cloud Shell, ejecute el comando siguiente para enumerar todas las máquinas virtuales de Azure usadas en este laboratorio:
 
    ```powershell
    Get-AzVM -ResourceGroup 'az140-21-RG'
    ```
 
-1. Desde la sesión de PowerShell, en el panel Cloud Shell, ejecute lo siguiente para detener y desasignar todas las máquinas virtuales de Azure que creó en este laboratorio:
+1. Desde la sesión de PowerShell, en el panel Cloud Shell, ejecute el comando siguiente para detener y desasignar todas las máquinas virtuales de Azure usadas en este laboratorio:
 
    ```powershell
    Get-AzVM -ResourceGroup 'az140-21-RG' | Stop-AzVM -NoWait -Force
