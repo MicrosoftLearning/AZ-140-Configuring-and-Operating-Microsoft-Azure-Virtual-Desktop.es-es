@@ -77,7 +77,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 > **Nota**: Asegúrese de que el explorador tiene habilitada la función emergente.
 
-1. En la ventana del explorador donde se muestra Azure Portal, abra otra pestaña y, en la pestaña del explorador, vaya a Azure Portal.
+1. En la ventana del explorador en que se muestra Azure Portal, abra otra pestaña y, en la pestaña del explorador, vaya a Azure Portal.
 1. En Azure Portal, seleccione el icono de la barra de herramientas inmediatamente a la derecha del cuadro de texto de búsqueda para abrir el panel de **Cloud Shell**.
 1. En la sesión de PowerShell del panel de Cloud Shell, ejecute lo siguiente para agregar una subred denominada **AzureBastionSubnet** a la red virtual **az140-25-vnet** que creamos anteriormente en este ejercicio:
 

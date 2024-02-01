@@ -19,7 +19,7 @@ lab:
 
 ## Escenario del laboratorio
 
-Debe implementar y administrar el almacenamiento de una implementación de Azure Virtual Desktop en un entorno deMicrosoft Entra DS.
+Debe implementar y administrar el almacenamiento de una implementación de Azure Virtual Desktop en un entorno de Microsoft Entra DS.
 
 ## Objetivos
   
