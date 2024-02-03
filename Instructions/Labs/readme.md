@@ -1,6 +1,6 @@
-# <a name="az-140-configuring-and-operating-microsoft-azure-virtual-desktop"></a>AZ-140: Configuring and Operating Microsoft Azure Virtual Desktop
+# AZ-140: Configuración y funcionamiento de Microsoft Azure Virtual Desktop
 
-## <a name="important"></a>Importante
+## Importante
 
 **Los laboratorios componen dos pistas independientes, en función del proveedor de identidades que decida usar.**
 
