@@ -38,7 +38,7 @@ Después de completar este laboratorio, podrá:
 
 ## Instrucciones
 
->**Importante**: Microsoft ha cambiado el nombre de **Azure Active Directory** (**Azure AD**), a **Microsoft Entra ID**. Para obtener más información sobre este cambio, consulte [Nuevo nombre para Azure Active Directory](https://learn.microsoft.com/en-us/entra/fundamentals/new-name). Se trata de una iniciativa en curso, por lo que es posible que todavía encuentre instancias en las que haya una discrepancia entre la instrucción del laboratorio y los elementos de la interfaz, a medida que vaya realizando los ejercicios individuales. Téngalo en cuenta (en particular, en este laboratorio, **Microsoft Entra Connect** es el nuevo nombre para designar **Azure Active Directory Connect**).
+>**Importante**: Microsoft ha cambiado el nombre de **Azure Active Directory** (**Azure AD**) a **Microsoft Entra ID**. Para obtener más información sobre este cambio, consulte [Nuevo nombre de Azure Active Directory](https://learn.microsoft.com/en-us/entra/fundamentals/new-name). Se trata de una iniciativa en curso, por lo que es posible que todavía encuentre instancias en las que haya una discrepancia entre la instrucción del laboratorio y los elementos de la interfaz, a medida que vaya realizando los ejercicios individuales. Téngalo en cuenta (en particular, en este laboratorio, **Microsoft Entra Connect** es el nuevo nombre para designar **Azure Active Directory Connect**).
 
 ### Ejercicio 1: Preparar y crear paquetes de aplicaciones MSIX
 
