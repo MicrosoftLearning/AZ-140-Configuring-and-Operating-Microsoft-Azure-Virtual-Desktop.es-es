@@ -295,12 +295,14 @@ Las tareas principales de este ejercicio son las siguientes:
    |Agregar Máquinas virtuales de Azure|**Sí**|
    |Resource group|**El valor predeterminado es el mismo que el del grupo de hosts**|
    |Prefijo de nombre|**az140-25-p4**|
+   |Tipo de máquina virtual|**Máquina virtual de Azure**|
    |Ubicación de la máquina virtual|nombre de la región de Azure en la que implementó recursos en el primer ejercicio de este laboratorio|
    |Opciones de disponibilidad|**No se requiere redundancia de la infraestructura**|
+   |Tipo de seguridad|**Estándar**|
    
 1. En la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, directamente debajo de la lista desplegable **Imagen**, haga clic en el vínculo **Ver todas las imágenes**.
 1. En la hoja **Seleccionar una imagen**, en **Otros elementos**, haga clic en **Imágenes compartidas** y, en la lista de imágenes compartidas, seleccione **az140-25-host-image**. 
-1. De nuevo en la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifique la configuración siguiente y seleccione **Siguiente: Área de trabajo >**.
+1. De nuevo en la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifique la configuración siguiente y seleccione **Siguiente: Área de trabajo > **:
 
    |Configuración|Valor|
    |---|---|
