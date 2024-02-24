@@ -265,7 +265,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Nombre del grupo de aplicaciones|**az140-21-hp1-Utilities-RAG**|
 
 1. En la pestaña **Aplicaciones** de la hoja **Crear un grupo de aplicaciones**, seleccione **+ Agregar aplicaciones**.
-1. En la hoja **Agregar aplicación**, use las pestañas **Básico** e **Índice** para especificar la siguiente configuración y seleccione **Guardar**:
+1. En la hoja **Agregar aplicación**, use las pestañas **Básico** e **Icono** para especificar la siguiente configuración y seleccione **Guardar**:
 
    |Configuración|Valor|
    |---|---|

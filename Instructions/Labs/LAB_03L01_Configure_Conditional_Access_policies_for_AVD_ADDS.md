@@ -35,6 +35,10 @@ Después de completar este laboratorio, podrá:
 
 ## Instrucciones
 
+>**Importante**: Microsoft ha cambiado el nombre de **Azure Active Directory** (**Azure AD**) a **Microsoft Entra ID**. Para obtener más información sobre este cambio, consulte [Nuevo nombre de Azure Active Directory](https://learn.microsoft.com/en-us/entra/fundamentals/new-name). Se trata de una iniciativa en curso, por lo que podría encontrar instancias en las que haya una discrepancia entre la instrucción del laboratorio y los elementos de la interfaz, a medida que vaya realizando los ejercicios individuales. Tenga esto en cuenta (en particular, en este laboratorio, **Microsoft Entra Connect** designa el nuevo nombre de **Azure Active Directory Connect** y el término **Azure Active Directory** todavía se usa al configurar el punto de conexión de servicio en la tarea 4 del ejercicio 1).
+
+>**Importante**: La activación de una prueba de Microsoft Entra ID P2 requiere proporcionar la información de una tarjeta de crédito. Por este motivo, este ejercicio es totalmente opcional. En su lugar, los instructores del curso podrían optar por mostrar esta funcionalidad a los alumnos.
+
 ### Ejercicio 1: Preparar el acceso condicional basado en Microsoft Entra para Azure Virtual Desktop
 
 Las tareas principales de este ejercicio son las siguientes:
@@ -49,7 +53,10 @@ Las tareas principales de este ejercicio son las siguientes:
 
 >**Nota**: Se requieren licencias Premium P1 o P2 de Microsoft Entra para implementar el acceso condicional de Microsoft Entra. En este laboratorio usaremos una licencia de prueba de 30 días.
 
-1. En el equipo de laboratorio, inicie un explorador web, vaya a [Azure Portal](https://portal.azure.com) e inicie sesión con las credenciales de una cuenta de usuario con el rol Propietario en la suscripción que va a usar en este laboratorio, así como el rol Administrador global en el inquilino de Microsoft Entra asociado a la suscripción.
+1. En el equipo de laboratorio, inicie un explorador web, vaya a [Azure Portal](https://portal.azure.com) e inicie sesión con las credenciales de Microsoft Entra de una cuenta de usuario con el rol Propietario en la suscripción que vaya a usar en este laboratorio, así como el rol Administrador global en el inquilino de Microsoft Entra asociado a la suscripción.
+
+    >**Importante**: Asegúrese de usar una cuenta profesional o educativa **no** una cuenta de Microsoft.
+
 1. En Azure Portal, busque y seleccione **Azure Active Directory** para ir al inquilino de Microsoft Entra asociado a la suscripción de Azure que estamos usando en este laboratorio.
 1. En la barra de menús vertical izquierda de la hoja de Azure Active Directory, en la sección **Administrar**, seleccione **Usuarios**. 
 1. En la hoja **Usuarios | Todos los usuarios (versión preliminar)**, seleccione **aduser5**.
@@ -69,8 +76,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En Azure Portal, regrese a la hoja **Información general** del inquilino de Microsoft Entra y, en la barra de menús vertical de la izquierda, en la sección **Administrar**, haga clic en **Licencias**.
 1. En la barra de menús vertical izquierda de la hoja **Licencias \| Información general**, en la sección **Administrar**, haga clic en **Todos los productos**.
 1. En la barra de herramientas de la hoja **Licencias \| Todos los productos**, haga clic en **+ Probar/Comprar**.
-1. En la hoja **Activar**, haga clic en **Prueba gratuita** en la sección **ENTERPRISE MOBILITY + SECURITY E5** y, a continuación, haga clic en **Activar**. 
-1. Mientras está en la hoja **Licencias \| Información general**, actualice la ventana del explorador para confirmar que la activación se ha realizado correctamente. 
+1. En la hoja **Activar**, haga clic en **Evaluación gratuita** en la sección **MICROSOFT ENTRA ID P2** y, a continuación, haga clic en **Activar** y siga las indicaciones para completar el proceso de activación.
 1. En la hoja **Licencias - Todos los productos**, seleccione la entrada **Enterprise Mobility + Security E5**. 
 1. En la barra de herramientas la hoja **Enterprise Mobility + Security E5**, haga clic en **+ Asignar**.
 1. En la hoja **Asignar licencia**, haga clic en **Agregar usuarios y grupos**; en la hoja **Agregar usuarios y grupos**, seleccione **aduser5** y su cuenta de usuario y haga clic en **Seleccionar**.
@@ -181,7 +187,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    - En el cuadro de texto **Nombre**, escriba **az140-31-wvdpolicy1**.
    - En la sección **Asignaciones**, seleccione la opción **Users or workload identities** (Usuarios o identidades de carga de trabajo); en la lista desplegable **What does this policy apply to?** (¿A qué se aplica esta directiva?), asegúrese de que **Usuarios y grupos** está seleccionado; en la sección **Seleccionar usuarios y grupos**, active la casilla **Usuarios y grupos** y, por último, en la hoja **Seleccionar**, haga clic en **aduser5** y luego, en **Seleccionar**.
-   - En la sección **Asignaciones**, haga clic en **Aplicaciones o acciones en la nube**, asegúrese de que en el conmutador **Seleccionar a qué se aplica esta directiva** está seleccionada la opción **Aplicaciones en la nube**, haga clic en la opción **Seleccionar aplicaciones**, en la hoja **Seleccionar**, en el cuadro de texto **Búsqueda**, escriba **9cdead84-a844-4324-93f2-b2e6bb768d07**, en el listado de resultados, seleccione la casilla de verificación situada junto a la entrada **Azure Virtual Desktop**, en el cuadro de texto **Búsqueda**, introduzca **a4a365df-50f1-4397-bc59-1a1564b8bb9c**, seleccione la casilla de verificación situada junto a la entrada **Escritorio remoto de Microsoft** y haga clic en **Seleccionar**. 
+   - En la sección **Asignaciones**, haga clic en **Aplicaciones o acciones en la nube**. Asegúrese de que en el conmutador **Seleccionar a qué se aplica esta directiva** esté seleccionada la opción **Aplicaciones en la nube**. Haga clic en la opción **Seleccionar aplicaciones**. En la hoja **Seleccionar** del cuadro de texto **Buscar**, escriba **Azure Virtual Desktop**. En el listado de resultados, seleccione la casilla de verificación situada junto a la entrada **Azure Virtual Desktop**. En el cuadro de texto **Buscar**, introduzca **Escritorio remoto de Microsoft**, seleccione la casilla de verificación situada junto a la entrada **Escritorio remoto de Microsoft** y haga clic en **Seleccionar**. 
 
    > **Nota**: Azure Virtual Desktop (id. de aplicación 9cdead84-a844-4324-93f2-b2e6bb768d07) se usa cuando el usuario se suscribe a una fuente y se autentica en la puerta de enlace de Azure Virtual Desktop durante una conexión. Escritorio remoto de Microsoft (id. de aplicación a4a365df-50f1-4397-bc59-1a1564b8bb9c) se usa cuando el usuario se autentica en el host de sesión cuando está habilitado el inicio de sesión único.
 

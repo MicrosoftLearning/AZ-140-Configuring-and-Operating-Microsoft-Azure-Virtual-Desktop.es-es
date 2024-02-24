@@ -38,6 +38,8 @@ Después de completar este laboratorio, podrá:
 
 ## Instrucciones
 
+>**Importante**: Microsoft ha cambiado el nombre de **Azure Active Directory** (**Azure AD**) a **Microsoft Entra ID**. Para obtener más información sobre este cambio, consulte [Nuevo nombre de Azure Active Directory](https://learn.microsoft.com/en-us/entra/fundamentals/new-name). Se trata de una iniciativa en curso, por lo que es posible que todavía encuentre instancias en las que haya una discrepancia entre la instrucción del laboratorio y los elementos de la interfaz, a medida que vaya realizando los ejercicios individuales. Téngalo en cuenta (en particular, en este laboratorio, **Microsoft Entra Connect** es el nuevo nombre para designar **Azure Active Directory Connect**).
+
 ### Ejercicio 1: Preparar y crear paquetes de aplicaciones MSIX
 
 Las tareas principales de este ejercicio son las siguientes:
@@ -464,18 +466,17 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la hoja **Azure Virtual Desktop \| Grupos de aplicaciones**, seleccione la entrada del grupo de aplicaciones **az140-21-hp1-Utilities-RAG**.
 1. En la hoja **az140-21-hp1-Utilities-RAG**, en el menú vertical del lado izquierdo, en la sección **Administrar**, seleccione **Aplicaciones**. 
 1. En la hoja **az140-21-hp1-Utilities-RAG \| Aplicaciones**, haga clic en **+ Agregar**.
-1. En la hoja **Agregar aplicaciones**, especifique la configuración siguiente y seleccione **Guardar**:
+1. En la hoja **Agregar aplicación**, en las pestañas **Básico** e **Icono**, especifique la siguiente configuración y seleccione **Guardar**:
 
    |Configuración|Valor|
    |---|---|
-   |Origen de aplicación|**Paquete MSIX**|
-   |Paquete MSIX|el nombre que representa el paquete incluido en la imagen|
-   |Aplicación MSIX|**XMLNOTEPAD**|
-   |Nombre de la aplicación|**Bloc de notas XML**|
+   |Origen de aplicación|**Asociación de aplicaciones**|
+   |Paquete|el nombre que representa el paquete incluido en la imagen|
+   |Aplicación|**XMLNOTEPAD**|
+   |Identificador de la aplicación|**Bloc de notas XML**|
    |Nombre para mostrar|**Bloc de notas XML**|
    |Descripción|**Bloc de notas XML**|
-   |Ruta de icono|**C:\\Archivos de programa\\WindowsApps\\XmlNotepad_2.8.0.0_x64__4vm7ty4fw38e8\\VFS\\ProgramFilesX86\\LovettSoftware\\XmlNotepad\\XmlNotepad.exe**|
-   |Índice de icono|**0**|
+   |Origen del icono|**Valor predeterminado**|
 
 1. Vuelva a la hoja **Azure Virtual Desktop \| Grupos de aplicaciones** y seleccione la entrada del grupo de aplicaciones **az140-21-hp1-DAG**.
 1. En la hoja **az140-21-hp1-DAG**, en el menú vertical del lado izquierdo, en la sección **Administrar**, seleccione **Aplicaciones**. 
