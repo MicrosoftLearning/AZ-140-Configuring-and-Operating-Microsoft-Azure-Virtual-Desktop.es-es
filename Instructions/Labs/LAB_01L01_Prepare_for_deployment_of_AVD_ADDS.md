@@ -1,7 +1,7 @@
 ---
 lab:
   title: "Laboratorio: Preparación de una implementación de Azure Virtual Desktop (AD\_DS)"
-  module: 'Module 1: Plan a AVD Architecture'
+  module: 'Module 1: Plan an AVD Architecture'
 ---
 
 # Laboratorio: Preparación de una implementación de Azure Virtual Desktop (AD DS)
