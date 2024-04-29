@@ -40,7 +40,8 @@ Después de completar este laboratorio, podrá:
 Las tareas principales de este ejercicio son las siguientes:
 
 1. Preparación para escalar hosts de sesión de Azure Virtual Desktop
-2. Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
+2. Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
+3. Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
 
 #### Tarea 1: Preparación para escalar hosts de sesión de Azure Virtual Desktop
 
@@ -65,22 +66,59 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En Azure Portal, busque y seleccione **Suscripciones** y, de la lista de suscripciones, seleccione la que contiene los recursos de Azure Virtual Desktop. 
 1. En la página de suscripción, seleccione **Control de acceso (IAM)**.
 1. En la página **Control de acceso (IAM)**, en la barra de herramientas, seleccione el botón **+ Agregar**, después seleccione **Agregar asignación de rol** en el menú desplegable.
-1. En la pestaña **Rol** del asistente **Agregar asignación de rol**, busque y seleccione el rol **Colaborador de encendido y apagado de virtualización de escritorio** y haga clic en **Siguiente**.
-1. En la pestaña **Miembros** del asistente **Agregar asignación de funciones**, seleccione **+ Seleccionar miembros**, busque y seleccione **Azure Virtual Desktop** o **Windows Virtual Desktop**, haga clic en **Seleccionar** y haga clic en **Siguiente**.
+1. En el panel **Agregar asignación de roles** en la pestaña **Rol**, especifique la siguiente configuración y seleccione **Siguiente**:
+
+   |Configuración|Valor|
+   |---|---|
+   |Rol de función de trabajo|**Colaborador de encendido y apagado de la virtualización de escritorios**|
+
+1. En el panel **Agregar asignación de funciones**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
+
+   |Configuración|Valor|
+   |---|---|
+   |Seleccionar|**Azure Virtual Desktop** o **Windows Virtual Desktop**|
+
+1. En la hoja **Agregar asignación de roles**, seleccione **Revisar y asignar**
 
    >**Nota**: El valor depende de cuándo se registró por primera vez el proveedor de recursos **Microsoft.DesktopVirtualization** en su inquilino de Azure.
 
 1. En la pestaña **Revisar y asignar**, seleccione **Revisar y asignar**.
 
-#### Tarea 2: Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
+#### Tarea 2: Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
+
+1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
+
+   >**Nota**: Usará una cuenta de Azure Storage para almacenar eventos de escalado automático. Puede crearlo directamente desde Azure Portal o usar Azure PowerShell como se muestra en esta tarea.
+
+1. En la sesión de PowerShell del panel Cloud Shell, ejecute los siguientes comandos para crear una cuenta de Azure Storage:
+
+   ```powershell
+   $resourceGroupName = 'az140-51-RG'
+   $location = (Get-AzResourceGroup -ResourceGroupName 'az140-11-RG').Location
+   New-AzResourceGroup -Location $location -Name $resourceGroupName
+   $suffix = Get-Random
+   $storageAccountName = "az140st51$suffix"
+   New-AzStorageAccount -Location $location -Name $storageAccountName -ResourceGroupName $resourceGroupName -SkuName Standard_LRS
+   ```
+
+   >**Nota**: Espere hasta que se aprovisione la cuenta de almacenamiento.
+
+1. En la ventana del navegador que muestra Azure Portal, cierre el panel de Cloud Shell.
+1. En el equipo de laboratorio, en el explorador que muestra Azure Portal, vaya a la página del grupo de hosts**az140-21-hp1**.
+1. En la página **az140-21-hp1**, seleccione **Configuración de diagnóstico** y a continuación, seleccione **+ Agregar configuración de diagnóstico**.
+1. En la página **Configuración de diagnóstico**, en el cuadro de texto **Nombre de la configuración de diagnóstico**, escriba **az140-51-scaling-plan-diagnostics** y en la sección **Grupos de categorías**, seleccione **Registros de escalado automático para grupos de hosts agrupados**. 
+1. En la misma página, en la sección **Detalles del destino**, seleccione **Archivar en una cuenta de almacenamiento** y, en la lista desplegable **Cuenta de almacenamiento**, seleccione el nombre de la cuenta de almacenamiento que empiece por el prefijo **az140st51**.
+1. Seleccione **Guardar**.
+
+#### Tarea 3: Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
 
 1. En su equipo de laboratorio, en el navegador que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop**. 
 1. En la página **Azure Virtual Desktop**, seleccione **Planes de escalado** y después seleccione **+ Crear**.
-1. En la pestaña **Aspectos básicos** del asistente **Crear un plan de escalado**, especifique la siguiente información y seleccione **Programaciones siguientes >** (deje los demás con sus valores predeterminados):
+1. En la pestaña **Aspectos básicos** del asistente **Crear un plan de escalado**, especifique la siguiente información y seleccione **Siguiente: Programa >** (deje otros con sus valores predeterminados):
 
    |Configuración|Value|
    |---|---|
-   |Resource group|el nombre **az140-51-RG** de un nuevo grupo de recursos|
+   |Resource group|**az140-51-RG**|
    |Nombre|**az140-51-scaling-plan**|
    |Location|la misma región de Azure en la que implementó los hosts de sesión en los laboratorios anteriores|
    |Nombre descriptivo|**plan de escalado az140-51**|
@@ -155,35 +193,10 @@ Las tareas principales de este ejercicio son las siguientes:
 
 Las tareas principales de este ejercicio son las siguientes:
 
-1. Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
 1. Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
 
-#### Tarea 1: Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
 
-1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
-
-   >**Nota**: Usará una cuenta de Azure Storage para almacenar eventos de escalado automático. Puede crearlo directamente desde Azure Portal o usar Azure PowerShell como se muestra en esta tarea.
-
-1. En la sesión de PowerShell del panel Cloud Shell, ejecute los siguientes comandos para crear una cuenta de Azure Storage:
-
-   ```powershell
-   $resourceGroupName = 'az140-51-RG'
-   $location = (Get-AzResourceGroup -ResourceGroupName $resourceGroupName).Location
-   $suffix = Get-Random
-   $storageAccountName = "az140st51$suffix"
-   New-AzStorageAccount -Location $location -Name $storageAccountName -ResourceGroupName $resourceGroupName -SkuName Standard_LRS
-   ```
-
-   >**Nota**: Espere hasta que se aprovisione la cuenta de almacenamiento.
-
-1. En la ventana del navegador que muestra Azure Portal, cierre el panel de Cloud Shell.
-1. En el equipo de laboratorio, en el explorador que muestra Azure Portal, vaya a la página del plan de escalado que creó en el ejercicio anterior.
-1. En la página **az140-51-scaling-plan**, seleccione **Configuración de diagnóstico** y después seleccione **+Añadir configuración de diagnóstico**.
-1. En la página **Configuración de diagnóstico**, en el cuadro de texto **Nombre de la configuración de diagnóstico**, escriba **az140-51-scaling-plan-diagnostics** y, en la sección **Grupos de categorías**, seleccione **allLogs**. 
-1. En la misma página, en la sección **Detalles del destino**, seleccione **Archivar en una cuenta de almacenamiento** y, en la lista desplegable **Cuenta de almacenamiento**, seleccione el nombre de la cuenta de almacenamiento que empiece por el prefijo **az140st51**.
-1. Seleccione **Guardar**.
-
-#### Tarea 2: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
+#### Tarea 1: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
 
 1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
 1. Desde la sesión de PowerShell en el panel de Cloud Shell, ejecute el siguiente comando para iniciar la sesión del host de Azure Virtual Desktop de las máquinas virtuales de Azure que usará en este laboratorio:
@@ -198,18 +211,18 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la página **az140-21-hp1**, seleccione **Host de sesión**.
 1. Espere hasta que se enumere al menos un host de sesión con el estado **Apagado**.
 
-   >**Nota**: Es posible que tenga que actualizar la página para actualizar el estado de los hosts de sesión.
+   > **Nota**: Es posible que tenga que actualizar la página para actualizar el estado de los hosts de sesión.
 
-   >**Nota**: Si todos los hosts de sesión siguen disponibles, vuelva a la página **az140-51-scaling-plan** y reduzca el valor de la configuración **Porcentaje mínimo de hosts (%)** **Descenso**.
+   > **Nota**: Si todos los hosts de sesión continúan disponibles después de 15 minutos, vuelva a la página **az140-51-scaling-plan** y reduzca el valor de la configuración **Porcentaje mínimo de hosts (%)** **Rampa fuera de servicio**.
 
-   >**Nota**: Una vez que cambie el estado de uno o varios hosts de sesión, los registros de escalado automático deben estar disponibles en la cuenta de Azure Storage. 
+   > **Nota**: Una vez que cambie el estado de uno o varios hosts de sesión, los registros de escalado automático deben estar disponibles en la cuenta de Azure Storage. 
 
 1. En Azure Portal, busque y seleccione **Cuentas de almacenamiento** y, en la página **Cuentas de almacenamiento**, seleccione la entrada que representa la cuenta de almacenamiento creada anteriormente en este ejercicio (cuyo nombre comienza con el prefijo **az140st51**).
 1. En la página de la cuenta de almacenamiento, seleccione **Contenedores**.
-1. En la lista de contenedores, seleccione **insights-logs-autoscale**.
-1. En la página **insights-logs-autoscale**, navegue por la jerarquía de carpetas hasta llegar a la entrada que representa un blob con formato JSON almacenado en el contenedor.
+1. En la lista de contenedores, seleccione **insights-logs-autoscaleevaluationpooled**.
+1. En la página **insights-logs-autoscaleevaluationpooled**, navegue por la jerarquía de carpetas hasta que llegue a la entrada que representa un blob con formato JSON almacenado en el contenedor.
 1. Seleccione la entrada de blob, seleccione el icono de puntos suspensivos situado en el extremo derecho de la página y, en el menú desplegable, seleccione **Descargar**.
-1. En el equipo de laboratorio, abra el blob descargado en un editor de texto de su elección y examine su contenido. Debería poder encontrar referencias a eventos de escalado automático. 
+1. En el equipo de laboratorio, abra el blob descargado en un editor de texto de su elección y examine su contenido. Debería poder encontrar referencias a eventos de escalado automático y en este caso, podemos buscar "desasignados" para facilitar la identificación.
 
    >**Nota**: Este es un contenido de blob de ejemplo que incluye referencias a eventos de escalado automático:
 
@@ -220,7 +233,7 @@ Las tareas principales de este ejercicio son las siguientes:
    time "2023-03-26T19:35:46.0074598Z"
    resourceId   "/SUBSCRIPTIONS/AAAAAAAE-0000-1111-2222-333333333333/RESOURCEGROUPS/AZ140-51-RG/PROVIDERS/MICROSOFT.DESKTOPVIRTUALIZATION/SCALINGPLANS/AZ140-51-SCALING-PLAN"
    operationName    "ScalingEvaluationSummary"
-   category "Autoscale"
+   category "AutoscaleEvaluationPooled"
    resultType   "Succeeded"
    level    "Informational"
    correlationId    "ddd3333d-90c2-478c-ac98-b026d29e24d5"
