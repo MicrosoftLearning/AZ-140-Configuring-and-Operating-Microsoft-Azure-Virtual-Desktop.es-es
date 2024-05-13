@@ -51,7 +51,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En el equipo de laboratorio, inicie un explorador web, vaya a [Azure Portal](https://portal.azure.com) e inicie sesión con las credenciales de una cuenta de usuario con el rol Propietario en la suscripción que va a usar en este laboratorio.
 1. En Azure Portal, busque y seleccione **Máquinas virtuales** y, en la hoja **Máquinas virtuales**, haga clic en **az140-dc-vm11**.
-1. En la hoja **az140-dc-vm11**, seleccione **Conectar**; en el menú desplegable, seleccione **Bastion**; en la pestaña **Bastion** de la hoja **az140-dc-vm11 \| Conectar**, seleccione **Usar Bastion**.
+1. En la hoja **az140-dc-vm11**, seleccione **Conectar**, en el menú desplegable, seleccione **Conectar a través de Bastion**.
 1. Cuando se le solicite, proporcione las credenciales siguientes y seleccione **Conectar**:
 
    |Configuración|Valor|
@@ -79,7 +79,7 @@ Las tareas principales de este ejercicio son las siguientes:
    (Get-ADUser -Filter "sAMAccountName -eq 'aduser8'").userPrincipalName
    ```
 
-   > **Nota**: Registre todos los valores de nombre principal de usuario que identificó. Los necesitará más adelante en este laboratorio.
+   > **Nota**: Registre todos los valores de nombre principal de usuario que identificó **y** el nombre distintivo de la unidad organizativa WVDInfra. Los necesitará más adelante en este laboratorio.
 
 1. En la sesión de Bastion a **az140-dc-vm11**, desde el panel de la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para calcular el tiempo de expiración del token necesario para realizar una implementación basada en una plantilla:
 
@@ -100,11 +100,12 @@ Las tareas principales de este ejercicio son las siguientes:
    |Nombre|**hp2-Subnet**|
    |Intervalo de direcciones de subred|**10.0.2.0/24**|
 
-1. En la sesión de Bastion a **az140-dc-vm11**, en Azure Portal, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar y navegar a **Grupos de seguridad de red** y, en la hoja **Grupos de seguridad de red**, seleccione el grupo de seguridad de red en el grupo de recursos **az140-11-RG**.
+1. En la sesión de Bastion para **az140-dc-vm11**, en Azure Portal, use el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar y navegar a **Grupos de seguridad de red** y, en la hoja **Grupos de seguridad de red**, seleccione el único grupo de seguridad de red.
 1. En la hoja Grupo de seguridad de red, en el menú vertical de la izquierda, en la sección **Configuración**, haga clic en **Propiedades**.
 1. En la hoja **Propiedades**, haga clic en el icono **Copiar al Portapapeles** en el lado derecho del cuadro de texto **Id. de recurso**. 
 
    > **Nota**: El valor debe ser similar al formato `/subscriptions/de8279a3-0675-40e6-91e2-5c3728792cb5/resourceGroups/az140-11-RG/providers/Microsoft.Network/networkSecurityGroups/az140-cl-vm11-nsg`, aunque el identificador de suscripción variará. Anótelo, ya que lo necesitará en la siguiente tarea.
+1. Ahora debería haber registrado **seis** valores. Nombre distintivo, 3 nombres principales de usuario, un valor DateTime y el identificador de recurso. Si no tiene 6 valores registrados, vuelva a leer esta tarea **antes** de continuar. 
 
 #### Tarea 2: Implementación de un grupo de hosts de Azure Virtual Desktop mediante una plantilla de Azure Resource Manager
 
@@ -118,7 +119,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Configuración|Valor|
    |---|---|
    |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
-   |Grupo de recursos|nombre de un nuevo grupo de recursos **az140-23-RG**.|
+   |Grupo de recursos|cree un **nuevo** grupo de recursos denominado **az140-23-RG**|
    |Region|el nombre de la región de Azure en la que implementó máquinas virtuales de Azure que hospedan controladores de dominio de AD DS en el laboratorio **Preparación para la implementación de Azure Virtual Desktop (AD DS)**.|
    |Location|el nombre de la misma región de Azure que la establecida como el valor de los parámetros **Región**.|
    |Ubicación del área de trabajo|el nombre de la misma región de Azure que la establecida como el valor de los parámetros **Región**.|
@@ -176,15 +177,13 @@ Las tareas principales de este ejercicio son las siguientes:
    |Grupo de recursos|**az140-23-RG**|
    |Token de grupo de hosts|el valor del token que generó en la tarea anterior.|
    |Ubicación del grupo de hosts|el nombre de la región de Azure en la que implementó el grupo de hosts anteriormente en este laboratorio.|
-   |Nombre de usuario de la cuenta de administrador de la máquina virtual|**Estudiante** No usar @adatum.com|
-   |Contraseña de la cuenta de administrador de la máquina virtual|**Pa55w.rd1234**|
    |Ubicación de máquina virtual|el nombre de la misma región de Azure que la establecida como el valor de los parámetros **Ubicación de grupo de hosts**.|
    |Creación de un grupo de seguridad de red|**false**|
    |Identificador del grupo de seguridad de red|el valor del parámetro resourceID del grupo de seguridad de red existente que identificó en la tarea anterior.|
 
 1. En la hoja **Implementación personalizada**, seleccione **Revisar y crear** y seleccione **Crear**.
 
-   > **Nota**: Espere a que la implementación se complete antes de avanzar a la siguiente tarea. Esto puede tardar unos cinco minutos.
+   > **Nota**: Espere a que la implementación se complete antes de avanzar a la siguiente tarea. Esto puede tardar unos 10 minutos.
 
 #### Tarea 6: Comprobación de los cambios en el grupo de hosts de Azure Virtual Desktop
 
@@ -206,12 +205,12 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la hoja **Grupos de aplicaciones de \|az140-23-hp2**, en la lista de grupos de aplicaciones, seleccione **az140-23-hp2-DAG**.
 1. En la hoja **az140-23-hp2-DAG**, en el menú vertical de la izquierda, seleccione **Asignaciones**. 
 1. En la hoja **Asignaciones de \|az140-23-hp2-DAG**, seleccione **+ Agregar**.
-1. En la hoja **Seleccionar usuarios o grupos de usuarios de Microsoft Entra**, seleccione **az140-wvd-personal** y haga clic en **Seleccionar**.
+1. En la hoja **Seleccionar usuarios o grupos de usuarios de Microsoft Entra**, seleccione **Grupos**, y a continuación, seleccione **az140-wvd-personal** y haga clic en **Seleccionar**.
 
    > **Nota**: Ahora vamos a revisar la experiencia de un usuario que se conecta al grupo de hosts de Azure Virtual Desktop.
 
 1. Desde el equipo de laboratorio, en la ventana del explorador donde se muestra Azure Portal, busque y seleccione **Máquinas virtuales** y, en la hoja **Máquinas virtuales**, seleccione la entrada **az140-cl-vm11**.
-1. En la hoja **az140-cl-vm11**, seleccione **Conectar**; en el menú desplegable, seleccione **Bastion**; en la pestaña **Bastion** de la hoja **az140-cl-vm11 \| Conectar**, seleccione **Usar Bastion**.
+1. En la hoja **az140-cl-vm11**, seleccione **Conectar**, en el menú desplegable, seleccione**Conectar a través de Bastion**.
 1. Cuando se le solicite, proporcione las credenciales siguientes y seleccione **Conectar**:
 
    |Configuración|Valor|
@@ -224,10 +223,9 @@ Las tareas principales de este ejercicio son las siguientes:
 3. Dentro de la sesión de Bastion a **az140-cl-vm11**, en la ventana Escritorio remoto, en la página **Empecemos**, haga clic en **Suscribirse**.
 4. En la ventana de cliente de **Escritorio remoto**, seleccione **Suscribirse** y, cuando se le solicite, inicie sesión con las credenciales de **aduser7**: proporcione el atributo userPrincipalName y la contraseña que estableció al crear la cuenta de usuario.
 
-   > **Nota**: Como alternativa, en la ventana del cliente **Escritorio remoto**, seleccione **Suscribirse con dirección URL**, y, en el panel **Suscribirse a un área de trabajo**, en **URL del correo electrónico o área de trabajo**, escriba **https://rdweb.wvd.microsoft.com/api/arm/feeddiscovery**, seleccione **Siguiente** y, una vez que se le solicite, inicie sesión con las credenciales de **aduser7** (con el atributo userPrincipalName como el nombre de usuario y la contraseña que estableció al crear esta cuenta). 
+   > **Nota**: Como alternativa, en la ventana del cliente **Escritorio remoto**, seleccione **Suscribirse con dirección URL**, y, en el panel **Suscribirse a un área de trabajo**, en **URL del correo electrónico o área de trabajo**, escriba **https://client.wvd.microsoft.com/api/arm/feeddiscovery**, seleccione **Siguiente** y, una vez que se le solicite, inicie sesión con las credenciales de **aduser7** (con el atributo userPrincipalName como el nombre de usuario y la contraseña que estableció al crear esta cuenta). 
 
 1. En la página **Escritorio remoto**, haga doble clic en el icono **SessionDesktop** y, cuando se le soliciten las credenciales, vuelva a escribir la misma contraseña, active la casilla **Recordarme** y haga clic en **Aceptar**.
-1. En la ventana **Mantener sesión iniciada en todas las aplicaciones**, desactive la casilla **Permitir que mi organización administre el dispositivo** y seleccione **No, iniciar sesión solo en esta aplicación**. 
 1. Compruebe que **aduser7** ha iniciado sesión correctamente mediante Escritorio remoto en un host.
 1. Dentro de la sesión de Escritorio remoto a uno de los hosts como **aduser7**, haga clic con el botón derecho en **Inicio**, y, en el menú contextual, seleccione **Apagar o cerrar sesión** y, en el menú en cascada, haga clic en **Cerrar sesión**.
 
@@ -249,7 +247,6 @@ Las tareas principales de este ejercicio son las siguientes:
 1. Vuelva a la sesión de Bastion a **az140-cl-vm11**, en la ventana de **Escritorio remoto**, y haga clic en el icono de puntos suspensivos en la esquina superior derecha, en el menú contextual, y haga clic en **Cancelar Suscripción**; cuando se le solicite confirmación, haga clic en **Continuar**.
 1. Dentro de la sesión de Bastion a **az140-cl-vm11**, en la ventana de **Escritorio remoto**, en la página **Empecemos**, haga clic en **Suscribirse**.
 1. Cuando se le pida que inicie sesión, en el panel **Elegir una cuenta**, haga clic en **Usar otra cuenta** y, cuando se le solicite, inicie sesión con el nombre principal de usuario de la cuenta de usuario **aduser8** con la contraseña que estableció al crear esta cuenta.
-1. En la ventana **Mantener sesión iniciada en todas las aplicaciones**, desactive la casilla **Permitir que mi organización administre el dispositivo** y seleccione **No, iniciar sesión solo en esta aplicación**. 
 1. En la página **Escritorio remoto**, haga doble clic en el icono **SessionDesktop** y compruebe que recibe el mensaje de error **No se ha podido establecer la conexión porque actualmente no hay recursos disponibles. Vuelva a conectarse más tarde o, si sigue ocurriendo, póngase en contacto con el soporte técnico para obtener ayuda**, y haga clic en **Aceptar**.
 
    > **Nota**: Esto se espera, ya que el grupo de hosts está configurado para la asignación directa y no se ha asignado un host a **aduser8**.
@@ -257,6 +254,8 @@ Las tareas principales de este ejercicio son las siguientes:
 1. Cambie al equipo de laboratorio, al explorador web que muestra Azure Portal y, en la hoja **Hosts de sesión de \|az140-23-hp2**, seleccione el vínculo **(Asignar)** de la columna **Usuario asignado** junto a uno de los dos hosts sin asignar restantes.
 1. En **Asignar un usuario**, seleccione **aduser8**, haga clic en **Seleccionar** y, cuando se le pida confirmación, haga clic en **Aceptar**.
 1. Vuelva a la sesión de Bastion a **az140-cl-vm11**, en la ventana **Escritorio remoto**, haga doble clic en el icono **SessionDesktop** y, cuando se le solicite la contraseña, escriba la contraseña establecida al crear esta cuenta de usuario, haga clic en **Aceptar** y compruebe que puede iniciar sesión correctamente en el host asignado.
+1. En el escritorio de sesión del host asignado para **aduser8**, haga clic con el botón derecho en **Inicio**, en el menú contextual, seleccione **Apagar o cerrar sesión** y, en el menú en cascada, haga clic en **Cerrar sesión**.
+1. En la sesión de Bastion para **az140-cl-vm11**, haga clic con el botón derecho en **Inicio**, en el menú contextual, seleccione **Apagar o cerrar sesión** y, en el menú en cascada, haga clic en **Cerrar**, y a continuación, haga clic en **Cerrar**.
 
 ### Ejercicio 2: Detener y desasignar máquinas virtuales de Azure aprovisionadas en el laboratorio
 

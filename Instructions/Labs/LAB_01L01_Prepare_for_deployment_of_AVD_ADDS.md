@@ -25,7 +25,7 @@ Debe prepararse para la implementación de un entorno de Active Directory Domain
 Después de completar este laboratorio, podrá:
 
 - Implementación de un bosque de dominio único de Active Directory Domain Services (AD DS) mediante máquinas virtuales de Azure
-- Integración de un bosque de AD DS en un inquilino de Microsoft Entra
+- Integración de un bosque de AD DS en un inquilino de Microsoft Entra
 
 ## Archivos de laboratorio
 
@@ -110,9 +110,10 @@ Las tareas principales de este ejercicio son las siguientes:
 #### Tarea 1: Preparar una implementación de máquina virtual de Azure
 
 1. En el equipo de laboratorio, inicie un explorador web, vaya a [Azure Portal](https://portal.azure.com) e inicie sesión con las credenciales de una cuenta de usuario con el rol Propietario en la suscripción que va a usar en este laboratorio.
-1. En el explorador web en que se muestra Azure Portal, vaya a la hoja **Información general** del inquilino de Microsoft Entra y en el menú vertical de la izquierda, en la sección **Administrar**, haga clic en **Propiedades**.
+1. En el portal Azure, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página del portal Azure para buscar y navegar hasta el panel de **Microsoft Entra ID**.
+1. En el panel de **Información general** del arrendatario Microsoft Entra y, en el menú vertical de la izquierda, en la sección **Administrar**, haga clic en **Propiedades**.
 1. En la parte inferior de la hoja **Propiedades** del inquilino de Microsoft Entra, seleccione el vínculo **Administrar valores predeterminados de seguridad**.
-1. Si es necesario, en la hoja **Activación de los valores predeterminados de seguridad**, seleccione **No**, active la casilla **Mi organización usa el acceso condicional** y seleccione **Guardar**.
+1. En el panel **Habilitar valores predeterminados de seguridad**, si es necesario, seleccione **Deshabilitado (no recomendado)**, seleccione el botón de opción **Mi organización tiene previsto utilizar el Acceso condicional** y seleccione **Guardar**, y luego, seleccione **Deshabilitar**.
 1. En Azure Portal, seleccione el icono de la barra de herramientas inmediatamente a la derecha del cuadro de texto de búsqueda para abrir el panel de **Cloud Shell**.
 1. Si se le pide que seleccione **Bash** o **PowerShell**, seleccione **PowerShell**. 
 
@@ -131,7 +132,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En Azure Portal, cierre el panel **Cloud Shell**.
 1. En el equipo de laboratorio, en la misma ventana del explorador web, abra otra pestaña del explorador web y vaya a una versión personalizada de la plantilla de inicio rápido denominada [Creación de una nueva máquina virtual de Windows y creación de un nuevo bosque, un dominio y un controlador de dominio de AD](https://github.com/az140mp/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain). 
-1. En la página **Create a new Windows VM and create a new AD Forest, Domain and DC** (Crear una máquina virtual Windows y un bosque, un dominio y un controlador de dominio de AD), seleccione **Implementar en Azure**. Se redirigirá automáticamente el explorador a la hoja **Create an Azure VM with a new AD Forest** (Crear una VM de Azure con un nuevo bosque de AD) en Azure Portal.
+1. En la página **Crear una nueva máquina virtual de Windows y crear un nuevo bosque, dominio y DC de AD**, desplácese hacia abajo en la página y seleccione **Implementar en Azure**. Se redirigirá automáticamente el explorador a la hoja **Create an Azure VM with a new AD Forest** (Crear una VM de Azure con un nuevo bosque de AD) en Azure Portal.
 1. En la hoja **Create an Azure VM with a new AD Forest** (Crear una máquina virtual de Azure con un nuevo bosque de AD), seleccione **Editar parámetros**.
 1. En la hoja **Editar parámetros**, seleccione **Cargar archivo**; En el cuadro de diálogo **Abrir**, seleccione **\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploydc11.parameters.json**, **Abrir** y, luego, **Guardar**. 
 1. En la hoja **Create an Azure VM with a new AD Forest** (Crear una VM de Azure con un nuevo bosque de AD), especifique la configuración siguiente (deje las demás opciones con los valores existentes):
@@ -144,7 +145,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En la hoja **Create an Azure VM with a new AD Forest** (Crear una máquina virtual de Azure con un nuevo bosque de AD), seleccione **Revisar y crear** y luego **Crear**.
 
-   > **Nota**: Espere a que la implementación se complete antes de avanzar al siguiente ejercicio. Esto puede tardar unos 15 minutos. 
+   > **Nota**: Espere a que la implementación se complete antes de avanzar al siguiente ejercicio. La implementación puede tardar unos 20-25 minutos. 
 
 #### Tarea 3: Implementar una máquina virtual de Azure que ejecuta Windows 10 mediante una plantilla de inicio rápido de Azure Resource Manager
 
@@ -213,7 +214,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En la pestaña **Revisar y crear** de la hoja **Crear una instancia de Bastion**, seleccione **Crear**:
 
-   > **Nota**: Espere a que la implementación se complete antes de avanzar al siguiente ejercicio. La implementación puede tardar unos 5 minutos.
+   > **Nota**: Espere a que la implementación se complete antes de avanzar al siguiente ejercicio. La implementación puede tardar unos 10 minutos.
 
 ### Ejercicio 2: Integración de un bosque de AD DS en un inquilino de Microsoft Entra
   
@@ -223,12 +224,11 @@ Las tareas principales de este ejercicio son las siguientes:
 1. Configurar el sufijo UPN de AD DS
 1. Creación de un usuario de Microsoft Entra que se usará para configurar la sincronización con Microsoft Entra
 1. Instalación de Microsoft Entra Connect
-1. Configuración de la unión a Microsoft Entra híbrido
 
 #### Tarea 1: Creación de usuarios y grupos de AD DS que se sincronizarán con Microsoft Entra
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busque y seleccione **Máquinas virtuales** y, en la hoja **Máquinas virtuales**, seleccione **az140-dc-vm11**.
-1. En la hoja **az140-dc-vm11**, seleccione **Conectar**; en el menú desplegable, seleccione **Bastion**; en la pestaña **Bastion** de la hoja **az140-dc-vm11 \| Conectar**, seleccione **Usar Bastion**.
+1. En el panel **az140-dc-vm11**, seleccione **Conectar**, en el menú desplegable, seleccione **Conectar a través de Bastion**.
 1. Cuando se le solicite, proporcione las credenciales siguientes y seleccione **Conectar**:
 
    |Configuración|Valor|
@@ -236,7 +236,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Nombre de usuario|**Estudiante**|
    |Contraseña|**Pa55w.rd1234**|
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, inicie **Windows PowerShell ISE** como administrador.
+1. En la sesión de Bastion a **az140-dc-vm11**, inicie **Windows PowerShell ISE** como administrador.
 1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para deshabilitar la seguridad mejorada de Internet Explorer para administradores:
 
    ```powershell
@@ -306,7 +306,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 #### Tarea 2: Configurar el sufijo UPN de AD DS
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde el panel del script de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para instalar la última versión del módulo PowerShellGet (seleccione **Sí** cuando se le solicite confirmación):
+1. En la sesión de Bastion a **az140-dc-vm11**, desde el panel de la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para instalar la última versión del módulo PowerShellGet (seleccione **Sí** cuando se le solicite confirmación):
 
    ```powershell
    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -318,6 +318,8 @@ Las tareas principales de este ejercicio son las siguientes:
    ```powershell
    Install-Module -Name Az -AllowClobber -SkipPublisherCheck
    ```
+
+   > **Nota**: Es posible que tenga que esperar de 3 a 5 minutos antes de que aparezca cualquier salida de la instalación del módulo Az. También es posible que tenga que esperar otros 5 minutos **después** de que se haya detenido la salida. Este es el comportamiento esperado.
 
 1. Desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para iniciar sesión en la suscripción de Azure:
 
@@ -374,9 +376,9 @@ Las tareas principales de este ejercicio son las siguientes:
 
 #### Tarea 3: Crear un usuario de Microsoft Entra que se utilizará para configurar la sincronización de directorios
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para crear un usuario de Microsoft Entra (reemplace el marcador de posición `<password>` por una contraseña aleatoria y compleja):
+1. En la sesión de Bastion a **az140-dc-vm11**, desde el panel de la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para crear un usuario de Microsoft Entra (reemplace el marcador de posición `<password>` por una contraseña aleatoria y compleja):
 
-   > **Nota**: Asegúrese de registrar la contraseña que ha usado. ya que la necesitaremos más adelante en este y en laboratorios posteriores.
+   > **Nota**: Asegúrese de registrar la contraseña que ha usado. **Lo necesitará más adelante en este laboratorio y en los siguientes.**.
 
    ```powershell
    $userName = 'aadsyncuser'
@@ -400,12 +402,12 @@ Las tareas principales de este ejercicio son las siguientes:
    (Get-AzureADUser -Filter "MailNickName eq '$userName'").UserPrincipalName
    ```
 
-   > **Nota**: Registre el nombre principal de usuario, ya que lo necesitará más adelante en este ejercicio. 
+   > **Nota**: Registre el nombre de usuario principal **y** la contraseña. ya que lo necesitará más adelante en este ejercicio. 
 
 
 #### Tarea 4: Instalar Microsoft Entra Connect
 
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para habilitar TLS 1.2:
+1. En la sesión de Bastion a **az140-dc-vm11**, desde el panel de la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para habilitar TLS 1.2:
 
    ```powershell
    New-Item 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -Force | Out-Null
@@ -423,18 +425,18 @@ Las tareas principales de este ejercicio son las siguientes:
    Write-Host 'TLS 1.2 has been enabled.'
    ```
    
-1. En la sesión de Escritorio remoto a **az140-dc-vm11**, inicie Internet Explorer y vaya a la [página de descarga de Microsoft Edge para empresas](https://www.microsoft.com/en-us/edge/business/download).
+1. Dentro de la sesión de Bastion a **az140-dc-vm11**, inicie Internet Explorer y navegue hasta la [página de descarga de Microsoft Edge for Business](https://www.microsoft.com/en-us/edge/business/download).
 1. En la [página de descarga de Microsoft Edge para empresas](https://www.microsoft.com/en-us/edge/business/download), descargue la versión estable más reciente de Microsoft Edge, instálela, iníciela y configúrela con las opciones predeterminadas.
 1. En la sesión de Escritorio remoto a **az140-dc-vm11**, use Microsoft Edge para ir a [Azure portal](https://portal.azure.com). Si se le solicita, utilice las credenciales de Microsoft Entra de la cuenta de usuario con el rol de Propietario para iniciar sesión en la suscripción que usa en este laboratorio.
-1. En Azure Portal, use el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar la hoja **Azure Active Directory** y desplazarse hasta ella y, en la hoja Inquilino de Microsoft Entra, en la sección **Administrar** del menú del centro, seleccione **Microsoft Entra Connect**.
-1. En la hoja **Microsoft Entra Connect**, seleccione primero el vínculo **Conectar sincronización** a la izquierda y, después, seleccione el vínculo **Descargar Microsoft Entra Connect**. Se abrirá automáticamente una nueva pestaña del explorador en la que se muestra la página de descarga de **Microsoft Azure Active Directory Connect**.
-1. En la página de descarga de **Microsoft Azure Active Directory Connect**, seleccione **Descargar**.
+1. En el portal Azure, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página del portal Azure para buscar y navegar hasta el panel **Microsoft Entra ID** y, en su panel de inquilino de Microsoft Entra, en la sección **Administrar** del menú central, seleccione **Microsoft Entra Connect**.
+1. En el panel de **Microsoft Entra Connect**, seleccione el vínculo **Programador de sincronización** en el menú de servicio, y luego, seleccione el vínculo **Descargar Microsoft Entra Connect**. Se abrirá automáticamente una nueva pestaña del navegador en la que se mostrará la página de descarga de **Microsoft Entra Connect**.
+1. En la página de descarga de **Microsoft Entra Connect** seleccione** Descargar**.
 1. Si se le pide que ejecute o guarde el instalador **AzureADConnect.msi**, seleccione **Ejecutar**. De lo contrario, abra el archivo después de descargarlo para iniciar el asistente de **Microsoft Azure Active Directory Connect**.
-1. En la página **Bienvenido a Microsoft Entra Connect** del asistente de **Microsoft Azure Active Directory Connect**, seleccione la casilla **Acepto los términos de licencia y el aviso de privacidad** y luego **Continuar**.
+1. En la página **Bienvenido a Azure AD Connect** del asistente de **Microsoft Azure Active Directory Connect**, seleccione la casilla **I agree to the license terms and privacy notice** (Acepto los términos de licencia y el aviso de privacidad) y luego en **Continuar**.
 1. En la página **Configuración rápida** del asistente de **Microsoft Azure Active Directory Connect**, seleccione la opción **Personalizar**.
 1. En la página **Instalar componentes necesarios**, deje desactivadas todas las opciones de configuración opcionales y seleccione **Instalar**.
 1. En la página **Inicio de sesión de usuario**, asegúrese de que solo esté habilitada la opción **Sincronización de hash de contraseñas** y seleccione **Siguiente**.
-1. En la página **Conectar con Microsoft Entra**, utilice las credenciales de la cuenta de usuario **aadsyncuser** que creó en el ejercicio anterior para autenticarse y seleccione **Siguiente**. 
+1. En la página **Conectar con Azure AD**, autentíquese con las credenciales de la cuenta de usuario **aadsyncuser** que creó en el ejercicio anterior y seleccione **Siguiente**. 
 
    > **Nota**: Proporcione el atributo userPrincipalName de la cuenta **aadsyncuser** que registró anteriormente en este ejercicio y especifique la contraseña que estableció anteriormente en este laboratorio como contraseña.
 
@@ -447,7 +449,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Contraseña|**Pa55w.rd1234**|
 
 1. De nuevo en la página **Conectar sus directorios**, asegúrese de que la entrada **adatum.com** aparece como un directorio configurado y seleccione **Siguiente**.
-1. En la página **Configuración de inicio de sesión de Microsoft Entra**, observe la advertencia que indica que los **usuarios no podrán iniciar sesión en Azure AD con credenciales locales si el sufijo UPN no coincide con un nombre de dominio comprobado**, seleccione la casilla **Continuar sin hacer coincidir todos los sufijos UPN con el dominio comprobado** y seleccione **Siguiente**.
+1. En la página **Configuración de inicio de sesión de Azure AD**, observe la advertencia que indica **que los usuarios no podrán iniciar sesión en Azure AD con credenciales locales si el sufijo UPN no coincide con un nombre de dominio comprobado**, active la casilla **Continue without matching all UPN suffixes to verified domain** (Continuar sin hacer coincidir todos los sufijos UPN con el dominio comprobado) y seleccione **Siguiente**.
 
    > **Nota**: Esto es algo esperable, ya que el inquilino de Microsoft Entra no tiene un dominio DNS personalizado comprobado que coincida con uno de los sufijos UPN del AD DS **adatum.com**.
 
@@ -457,7 +459,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la página **Características opcionales**, acepte la configuración predeterminada y seleccione **Siguiente**.
 1. En la página **Listo para configurar**, asegúrese de que la casilla **Start the synchronization process when configuration completes** (Iniciar el proceso de sincronización cuando se complete la configuración) esté activada y seleccione **Instalar**.
 
-   > **Nota**: La instalación debería tardar aproximadamente 2 minutos.
+   > **Nota**: La instalación debería durar unos 5 minutos.
 
 1. Revise la información de la página **Configuración completada** y seleccione **Salir** para cerrar la ventana **Microsoft Azure Active Directory Connect**.
 1. En la sesión de Escritorio remoto a **az140-dc-vm11**, en la ventana de Microsoft Edge que muestra Azure Portal, vaya a la hoja **Usuarios - Todos los usuarios** del inquilino de Microsoft Entra del laboratorio de Adatum.
