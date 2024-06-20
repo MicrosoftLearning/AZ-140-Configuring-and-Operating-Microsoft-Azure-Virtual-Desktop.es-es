@@ -321,13 +321,19 @@ Las tareas principales de este ejercicio son las siguientes:
 
    > **Nota**: Es posible que tenga que esperar de 3 a 5 minutos antes de que aparezca cualquier salida de la instalación del módulo Az. También es posible que tenga que esperar otros 5 minutos **después** de que se haya detenido la salida. Este es el comportamiento esperado.
 
-1. Desde la consola de **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para iniciar sesión en la suscripción de Azure:
+1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para iniciar sesión en la suscripción de Azure:
 
    ```powershell
    Connect-AzAccount
    ```
 
-1. Cuando se le solicite, proporcione las credenciales de la cuenta de usuario con el rol Propietario en la suscripción que usa en este laboratorio.
+1. Cuando se le solicite, proporcione las credenciales de una cuenta de usuario de Entra ID con el rol Propietario en la suscripción que usa en este laboratorio.
+1. Desde la consola **Administrador: Windows PowerShell ISE** consola, ejecute lo siguiente para deshabilitar el Administrador de cuentas de Windows:
+
+   ```powershell
+   Update-AzConfig -EnableLoginByWam $false
+   ```
+
 1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para recuperar la propiedad Id del inquilino de Microsoft Entra asociado a la suscripción de Azure:
 
    ```powershell
