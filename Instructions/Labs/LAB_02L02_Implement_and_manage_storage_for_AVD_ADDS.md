@@ -97,19 +97,19 @@ Las tareas principales de este ejercicio son las siguientes:
    Get-ChildItem -Path C:\Allfiles\Labs\02 -File -Recurse | Unblock-File
    ```
 
+1. Desde la consola **Administrador: Windows PowerShell ISE** consola, ejecute lo siguiente para deshabilitar el Administrador de cuentas de Windows:
+
+   ```powershell
+   Update-AzConfig -EnableLoginByWam $false
+   ```
+
 1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para iniciar sesión en la suscripción de Azure:
 
    ```powershell
    Connect-AzAccount
    ```
 
-1. Cuando se le solicite, proporcione las credenciales de una cuenta de usuario de Entra ID con el rol Propietario en la suscripción que usa en este laboratorio.
-1. Desde la consola **Administrador: Windows PowerShell ISE** consola, ejecute lo siguiente para deshabilitar el Administrador de cuentas de Windows:
-
-   ```powershell
-   Update-AzConfig -EnableLoginByWam $false
-   ```
-   
+1. Cuando se le solicite, proporcione las credenciales de una cuenta de usuario de Entra ID con el rol Propietario en la suscripción que usa en este laboratorio. 
 1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para establecer las variables necesarias para ejecutar el script siguiente:
 
    ```powershell
