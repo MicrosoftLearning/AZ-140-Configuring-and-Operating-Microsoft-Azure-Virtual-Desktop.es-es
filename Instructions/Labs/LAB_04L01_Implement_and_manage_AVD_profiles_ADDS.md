@@ -82,6 +82,12 @@ Las tareas principales de este ejercicio son las siguientes:
 
    > **Nota**: Es posible que tenga que esperar de 3 a 5 minutos antes de que aparezca cualquier salida de la instalación del módulo Az. También es posible que tenga que esperar otros 5 minutos **después** de que se haya detenido la salida. Este es el comportamiento esperado.
 
+1. Desde la consola **Administrador: Windows PowerShell ISE** consola, ejecute lo siguiente para deshabilitar el Administrador de cuentas de Windows:
+
+   ```powershell
+   Update-AzConfig -EnableLoginByWam $false
+   ```
+
 1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para iniciar sesión en la suscripción de Azure:
 
    ```powershell
