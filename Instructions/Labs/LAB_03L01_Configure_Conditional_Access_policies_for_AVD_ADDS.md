@@ -136,7 +136,7 @@ Las tareas principales de este ejercicio son las siguientes:
    Move-ADObject -Identity "CN=az140-cl-vm11,CN=Computers,DC=adatum,DC=com" -TargetPath "OU=WVDClients,DC=adatum,DC=com"
    ```
 
-1. En la sesión de Bastion a **az140-dc-vm11**, en el menú **Inicio**, expanda la carpeta **Microsoft Entra Connect** y seleccione **Microsoft Entra Connect**.
+1. En la sesión de Bastion remoto a **az140-dc-vm11**, en el menú **Inicio**, expanda la carpeta **Azure AD Connect** y seleccione **Azure AD Connect**.
 1. En la página **Bienvenido a Azure AD Connect** de la ventana **Microsoft Azure Active Directory Connect**, seleccione **Configurar**.
 1. En la página **Tareas adicionales** de la ventana **Microsoft Azure Active Directory Connect**, seleccione **Personalizar las opciones de sincronización** y luego, **Siguiente**.
 1. En la página **Conectarse a Microsoft Entra** de la ventana **Microsoft Azure Active Directory Connect**, autentifíquese utilizando las credenciales de la cuenta de usuario **aadsyncuser** que creó en el ejercicio anterior y seleccione **Siguiente**. 
