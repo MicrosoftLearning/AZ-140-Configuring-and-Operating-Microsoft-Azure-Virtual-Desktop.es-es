@@ -80,10 +80,13 @@ Las tareas principales de este ejercicio son las siguientes:
    |Nombre del grupo de hosts|**az140-21a-hp1**|
    |Location|el nombre de la región de Azure en la que implementó la instancia de Microsoft Entra DS anteriormente en este laboratorio|
    |Entorno de validación|**No**|
+   |Tipo de grupo de aplicaciones preferido|**Dispositivo de escritorio**|
    |Tipo de grupo de hosts|**Agrupado**|
    |Límite máximo de sesión|**12**
           |
    |Algoritmo de equilibrio de carga|**Con prioridad a la amplitud**|
+
+   > **Nota**: Si un usuario tiene aplicaciones de Escritorio y RemoteApp publicadas, el tipo de grupo de aplicaciones preferido determina cuál de ellas aparecerá en su fuente.
 
 1. En la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifique la configuración siguiente (deje el resto con los valores predeterminados) y seleccione **Siguiente: Área de trabajo >** (sustituya el marcador de posición *<Azure_AD_domain_name>* con el nombre del inquilino de Microsoft Entra asociado con la suscripción con la que implementó la instancia de Microsoft Entra DS y sustituya el marcador de posición `<password>` con la contraseña que estableció cuando creó la cuenta aadadmin1):
 
@@ -271,23 +274,35 @@ Las tareas principales de este ejercicio son las siguientes:
    > **Nota**: El nombre principal de usuario de **aaduser1** debe tener el formato **aaduser1@***<Azure_AD_domain_name>*, donde el marcador de posición *<Azure_AD_domain_name>* coincide con el nombre del inquilino de Microsoft Entra asociado a la suscripción en la que implementó la instancia de Microsoft Entra DS.
 
 1. En la ventana **Mantener sesión iniciada en todas las aplicaciones**, desactive la casilla **Permitir que mi organización administre el dispositivo** y seleccione **No, iniciar sesión solo en esta aplicación**. 
-1. Asegúrese de que la página **Escritorio remoto** muestra la lista de aplicaciones que se incluyen en los grupos de aplicaciones asociados a la cuenta de usuario **aaduser1** mediante su pertenencia a grupos. 
+1. Asegúrate de que la página **Escritorio remoto** muestra la conexión SessionDesktop incluida en el grupo de aplicaciones de escritorio az140-21-hp1-DAG generado automáticamente, publicado en el área de trabajo y asociado a la cuenta de usuario **aduser1** mediante su pertenencia al grupo. 
+
+   > **Nota**: Esto es algo esperado, ya que el **tipo de grupo de aplicaciones preferido** del grupo de hosts está establecido actualmente en **Escritorio**.
 
 #### Tarea 3: Prueba de aplicaciones de Azure Virtual Desktop
 
-1. En la sesión de Bastion a **az140-cl-vm11a**, en la ventana de cliente de **Escritorio remoto**, en la lista de aplicaciones, haga doble clic en **Símbolo del sistema** y compruebe que inicia una ventana de **Símbolo del sistema**. Cuando se le pida que se autentique, escriba la contraseña establecida para la cuenta de usuario **aaduser1**, active la casilla **Recordarme** y seleccione **Aceptar**.
+1. En la sesión de Bastion a **az140-cl-vm11a**, en la ventana del cliente **Escritorio remoto**, en la lista de aplicaciones, haga doble clic en **SessionDesktop** y compruebe que inicia sesión en Escritorio remoto. 
 
    > **Nota**: Inicialmente, la aplicación puede tardar unos minutos en iniciarse pero, posteriormente, el inicio de la aplicación debe ser mucho más rápido.
 
-1. En el Símbolo del sistema, escriba **hostname** y presione la tecla **Intro** para mostrar el nombre del equipo en el que se ejecuta el Símbolo del sistema.
+   > **Nota**: Si aparece el mensaje de solicitud de inicio de sesión **Le damos la bienvenida a Microsoft Teams**, ciérrelo. 
 
-   > **Nota**: Compruebe que el nombre mostrado sea **az140-21-p1-0** o **az140-21-p1-1**, no **az140-cl-vm11a**.
+1. En la sesión **Escritorio remoto**, haga clic con el botón derecho en **Inicio**, seleccione **Ejecutar**, en el cuadro de texto **Abrir** del cuadro de diálogo **Ejecutar**, escriba **cmd** y seleccione **Aceptar**. 
+1. Dentro de la sesión de **Escritorio remoto**, en el símbolo del sistema, escriba **hostname** y pulse la tecla **Intro** para mostrar el nombre del ordenador en el que se está ejecutando la sesión de Escritorio remoto.
+1. Compruebe que el nombre mostrado sea **az140-21-p1-0**, **az140-21-p1-1** o **az140-21-p1-2**.
+1. En el Símbolo del sistema, escriba **logoff** y presione la tecla **Intro** para cerrar sesión desde la sesión del Escritorio remoto.
 
+   > **Nota**: A continuación, modificarás el **tipo de grupo de aplicaciones preferido** al establecerlo en **RemoteApp**.
+
+1. Dentro de la sesión Bastion a **az140-cl-vm11a**, en la ventana del navegador web que muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en el panel **Azure Virtual Desktop**, en la barra de menú vertical, en la **sección Administrar**, selecciona **Grupos de hosts**.
+1. En la hoja **Grupos de hosts de \|Azure Virtual Desktop**, en la lista de grupos de hosts, seleccione **az140-21-hp1**.
+1. En el panel **az140-21-hp1**, en la barra de menú vertical, en la sección **Configuración**, selecciona **Propiedades**; en el **tipo de grupo de aplicaciones preferido**, selecciona **Aplicación remota** y, luego, selecciona **Guardar**. 
+1. En la sesión de Bastion a **az140-cl-vm11**, en la ventana del cliente **Escritorio remoto**, selecciona el símbolo de puntos suspensivos en la esquina superior derecha y, en el menú desplegable, selecciona **Actualizar**.
+1. Comprueba que la página **Escritorio remoto** muestra las aplicaciones individuales que se incluyen en los dos grupos de aplicaciones por ti creados y publicados en el área de trabajo, que también están asociados a la cuenta de usuario **aduser1** mediante su pertenencia a grupos. 
+
+   > **Nota**: Esto es algo esperado, ya que el **tipo de grupo de aplicaciones preferido** del grupo de hosts está establecido ahora en **RemoteApp**.
+
+1. En la sesión de Bastion a **az140-cl-vm11a**, en la ventana de cliente de **Escritorio remoto**, en la lista de aplicaciones, haga doble clic en **Símbolo del sistema** y compruebe que inicia una ventana de **Símbolo del sistema**. Cuando se le pida que se autentique, escriba la contraseña que estableció al crear la cuenta de usuario **aduser1**, active la casilla **Recordarme** y seleccione **Aceptar**.
 1. En el Símbolo del sistema, escriba **logoff** y presione la tecla **Intro** para cerrar sesión desde la sesión de aplicación remota actual.
-1. En la sesión de Bastion a **az140-cl-vm11a**, en la ventana del cliente **Escritorio remoto**, en la lista de aplicaciones, haga doble clic en **SessionDesktop** y compruebe que inicia sesión en Escritorio remoto. 
-1. En la sesión **Escritorio predeterminado**, haga clic con el botón derecho en **Inicio**, seleccione **Ejecutar**, en el cuadro de texto **Abrir** del cuadro de diálogo **Ejecutar**, escriba **cmd** y seleccione **Aceptar**. 
-1. En la sesión **Escritorio predeterminado**, en el símbolo del sistema, escriba **hostname** y presione la tecla **Intro** para mostrar el nombre del equipo en el que se ejecuta la sesión de Escritorio remoto.
-1. Compruebe que el nombre mostrado sea **az140-21-p1-0** o **az140-21-p1-1**.
 
 ### Ejercicio 3: Detención y desasignación de las máquinas virtuales de Azure aprovisionadas en el laboratorio
 
