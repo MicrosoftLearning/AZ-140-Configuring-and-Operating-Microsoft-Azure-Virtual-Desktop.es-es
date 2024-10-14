@@ -1,3 +1,5 @@
+**Este curso se retirará el **30/9/2024**. Una vez retirado el curso, se quitarán todos los repositorios de GitHub. Gracias.**
+
 # AZ-140: Configuración y funcionamiento de Microsoft Azure Virtual Desktop
 
 - **[Vínculo a los laboratorios (formato HTML)](https://microsoftlearning.github.io/AZ-140-Configuring-and-Operating-Microsoft-Azure-Virtual-Desktop/)**
