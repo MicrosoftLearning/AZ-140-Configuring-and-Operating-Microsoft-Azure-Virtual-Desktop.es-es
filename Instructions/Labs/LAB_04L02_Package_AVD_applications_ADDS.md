@@ -365,7 +365,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |---|---|
    |Rol de función de trabajo|**Colaborador de recursos compartidos de SMB de datos de archivos de Storage**|
 
-1. En el panel **Agregar asignación de funciones**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
+1. En el panel **Agregar asignación de roles**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
 
    |Configuración|Valor|
    |---|---|
@@ -379,7 +379,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |---|---|
    |Rol de función de trabajo|**Colaborador elevado de recursos compartidos de SMB de datos de archivos de Storage**|
 
-1. En el panel **Agregar asignación de funciones**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
+1. En el panel **Agregar asignación de roles**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
 
    |Configuración|Valor|
    |---|---|
@@ -393,7 +393,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |---|---|
    |Rol de función de trabajo|**Colaborador elevado de recursos compartidos de SMB de datos de archivos de Storage**|
 
-1. En el panel **Agregar asignación de funciones**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
+1. En el panel **Agregar asignación de roles**, en la pestaña **Miembros**, haga clic en **+ Seleccionar miembros**, especifique la siguiente configuración y haga clic en **Seleccionar**. 
 
    |Configuración|Valor|
    |---|---|
