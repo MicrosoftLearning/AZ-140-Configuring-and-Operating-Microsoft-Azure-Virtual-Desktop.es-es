@@ -75,7 +75,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|nombre de un nuevo grupo de recursos **az140-21a-RG**.|
    |Nombre del grupo de hosts|**az140-21a-hp1**|
    |Location|el nombre de la región de Azure en la que implementó la instancia de Microsoft Entra DS anteriormente en este laboratorio|
@@ -139,7 +139,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21a-RG**|
    |Grupo de hosts|**az140-21a-hp1**|
    |Tipo de grupo de aplicaciones|**RemoteApp**|
@@ -195,7 +195,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21a-RG**|
    |Grupo de hosts|**az140-21a-hp1**|
    |Tipo de grupo de aplicaciones|**RemoteApp**|
@@ -235,7 +235,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21a-RG**|
    |Nombre del área de trabajo|**az140-21a-ws1**|
    |Nombre descriptivo|**az140-21a-ws1**|

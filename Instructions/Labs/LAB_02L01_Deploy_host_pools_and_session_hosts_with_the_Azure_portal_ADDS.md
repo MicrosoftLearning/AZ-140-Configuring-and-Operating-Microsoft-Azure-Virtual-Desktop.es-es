@@ -94,7 +94,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|crear un **nuevo** grupo de recursos denominado **az140-21-RG**|
    |Nombre del grupo de hosts|**az140-21-hp1**|
    |Location|nombre de la región de Azure en la que implementó recursos en el primer ejercicio de este laboratorio o región cercana a la misma |
@@ -203,7 +203,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21-RG**|
    |Grupo de hosts|**az140-21-hp1**|
    |Tipo de grupo de aplicaciones|**Aplicación remota**|
@@ -261,7 +261,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21-RG**|
    |Grupo de hosts|**az140-21-hp1**|
    |Tipo de grupo de aplicaciones|**RemoteApp**|
@@ -306,7 +306,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21-RG**|
    |Nombre del área de trabajo|**az140-21-ws1**|
    |Nombre descriptivo|**az140-21-ws1**|

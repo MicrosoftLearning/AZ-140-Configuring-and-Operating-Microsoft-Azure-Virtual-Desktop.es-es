@@ -139,7 +139,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-11-RG**|
    |Nombre de dominio|**adatum.com**|
 
@@ -202,7 +202,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-11-RG**|
    |Nombre|**az140-11-bastion**|
    |Region|la misma región de Azure en la que se han implementado los recursos en las tareas anteriores de este ejercicio.|
