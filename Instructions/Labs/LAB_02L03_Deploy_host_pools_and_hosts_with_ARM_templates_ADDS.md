@@ -118,7 +118,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Grupo de recursos|cree un **nuevo** grupo de recursos denominado **az140-23-RG**|
    |Region|el nombre de la región de Azure en la que implementó máquinas virtuales de Azure que hospedan controladores de dominio de AD DS en el laboratorio **Preparación para la implementación de Azure Virtual Desktop (AD DS)**.|
    |Location|el nombre de la misma región de Azure que la establecida como el valor de los parámetros **Región**.|
@@ -173,7 +173,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Grupo de recursos|**az140-23-RG**|
    |Token de grupo de hosts|el valor del token que generó en la tarea anterior.|
    |Ubicación del grupo de hosts|el nombre de la región de Azure en la que implementó el grupo de hosts anteriormente en este laboratorio.|

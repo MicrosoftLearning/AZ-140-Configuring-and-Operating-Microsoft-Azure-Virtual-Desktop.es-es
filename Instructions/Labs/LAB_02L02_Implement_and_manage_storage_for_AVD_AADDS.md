@@ -64,7 +64,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|nombre de un nuevo grupo de recursos **az140-22a-RG**.|
    |Nombre de la cuenta de almacenamiento|cualquier nombre único global de entre 3 y 15 caracteres, que conste de letras en minúsculas y dígitos, y que empiece por una letra.|
    |Location|nombre de una región de Azure que hospeda el entorno de laboratorio de Azure Virtual Desktop.|

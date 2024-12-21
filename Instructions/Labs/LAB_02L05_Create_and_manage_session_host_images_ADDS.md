@@ -97,7 +97,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-25-RG**|
    |Nombre|**az140-25-bastion**|
    |Region|la misma región de Azure en la que se han implementado los recursos en las tareas anteriores de este ejercicio.|
@@ -271,7 +271,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-25-RG**|
    |Nombre del grupo de hosts|**az140-25-hp4**|
    |Location|nombre de la región de Azure en la que implementó recursos en el primer ejercicio de este laboratorio|

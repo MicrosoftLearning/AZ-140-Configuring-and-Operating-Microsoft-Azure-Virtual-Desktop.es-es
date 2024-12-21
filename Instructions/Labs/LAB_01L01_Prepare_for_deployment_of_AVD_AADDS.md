@@ -179,7 +179,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|Seleccione Crear nuevo > **az140-11a-RG**|
    |Nombre de dominio DNS|**adatum.com**|
    |Region|Nombre de la región donde desea hospedar la implementación de AVD|
@@ -312,7 +312,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción de Azure que usa en este laboratorio|
+   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-11a-RG**|
    |Nombre|**az140-11a-bastion**|
    |Region|La misma región de Azure donde implementamos los recursos en la tarea anterior de este ejercicio|
