@@ -5,7 +5,7 @@ lab:
 ---
 
 # Laboratorio: Implementación de la supervisión mediante Azure Virtual Desktop Insights
-# Manual de laboratorio para alumnos
+# Manual de laboratorio para estudiantes
 
 ## Dependencias de laboratorio
 
@@ -26,11 +26,11 @@ Tienes un entorno de Azure Virtual Desktop existente. Quieres supervisar el esta
   
 Después de completar este laboratorio, podrás:
 
-- implementar la supervisión de un entorno de Azure Virtual Desktop
+- Implementar la supervisión de un entorno de Azure Virtual Desktop
 
 ## Archivos de laboratorio
 
-- None
+- Ninguno
 
 ## Instrucciones
 
@@ -66,10 +66,10 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Resource group|nombre de un nuevo grupo de recursos **az140-411e-RG**|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+    |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-411e-RG**|
     |Nombre|**az140-laworkspace41e**|
-    |Region|nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
+    |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
 
 1. En la página **Revisar y crear**, selecciona **Crear**.
 

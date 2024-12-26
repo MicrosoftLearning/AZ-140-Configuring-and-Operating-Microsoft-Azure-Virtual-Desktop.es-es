@@ -250,53 +250,53 @@ Las tareas principales de este ejercicio son las siguientes:
    |Número de réplicas de la región de destino|**1**|
    |SKU de almacenamiento predeterminada|**LRS de SSD Premium**|
 
-1. En la pestaña **Revisar y crear** del panel **Crear una imagen**, haga clic en **Crear**.
+1. En la pestaña **Revisar y crear** de la hoja **Crear una imagen**, haz clic en **Crear**.
 
-   > **Nota**: Espere a que la implementación se complete. Esto puede llevar unos 10-15 minutos.
+   > **Nota**: espera a que se complete la implementación. Esto puede llevar unos 10-15 minutos.
 
-1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busque y seleccione **Azure compute galleries** (Galerías de proceso de Azure) y, en la hoja **Galerías de proceso de Azure**, seleccione la entrada **az14025imagegallery** y, en la hoja ****az14025imagegallery****, compruebe la presencia de la entrada **az140-25-host-image** que representa la imagen recién creada.
+1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Galerías de Azure Compute** y, en la hoja **Galerías de Azure Compute**, selecciona la entrada **az14025imagegallery** y, en la hoja ****az14025imagegallery****, comprueba la presencia de la entrada **az140-25-host-image** que representa la imagen recién creada.
 
-#### Tarea 5: Aprovisionar un grupo de hosts de Azure Virtual Desktop mediante una imagen personalizada
+#### Tarea 5: Aprovisionamiento de un grupo de hosts de Azure Virtual Desktop mediante una imagen personalizada
 
-1. En el equipo de laboratorio, en Azure Portal, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar **Redes virtuales** y navegar a ellas y, en la hoja **Redes virtuales**, seleccione **az140-adds-vnet11**. 
-1. En la hoja **az140-adds-vnet11**, seleccione **Subredes**, y en la hoja **Subredes**, seleccione **+ Subred**. Después, en la hoja **Agregar subred**, especifique la siguiente configuración (deje todas las demás opciones con sus valores predeterminados) y haga clic en **Guardar**:
+1. En el equipo de laboratorio, en Azure Portal, utiliza el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar **Redes virtuales** y navegar a ellas y, en la hoja **Redes virtuales**, selecciona **az140-adds-vnet11**. 
+1. En la hoja **az140-adds-vnet11**, selecciona **Subredes**, y en la hoja **Subredes**, selecciona **+ Subred**. Después, en la hoja **Agregar subred**, especifica la siguiente configuración (deja los otros valores con su configuración predeterminada) y haz clic en **Guardar**:
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**hp4-Subnet**|
    |Intervalo de direcciones de subred|**10.0.4.0/24**|
 
-1. En el equipo de laboratorio, en Azure Portal, en la ventana del explorador web que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop**; en la hoja **Azure Virtual Desktop**, seleccione **Grupos de hosts** y, en la hoja **Azure Virtual Desktop \| Grupos de hosts**, seleccione **+Crear**. 
-1. En la pestaña **Aspectos básicos** de la hoja **Crear un grupo de hosts**, especifique la siguiente configuración y seleccione **Siguiente: Máquinas virtuales >**:
+1. En el equipo de laboratorio, en Azure Portal, en la ventana del explorador web que muestra Azure Portal, busca y selecciona **Azure Virtual Desktop**; en la hoja **Azure Virtual Desktop**, selecciona **Grupos de hosts** y, en la hoja **Azure Virtual Desktop \| Grupos de hosts**, selecciona **+ Crear**. 
+1. En la pestaña **Datos básicos** de la hoja **Crear un grupo de hosts**, especifica la siguiente configuración y selecciona **Siguiente: Máquinas virtuales >**:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-   |Resource group|**az140-25-RG**|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+   |Grupo de recursos|**az140-25-RG**|
    |Nombre del grupo de hosts|**az140-25-hp4**|
-   |Location|nombre de la región de Azure en la que implementó recursos en el primer ejercicio de este laboratorio|
+   |Ubicación|Nombre de la región de Azure en la que implementaste los recursos en el primer ejercicio de este laboratorio|
    |Entorno de validación|**No**|
    |Tipo de grupo de aplicaciones preferido|**Dispositivo de escritorio**|
    |Tipo de grupo de hosts|**Agrupado**|
-   |Algoritmo de equilibrio de carga|**Con prioridad a la amplitud**|
+   |Algoritmo de equilibrio de carga|**Equilibrio de carga en amplitud**|
    |Límite máximo de sesión|**12**
           |
 
-1. En la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifique la configuración siguiente:
+1. En la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifica la configuración siguiente:
 
    |Configuración|Valor|
    |---|---|
    |Agregar Máquinas virtuales de Azure|**Sí**|
-   |Resource group|**El valor predeterminado es el mismo que el del grupo de hosts**|
+   |Grupo de recursos|**El valor predeterminado es el mismo que el del grupo de hosts**|
    |Prefijo de nombre|**az140-25-p4**|
    |Tipo de máquina virtual|**Máquina virtual de Azure**|
-   |Ubicación de la máquina virtual|nombre de la región de Azure en la que implementó recursos en el primer ejercicio de este laboratorio|
+   |Ubicación de la máquina virtual|Nombre de la región de Azure en la que implementaste los recursos en el primer ejercicio de este laboratorio|
    |Opciones de disponibilidad|**No se requiere redundancia de la infraestructura**|
    |Tipo de seguridad|**Estándar**|
    
-1. En la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, directamente debajo de la lista desplegable **Imagen**, haga clic en el vínculo **Ver todas las imágenes**.
-1. En la hoja **Seleccionar una imagen**, en **Otros elementos**, haga clic en **Imágenes compartidas** y, en la lista de imágenes compartidas, seleccione **az140-25-host-image**. 
-1. De nuevo en la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifique la configuración siguiente y seleccione **Siguiente: Área de trabajo > **:
+1. En la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, directamente debajo de la lista desplegable **Imagen**, haz clic en el vínculo **Ver todas las imágenes**.
+1. En la hoja **Seleccionar una imagen**, en **Otros elementos**, haz clic en **Imágenes compartidas** y, en la lista de imágenes compartidas, selecciona **az140-25-host-image**. 
+1. De nuevo en la pestaña **Máquinas virtuales** de la hoja **Crear un grupo de hosts**, especifica la configuración siguiente y selecciona **Siguiente: Área de trabajo >**:
 
    |Configuración|Valor|
    |---|---|
@@ -308,24 +308,24 @@ Las tareas principales de este ejercicio son las siguientes:
    |Subnet|**hp4-Subnet (10.0.4.0/24)**|
    |Grupo de seguridad de red|**Basic**|
    |Puertos de entrada públicos|**No**|
-   |Seleccione el directorio al que quiera unirse|**Active Directory**|
+   |Seleccionar el directorio al que quieras unirte|**Active Directory**|
    |UPN de unión a un dominio de AD|**student@adatum.com**|
    |Contraseña|**Pa55w.rd1234**|
    |Confirmar contraseña|**Pa55w.rd1234**|
-   |Especifique el nombre de dominio o la unidad|**Sí**|
-   |Dominio al que desea unirse|**adatum.com**|
+   |Especificar el nombre de dominio o la unidad|**Sí**|
+   |Dominio al que deseas unirte|**adatum.com**|
    |Ruta de acceso de unidad organizativa|**OU=WVDInfra,DC=adatum,DC=com**|
    |Nombre de usuario|**Estudiante**|
    |Contraseña|**Pa55w.rd1234**|
    |Confirmar contraseña|**Pa55w.rd1234**|
 
-1. En la pestaña **Área de trabajo** de la hoja **Crear un grupo de hosts**, especifique la siguiente configuración y seleccione **Revisar y crear**:
+1. En la pestaña **Área de trabajo** de la hoja **Crear un grupo de hosts**, especifica la siguiente configuración y selecciona **Revisar y crear**:
 
    |Configuración|Valor|
    |---|---|
-   |Registro de un grupo de aplicación de escritorio|**No**|
+   |Registro de un grupo de aplicaciones de escritorio|**No**|
 
-1. En la pestaña **Revisar y crear** de la hoja **Crear un grupo de hosts**, seleccione **Crear**.
+1. En la pestaña **Revisar y crear** de la hoja **Crear un grupo de hosts**, selecciona **Crear**.
 
    > **Nota**: Espere a que la implementación se complete. Esto puede tardar unos 10 minutos.
 

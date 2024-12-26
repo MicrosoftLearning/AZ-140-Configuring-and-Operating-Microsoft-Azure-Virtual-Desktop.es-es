@@ -5,11 +5,11 @@ lab:
 ---
 
 # Laboratorio: Administración de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)
-# Manual de laboratorio para alumnos
+# Manual de laboratorio para estudiantes
 
 ## Dependencias de laboratorio
 
-- Una suscripción de Azure que usará en este laboratorio.
+- Una suscripción a Azure que usarás en este laboratorio.
 - Una cuenta de usuario de Microsoft Entra con los roles de Propietario o Colaborador en la suscripción a Azure que usarás en este laboratorio y con los permisos suficientes para unir dispositivos al inquilino de Microsoft Entra asociado a esa suscripción a Azure.
 - Haber completado el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)*
 
@@ -22,20 +22,20 @@ lab:
 Tienes un entorno de Azure Virtual Desktop existente. Debes configurar el grupo de hosts con hosts de sesión unidos a Microsoft Entra para admitir una variedad de requisitos funcionales y empresariales. Estos requisitos incluyen:
 
 - implementar hosts de sesión adicionales para dar cabida a un mayor número de usuarios remotos
-- minimizar el coste del entorno de Azure Virtual Desktop mediante la optimización de la configuración del equilibrio de carga del grupo de hosts y el aprovechamiento de la funcionalidad *Iniciar máquina virtual al conectarse*
-- maximizar la disponibilidad de los hosts de sesión durante el horario comercial mediante la implementación de ventanas de mantenimiento
-- habilitar el inicio de sesión único en hosts de sesión unidos a Microsoft Entra
-- maximizar la facilidad de uso y la experiencia del usuario (como la reconexión automática de sesiones desconectadas)
+- Minimizar el coste del entorno de Azure Virtual Desktop mediante la optimización de la configuración del equilibrio de carga del grupo de hosts y el aprovechamiento de la funcionalidad *Iniciar máquina virtual al conectarse*
+- Maximizar la disponibilidad de los hosts de sesión durante el horario comercial mediante la implementación de ventanas de mantenimiento
+- Habilitar el inicio de sesión único en hosts de sesión unidos a Microsoft Entra
+- Maximizar la facilidad de uso y la experiencia del usuario (como la reconexión automática de sesiones desconectadas)
 
 ## Objetivos
   
 Después de completar este laboratorio, podrás:
 
-- configurar hosts de sesión de Azure Virtual Desktop unidos a Microsoft Entra para admitir una variedad de requisitos funcionales y empresariales
+- Configurar hosts de sesión de Azure Virtual Desktop unidos a Microsoft Entra para admitir una variedad de requisitos funcionales y empresariales
 
 ## Archivos de laboratorio
 
-- None
+- Ninguno
 
 ## Instrucciones
 
@@ -68,10 +68,10 @@ Las tareas principales de este ejercicio son las siguientes:
     |---|---|
     |Grupo de recursos|**az140-21e-RG**|
     |Prefijo de nombre|**sh**-*random*|
-    |Ubicación de la máquina virtual|el nombre de la región de Azure en la que implementó las dos primeras máquinas virtuales del host de sesión.|
+    |Ubicación de la máquina virtual|Nombre de la región de Azure en la que implementaste las dos primeras máquinas virtuales del host de sesión|
     |Opciones de disponibilidad|**No se requiere redundancia de la infraestructura**|
     |Tipo de seguridad|**Máquina virtual de inicio seguro**|
-    |Imagen|**Windows 11 Enterprise multisesión, versión 23H2 + Aplicaciones de Microsoft 365 - Gen2**|
+    |Imagen|**Windows 11 Enterprise para sesiones múltiples, versión 23H2 + Aplicaciones de Microsoft 365**|
     |Tamaño de la máquina virtual|**Standard DC2s_v3**|
     |Número de máquinas virtuales|**1**|
     |Tipo de disco del sistema operativo|**SSD estándar**|
@@ -84,8 +84,8 @@ Las tareas principales de este ejercicio son las siguientes:
     |Selecciona el directorio al que quieras unirte|**Microsoft Entra ID**|
     |Inscripción de una máquina virtual con Intune|**No**|
     |Nombre de usuario|**Estudiante**|
-    |Contraseña|la misma contraseña que usaste al implementar los hosts de sesión en el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)* 
-    |Confirmar contraseña|la misma contraseña que especificaste anteriormente|
+    |Contraseña|La misma contraseña que usaste al implementar los hosts de sesión en el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)* 
+    |Confirmar contraseña|La misma contraseña que especificaste anteriormente|
 
     > **Nota**: la contraseña debe tener al menos 12 caracteres de longitud y consta de una combinación de caracteres en minúsculas, mayúsculas, dígitos y caracteres especiales. Para obtener más información, consulta la información sobre [los requisitos de contraseña al crear una VM de Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm-).
 
