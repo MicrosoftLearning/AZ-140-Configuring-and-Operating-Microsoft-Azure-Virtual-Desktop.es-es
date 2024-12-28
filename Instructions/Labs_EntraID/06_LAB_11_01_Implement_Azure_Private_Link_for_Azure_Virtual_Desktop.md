@@ -5,7 +5,7 @@ lab:
 ---
 
 # Laboratorio: Implementación de Azure Private Link para Azure Virtual Desktop
-# Manual de laboratorio para alumnos
+# Manual de laboratorio para estudiantes
 
 ## Dependencias de laboratorio
 
@@ -29,7 +29,7 @@ Después de completar este laboratorio, podrás:
 
 ## Archivos de laboratorio
 
-- None
+- Ninguno
 
 ## Instrucciones
 
@@ -82,11 +82,11 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la página **az140-vnet11e \| Subredes**, selecciona **+ Subred**.
 1. En el panel **Agregar una subred**, especifica la siguiente configuración y selecciona **Agregar** (deja los demás con sus valores predeterminados):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Nombre|**pe-Subnet**|
     |Dirección inicial|**10.20.255.0**|
-    |Habilitar subred privada (sin acceso de salida predeterminado)|deshabilitado|
+    |Habilitar subred privada (sin acceso de salida predeterminado)|Deshabilitado|
 
 #### Tarea 3: Implementación de un punto de conexión privado para las conexiones a un grupo de hosts
 
@@ -97,11 +97,11 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-11e-RG**|
     |Nombre|**az140-11-pehp1**|
     |Nombre de la interfaz de red|**az140-11-pehp1-nic**|
-    |Región|nombre de la región de Azure donde implementase el entorno de laboratorio de Azure Virtual Desktop|
+    |Región|Nombre de la región de Azure donde implementaste el entorno de laboratorio de Azure Virtual Desktop|
 
 1. En la pestaña **Recursos** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: Red virtual >**:
 
@@ -109,9 +109,9 @@ Las tareas principales de este ejercicio son las siguientes:
     |---|---|
     |Recurso secundario de destino|**connection**|
 
-1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja las opciones restantes con sus valores predeterminados):
+1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja los otros valores con su configuración predeterminada):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Red virtual|**az140-vnet11e (az140-11e-RG)**|
     |Subred|**pe-Subnet**|
@@ -123,12 +123,12 @@ Las tareas principales de este ejercicio son las siguientes:
     |Configuración|Valor|
     |---|---|
     |Integración con una zona DNS privada|**Sí**|
-    |Subscription|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Resource group|**az140-11e-RG**|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+    |Grupo de recursos|**az140-11e-RG**|
 
     > **Nota**: este paso dará lugar a la creación de una zona DNS privada denominada **privatelink.wvd.microsoft.com**.
 
-1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Revisar y crear**.
+1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Siguiente: Revisar y crear**.
 1. En la pestaña **Revisar y crear** de la página **Crear punto de conexión privado**, selecciona **Crear**.
 
     > **Nota**: espera a que la implementación se complete. La implementación puede tardar unos 3 minutos.
@@ -145,11 +145,11 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Resource group|**az140-11e-RG**|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+    |Grupo de recursos|**az140-11e-RG**|
     |Nombre|**az140-11-pefeeddwnld**|
     |Nombre de la interfaz de red|**az140-11-pefeeddwnld-nic**|
-    |Región|nombre de la región de Azure donde implementase el entorno de laboratorio de Azure Virtual Desktop|
+    |Región|Nombre de la región de Azure donde implementaste el entorno de laboratorio de Azure Virtual Desktop|
 
 1. En la pestaña **Recursos** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: Red virtual >**:
 
@@ -157,9 +157,9 @@ Las tareas principales de este ejercicio son las siguientes:
     |---|---|
     |Recurso secundario de destino|**feed**|
 
-1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja las opciones restantes con sus valores predeterminados):
+1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja los otros valores con su configuración predeterminada):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Red virtual|**az140-vnet11e (az140-11e-RG)**|
     |Subred|**pe-Subnet**|
@@ -171,12 +171,12 @@ Las tareas principales de este ejercicio son las siguientes:
     |Configuración|Valor|
     |---|---|
     |Integración con una zona DNS privada|**Sí**|
-    |Subscription|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Resource group|**az140-11e-RG**|
+    |Suscripción|El nombre de la suscripción de Azure que usa en este laboratorio|
+    |Grupo de recursos|**az140-11e-RG**|
 
     > **Nota**: este paso aprovechará la zona DNS privada denominada **privatelink.wvd.microsoft.com** que creaste en la tarea anterior.
 
-1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Revisar y crear**.
+1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Siguiente: Revisar y crear**.
 1. En la pestaña **Revisar y crear** de la página **Crear punto de conexión privado**, selecciona **Crear**.
 
     > **Nota**: no esperes a que se completen las implementaciones, sino que avanza a la siguiente tarea. La implementación puede tardar un minuto.
@@ -193,11 +193,11 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Resource group|**az140-11e-RG**|
+    |Suscripción|El nombre de la suscripción de Azure que usa en este laboratorio|
+    |Grupo de recursos|**az140-11e-RG**|
     |Nombre|**az140-11-pefeeddisc**|
     |Nombre de la interfaz de red|**az140-11-pefeeddisc-nic**|
-    |Región|nombre de la región de Azure donde implementase el entorno de laboratorio de Azure Virtual Desktop|
+    |Región|Nombre de la región de Azure donde implementaste el entorno de laboratorio de Azure Virtual Desktop|
 
 1. En la pestaña **Recursos** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: Red virtual >**:
 
@@ -205,7 +205,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |---|---|
     |Recurso secundario de destino|**global**|
 
-1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja las opciones restantes con sus valores predeterminados):
+1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja los otros valores con su configuración predeterminada):
 
     |Configuración|Value|
     |---|---|
@@ -219,21 +219,21 @@ Las tareas principales de este ejercicio son las siguientes:
     |Configuración|Valor|
     |---|---|
     |Integración con una zona DNS privada|**Sí**|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-11e-RG**|
 
     > **Nota**: este paso aprovechará la zona DNS privada denominada **privatelink.wvd.microsoft.com** que creaste en una de las tareas anteriores.
 
-1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Revisar y crear**.
+1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Siguiente: Revisar y crear**.
 1. En la pestaña **Revisar y crear** de la página **Crear punto de conexión privado**, selecciona **Crear**.
 
-    > **Nota**: No espere a que se completen las implementaciones, sino que avance a la siguiente tarea. La implementación puede tardar un minuto.
+    > **Nota**: no esperes a que se completen las implementaciones, sino que avanza a la siguiente tarea. La implementación puede tardar un minuto.
 
     > **Nota**: debes crear un punto de conexión privado para el recurso secundario de fuente para cada área de trabajo que quieras usar con Private Link.
 
     > **Nota**: para que los cambios de red surtan efecto, debes reiniciar los hosts de sesión en el grupo de hosts de destino.
 
-1. En el equipo del laboratorio, en el explorador web que muestra Azure Portal, ve a la página **Azure Virtual Desktop**, en la sección **Administrar** del menú de navegación vertical, selecciona **Grupos de hosts** y, en la página **Azure Virtual Desktop \| Grupos de hosts**, selecciona **az140-21-hp1**.
+1. En el equipo de laboratorio, en el explorador web que muestra Azure Portal, ve a la página **Azure Virtual Desktop**, en la sección **Administrar** del menú de navegación vertical, selecciona **Grupos de hosts** y, en la página **Azure Virtual Desktop \| Grupos de hosts**, selecciona **az140-21-hp1**.
 1. En la página **az140-21-hp1**, en la sección **Administrar** del menú de navegación vertical, selecciona **Hosts de sesión**. 
 1. En la lista de hosts de sesión, activa todas las casillas situadas a la izquierda de cada host de sesión y, a continuación, selecciona **Reiniciar** en la barra de herramientas.
 
@@ -258,39 +258,39 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la página **az140-vnet11e \| Subredes**, selecciona **+ Subred**.
 1. En el panel **Agregar una subred**, especifica la siguiente configuración y selecciona **Agregar** (deja los demás con sus valores predeterminados):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Nombre|**client-Subnet**|
     |Dirección inicial|**10.20.2.0**|
-    |Habilitar subred privada (sin acceso de salida predeterminado)|deshabilitado|
+    |Habilitar subred privada (sin acceso de salida predeterminado)|Deshabilitado|
 
 1. En el equipo de laboratorio, en el explorador web que muestra Azure Portal, busca y selecciona **Máquinas virtuales**, en la página **Máquinas virtuales**, selecciona **+ Crear** y, en la lista desplegable, selecciona **Máquina virtual de Azure**.
-1. En la pestaña **Datos básicos** de la página **Crear una máquina virtual**, especifica la siguiente configuración (deja todas las demás configuraciones con su valor predeterminado) y selecciona **Siguiente: Discos >**:
+1. En la pestaña **Datos básicos** de la página **Crear una máquina virtual**, especifica la siguiente configuración (deja los otros valores con su configuración predeterminada) y selecciona **Siguiente: Discos >**:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Grupo de recursos|nombre de un nuevo grupo de recursos **az140-111e-RG**.|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+    |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-111e-RG**.|
     |Nombre de la máquina virtual|**az140-111e-vm0**|
-    |Región|nombre de la región de Azure donde implementase el entorno de laboratorio de Azure Virtual Desktop|
+    |Región|Nombre de la región de Azure donde implementaste el entorno de laboratorio de Azure Virtual Desktop|
     |Opciones de disponibilidad|**No se requiere redundancia de la infraestructura**|
     |Tipo de seguridad|**Estándar**|
-    |Imagen|**Windows 11 Pro, versión 22H2 - x64 Gen2**|
+    |Imagen|**Windows 11 Pro, versión 23H2 - x64 Gen2**|
     |Tamaño|**Standard DC2s_v3**|
-    |Nombre de usuario|cualquier nombre de usuario válido de tu elección|
-    |Contraseña|cualquier contraseña válida de tu elección|
-    |Puertos de entrada públicos|**None**|
-    |Licencias|activa la casilla|
+    |Nombre de usuario|Cualquier nombre de usuario válido de tu elección|
+    |Contraseña|Cualquier contraseña válida de tu elección|
+    |Puertos de entrada públicos|**Ninguno**|
+    |Licencias|Activa la casilla|
 
     > **Nota**: la contraseña debe tener al menos 12 caracteres de longitud y consta de una combinación de caracteres en minúsculas, mayúsculas, dígitos y caracteres especiales. Para obtener más información, consulta la información sobre [los requisitos de contraseña al crear una VM de Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm-).
 
 1. En la pestaña **Discos** de la página **Crear una máquina virtual**, establece el **tipo de disco del sistema operativo** en **HDD estándar (almacenamiento con redundancia local)** y selecciona **Siguiente: Redes >**.
-1. En la pestaña **Redes** de la página **Crear una máquina virtual**, especifica las siguientes opciones de configuración (deje las demás con los valores predeterminados):
+1. En la pestaña **Redes** de la página **Crear una máquina virtual**, especifica las siguientes opciones de configuración (deja los otros valores con su configuración predeterminada):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Red virtual|**az140-vnet11e**|
-    |Subred|*una nueva subred denominada***client-Subnet**|
+    |Subred|**client-Subnet**|
     |Dirección IP pública|**(nuevo) az140-111e-vm0-ip**|
     |Grupo de seguridad de red de NIC|**Avanzadas**|
 
@@ -302,7 +302,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Configuración|Valor|
     |---|---|
     |Source|**Direcciones IP**|
-    |Intervalos de direcciones IP de origen y CIDR|deja sin cambios (esto debe contener la dirección IP pública)|
+    |Intervalos de direcciones IP de origen y CIDR|Deja sin cambios (esto debe contener la dirección IP pública)|
     |Intervalos de puertos de origen|*|
     |Destino|**Cualquiera**|
     |Servicio|**RDP**|
@@ -312,7 +312,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En la página **Crear grupo de seguridad de red**, selecciona **Aceptar**.
 1. De nuevo en la pestaña **Redes** de la página **Crear una máquina virtual**, selecciona **Siguiente: Administración >**:
-1. En la pestaña **Administración** de la página **Crear una máquina virtual**, especifica la siguiente opción de configuración y selecciona **Siguiente: Supervisión >** (deja todas las demás opciones con su valor predeterminado):
+1. En la pestaña **Administración** de la página **Crear una máquina virtual**, especifica la siguiente configuración (deja los otros valores con su configuración predeterminada) y selecciona **Siguiente: Supervisión >**:
 
     |Configuración|Valor|
     |---|---|
@@ -321,7 +321,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En la pestaña **Supervisión** de la página **Crear una máquina virtual**, especifica la siguiente opción de configuración y selecciona **Revisar y crear** (deja todas las demás opciones con su valor predeterminado):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Diagnósticos de arranque|**Deshabilitar**|
 
@@ -362,7 +362,7 @@ Las tareas principales de este ejercicio son las siguientes:
 > **Nota**: para eliminar el impacto en otros laboratorios que usan el mismo entorno de Azure Virtual Desktop, revertirás los cambios aplicados en la tarea anterior y permitirás el acceso de red pública al grupo de hosts y al área de trabajo que forman parte del entorno de Azure Virtual Desktop.
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en la página **Azure Virtual Desktop**, selecciona **Áreas de trabajo**.
-1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
+1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
 1. En la página **az140-21-ws1**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Redes**.
 1. En la página **az140-21-ws1 \| Redes**, en la pestaña **Acceso público**, selecciona la opción **Habilitar acceso público desde todas las redes** y, a continuación, selecciona **Guardar**.
 1. En el equipo de laboratorio, en el explorador web que muestra Azure Portal, busca y selecciona **Azure Virtual Desktop**, en la página **Azure Virtual Desktop**, en la sección **Administrar** del menú de navegación vertical, selecciona **Grupos de hosts** y, en la página **Azure Virtual Desktop \| Grupos de hosts**, selecciona **az140-21-hp1**. 

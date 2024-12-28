@@ -30,7 +30,7 @@ Después de completar este laboratorio, podrá:
 
 ## Archivos de laboratorio
 
-- None
+- Ninguno
 
 ## Instrucciones
 

@@ -1,15 +1,15 @@
 ---
 lab:
-  title: 'Laboratorio: Implementación del escalado automático de hosts de sesión'
+  title: 'Laboratorio: Implementación de la escalabilidad automática de hosts de sesión'
   module: 'Module 4.1: Monitor and manage Azure Virtual Desktop services'
 ---
 
-# Laboratorio: implementación y supervisión del escalado automático de hosts de sesión
-# Manual de laboratorio para alumnos
+# Laboratorio: implementación y supervisión de la escalabilidad automática de hosts de sesión
+# Manual de laboratorio para estudiantes
 
 ## Dependencias de laboratorio
 
-- Una suscripción de Azure que usará en este laboratorio.
+- Una suscripción a Azure que usarás en este laboratorio.
 - Una cuenta de usuario de Microsoft Entra con los roles de Propietario o Colaborador en la suscripción a Azure que usarás en este laboratorio y con los permisos suficientes para unir dispositivos al inquilino de Microsoft Entra asociado a esa suscripción a Azure.
 - Haber completado el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)*
 - Haber completado el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)*
@@ -27,11 +27,11 @@ Tienes un entorno de Azure Virtual Desktop que cambia de uso de forma periódica
   
 Después de completar este laboratorio, podrás:
 
-- Implementar y evaluar el escalado automático de Azure Virtual Desktop
+- Implementar y evaluar la escalabilidad automática de Azure Virtual Desktop
 
 ## Archivos de laboratorio
 
-- None
+- Ninguno
 
 ## Instrucciones
 
@@ -114,15 +114,16 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-    |Grupo de recursos|nombre de un nuevo grupo de recursos **az140-412e-RG**.|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+    |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-412e-RG**.|
     |Nombre del plan de escalado|**az140-scalingplan412e**|
-    |Región|nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
+    |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
     |Nombre descriptivo|**az140-scalingplan412e**|
-    |Zona horaria|la zona horaria local de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
+    |Zona horaria|La zona horaria local de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
     |Tipo de grupo de hosts|**Agrupado**|
+    |Método de escalado|**Escalabilidad automática de administración de energía**|
 
-    > **Nota**: deja la propiedad **etiqueta de exclusión** no establecida. En general, puedes usar esta característica para excluir máquinas virtuales de Azure con etiquetas de establecimiento arbitrario del escalado automático.
+    > **Nota**: deja la propiedad **etiqueta de exclusión** no establecida. En general, puedes usar esta característica para excluir máquinas virtuales de Azure con etiquetas de establecimiento arbitrario de la escalabilidad automática.
 
 1. En la pestaña **Programaciones**, selecciona **+ Agregar programación**.
 
@@ -132,7 +133,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Zona horaria|la zona horaria local del entorno de Azure Virtual Desktop (en función de la región que seleccionaste anteriormente en esta tarea)|
+    |Zona horaria|La zona horaria local del entorno de Azure Virtual Desktop (en función de la región que seleccionaste anteriormente en esta tarea)|
     |Nombre de programación|**week_schedule**|
     |Repetir|**7 seleccionado** (selecciona todos los días de la semana)|
 
@@ -142,8 +143,8 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Hora de inicio (sistema de 12 horas)|la hora actual menos 1 hora|
-    |Algoritmo de equilibrio de carga|**Con prioridad a la amplitud**|
+    |Hora de inicio (sistema de 12 horas)|La hora actual menos 1 hora|
+    |Algoritmo de equilibrio de carga|**Equilibrio de carga en amplitud**|
     |Porcentaje mínimo de hosts (%)|**30**|
     |Umbral de capacidad (%)|**60**|
 
@@ -159,18 +160,18 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Hora de inicio (sistema de 12 horas)|la hora actual más 1 hora|
-    |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+    |Hora de inicio (sistema de 12 horas)|La hora actual más 1 hora|
+    |Algoritmo de equilibrio de carga|**Equilibrio de carga en profundidad**|
     |Umbral de capacidad (%)|**60**|
 
-    > **Nota**: La opción **Umbral de capacidad (%)** se comparte entre las opciones **Horas de aumento** y **Horas punta**.
+    > **Nota**: la opción **Umbral de capacidad (%)** se comparte entre las opciones **Horas de aumento** y **Horas punta**.
 
 1. En la pestaña **Descenso** del panel **Agregar una programación**, ajusta la configuración predeterminada para que coincida con la siguiente configuración y, a continuación, selecciona **Siguiente**:
 
     |Configuración|Valor|
     |---|---|
-    |Hora de inicio (sistema de 12 horas)|la hora actual más 2 horas|
-    |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+    |Hora de inicio (sistema de 12 horas)|La hora actual más 2 horas|
+    |Algoritmo de equilibrio de carga|**Equilibrio de carga en profundidad**|
     |Porcentaje mínimo de hosts activos (%)|**10**
           |
     |Umbral de capacidad (%)|**80**|
@@ -192,15 +193,15 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Hora de inicio (sistema de 12 horas)|la hora actual más 3 horas|
-    |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+    |Hora de inicio (sistema de 12 horas)|La hora actual más 3 horas|
+    |Algoritmo de equilibrio de carga|**Equilibrio de carga en profundidad**|
     |Umbral de capacidad (%)|**80**|
 
-    > **Nota**: La configuración de **Umbral de capacidad** se comparte entre la configuración de **Horas de aumento** y **horas con poca actividad**.
+    > **Nota**: la configuración de **Umbral de capacidad** se comparte entre la configuración de **Horas de aumento** y **horas con poca actividad**.
 
-1. De nuevo en la pestaña **Programaciones** de la página **Creación de un plan de escalado**, selecciona **Siguiente: Tareas del grupo de hosts**:
-1. En la pestaña **Tareas de grupos de host**, en la lista desplegable **Seleccionar grupo de host**, selecciona **az140-21-hp1**, asegúrate de que la casilla **Habilitar escalabilidad automática** está activada, selecciona **Revisar y crear**.
-1. En la página **Revisar + crear**, selecciona **Crear**.
+1. De nuevo en la pestaña **Programaciones** de la página **Creación de un plan de escalado**, selecciona **Siguiente: Asignaciones del grupo de hosts**:
+1. En la pestaña **Asignaciones del grupo de host**, en la lista desplegable **Seleccionar grupo de host**, selecciona **az140-21-hp1**, asegúrate de que la casilla **Habilitar escalabilidad automática** está activada, selecciona **Revisar y crear**.
+1. En la página **Revisar y crear**, selecciona **Crear**.
 
     > **Nota**: espera a que se complete la configuración de escalabilidad automática. Por lo general, esto tarda solo unos segundos.
 
@@ -217,7 +218,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     > **Nota**: esto es previsible, ya que según la configuración de **Aumento** del plan de escalado recién creado, al menos un host de sesión debe estar siempre en línea. En este momento, la capacidad del grupo de hosts es 1 (ya que solo hay 1 host en ejecución), pero la capacidad del grupo de hosts usado es del 0 %, ya que no hay conexiones de usuario.
 
-    > **Nota**: A continuación, evaluarás la configuración de Umbral de capacidad de **horas de aumento** y **horas punta** iniciando una sesión de usuario única. Podemos evaluar esto incluso fuera del período de **horas punta**, ya que las dos fases comparten el mismo umbral de capacidad.
+    > **Nota**: a continuación, evaluarás la configuración de Umbral de capacidad de **horas de aumento** y **horas punta** iniciando una sesión de usuario única. Podemos evaluar esto incluso fuera del período de **horas punta**, ya que las dos fases comparten el mismo umbral de capacidad.
 
 1. En el equipo de laboratorio, inicia el cliente de Escritorio remoto de Microsoft.
 1. En el equipo de laboratorio, en la ventana cliente de **Escritorio remoto**, selecciona **Suscribirse** y, cuando se te solicite, inicia sesión con las credenciales de la `User2` cuenta de usuario de Entra ID que puedes encontrar en la pestaña **Recursos** del panel derecho de la ventana de la interfaz del laboratorio.
@@ -231,13 +232,13 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En el equipo de laboratorio, cambia al explorador web en la que se muestra Azure Portal. 
 1. En la página **az140-21-hp1 \| Hosts de sesión**, selecciona **Actualizar**, revisa los valores de la configuración de **Estado de energía** de los hosts de sesión y comprueba que ahora dos de ellos aparecen como **En ejecución**.
 
-    > **Nota**: A continuación, evaluarás la configuración del umbral de capacidad de **aumento** ajustando su período de tiempo. 
+    > **Nota**: a continuación, evaluarás la configuración del umbral de capacidad de **aumento** ajustando su período de tiempo. 
 
 1. En la página **az140-21-hp1 \| Hosts de sesión**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Planes de escalado** y, a continuación, en la página **Planes de escalado**, selecciona **az140-scalingplan412e**.
 1. En la página **az140-scalingplan412e**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Programaciones** y, a continuación, selecciona **week_schedule**.
 1. En el panel **week_schedule**, ve a la pestaña **Descenso** y ajusta el valor de la configuración **Hora de inicio (sistema de 12 horas)** en cualquier momento entre la **Hora de inicio (sistema de 12 horas)** de la fase **Horas punta** y la hora actual.
 
-    > **Nota**: Es posible que tengas que ajustar el valor de la **Hora de inicio (sistema de 12 horas)** de la fase de **Horas punta**.
+    > **Nota**: es posible que tengas que ajustar el valor de la **Hora de inicio (sistema de 12 horas)** de la fase de **Horas punta**.
 
 1. En el panel **week_schedule**, ve a la pestaña **Horas de poca actividad** y selecciona **Guardar**.
 1. Cambia a la ventana del **símbolo del sistema** que representa la única sesión RDP al grupo de hosts y, en el símbolo del sistema, escribe lo siguiente y presiona la tecla **Intro**:
@@ -250,6 +251,8 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la página **Azure Virtual Desktop \| Grupos de hosts**, en la lista de grupos de host, selecciona **az140-21-hp1**.
 1. En la página **az140-21-hp1**, en la barra de menús vertical, en la sección **Administrar**, selecciona **Hosts de sesión**.
 1. En la página **az140-21-hp1 \| Hosts de sesión**, revisa los valores de la configuración **Estado de energía** de los hosts de sesión y comprueba que ahora solo se muestra uno de ellos como **En ejecución**.
+
+    > **Nota**: el host de sesión puede tardar entre 1 y 2 minutos en apagarse.
 
 #### Tarea 6: Deshabilitación de la escalabilidad automática del grupo de hosts
 

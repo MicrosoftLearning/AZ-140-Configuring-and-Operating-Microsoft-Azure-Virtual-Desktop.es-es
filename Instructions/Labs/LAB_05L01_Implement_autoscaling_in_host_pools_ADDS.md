@@ -31,7 +31,7 @@ Después de completar este laboratorio, podrá:
 
 ## Archivos de laboratorio
 
-- None
+- Ninguno
 
 ## Instrucciones
 
@@ -86,11 +86,11 @@ Las tareas principales de este ejercicio son las siguientes:
 
 #### Tarea 2: Configuración de diagnósticos para realizar un seguimiento del escalado automático de Azure Virtual Desktop
 
-1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
+1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abre una sesión de **PowerShell** en el panel de **Cloud Shell**.
 
-   >**Nota**: Usará una cuenta de Azure Storage para almacenar eventos de escalado automático. Puede crearlo directamente desde Azure Portal o usar Azure PowerShell como se muestra en esta tarea.
+   >**Nota**: usarás una cuenta de Azure Storage para almacenar eventos de escalado automático. Puedes crearlo directamente desde Azure Portal o usar Azure PowerShell como se muestra en esta tarea.
 
-1. En la sesión de PowerShell del panel Cloud Shell, ejecute los siguientes comandos para crear una cuenta de Azure Storage:
+1. En la sesión de PowerShell del panel Cloud Shell, ejecuta los siguientes comandos para crear una cuenta de Azure Storage:
 
    ```powershell
    $resourceGroupName = 'az140-51-RG'
@@ -101,40 +101,40 @@ Las tareas principales de este ejercicio son las siguientes:
    New-AzStorageAccount -Location $location -Name $storageAccountName -ResourceGroupName $resourceGroupName -SkuName Standard_LRS
    ```
 
-   >**Nota**: Espere hasta que se aprovisione la cuenta de almacenamiento.
+   >**Nota**: espera hasta que se aprovisione la cuenta de almacenamiento.
 
-1. En la ventana del navegador que muestra Azure Portal, cierre el panel de Cloud Shell.
-1. En el equipo de laboratorio, en el explorador que muestra Azure Portal, vaya a la página del grupo de hosts**az140-21-hp1**.
-1. En la página **az140-21-hp1**, seleccione **Configuración de diagnóstico** y a continuación, seleccione **+ Agregar configuración de diagnóstico**.
-1. En la página **Configuración de diagnóstico**, en el cuadro de texto **Nombre de la configuración de diagnóstico**, escriba **az140-51-scaling-plan-diagnostics** y en la sección **Grupos de categorías**, seleccione **Registros de escalado automático para grupos de hosts agrupados**. 
-1. En la misma página, en la sección **Detalles del destino**, seleccione **Archivar en una cuenta de almacenamiento** y, en la lista desplegable **Cuenta de almacenamiento**, seleccione el nombre de la cuenta de almacenamiento que empiece por el prefijo **az140st51**.
-1. Seleccione **Guardar**.
+1. En la ventana del navegador que muestra Azure Portal, cierra el panel de Cloud Shell.
+1. En el equipo de laboratorio, en el explorador que muestra Azure Portal, ve a la página del grupo de hosts**az140-21-hp1**.
+1. En la página **az140-21-hp1**, selecciona **Configuración de diagnóstico** y a continuación, selecciona **+ Agregar configuración de diagnóstico**.
+1. En la página **Configuración de diagnóstico**, en el cuadro de texto **Nombre de la configuración de diagnóstico**, escribe **az140-51-scaling-plan-diagnostics** y en la sección **Grupos de categorías**, selecciona **Registros de escalabilidad automática para grupos de hosts agrupados**. 
+1. En la misma página, en la sección **Detalles del destino**, selecciona **Archivar en una cuenta de almacenamiento** y, en la lista desplegable **Cuenta de almacenamiento**, selecciona el nombre de la cuenta de almacenamiento que empiece por el prefijo **az140st51**.
+1. Selecciona **Guardar**.
 
 #### Tarea 3: Creación de un plan de escalado para hosts de sesión de Azure Virtual Desktop
 
-1. En su equipo de laboratorio, en el navegador que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop**. 
-1. En la página **Azure Virtual Desktop**, seleccione **Planes de escalado** y después seleccione **+ Crear**.
-1. En la pestaña **Aspectos básicos** del asistente **Crear un plan de escalado**, especifique la siguiente información y seleccione **Siguiente: Programa >** (deje otros con sus valores predeterminados):
+1. En el equipo de laboratorio, en el navegador que muestra Azure Portal, busca y selecciona **Azure Virtual Desktop**. 
+1. En la página **Azure Virtual Desktop**, selecciona **Planes de escalado** y después selecciona **+ Crear**.
+1. En la pestaña **Datos básicos** del asistente **Crear un plan de escalado**, especifica la siguiente información y selecciona **Siguiente: Programa >** (deja lo demás con sus valores predeterminados):
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
-   |Resource group|**az140-51-RG**|
+   |Grupo de recursos|**az140-51-RG**|
    |Nombre|**az140-51-scaling-plan**|
-   |Location|la misma región de Azure en la que implementó los hosts de sesión en los laboratorios anteriores|
+   |Ubicación|la misma región de Azure en la que implementaste los hosts de sesión en los laboratorios anteriores|
    |Nombre descriptivo|**plan de escalado az140-51**|
    |Zona horaria|la zona horaria local|
 
-   >**Nota**: Las etiquetas de exclusión permiten designar un nombre de etiqueta para los hosts de sesión que desea excluir de las operaciones de escalado. Por ejemplo, es posible que quiera etiquetar las máquinas virtuales que están establecidas en modo de purga para que la escalabilidad automática no invalide dicho modo durante el mantenimiento mediante la etiqueta de exclusión "excludeFromScaling". 
+   >**Nota**: las etiquetas de exclusión permiten designar un nombre de etiqueta para los hosts de sesión que deseas excluir de las operaciones de escalado. Por ejemplo, es posible que quieras etiquetar las máquinas virtuales que están establecidas en modo de purga para que la escalabilidad automática no invalide dicho modo durante el mantenimiento mediante la etiqueta de exclusión "excludeFromScaling". 
 
-1. En la pestaña **Programaciones** del asistente para **Crear un plan de escalado**, seleccione **+ Añadir programación**.
-1. En la pestaña **General** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
+1. En la pestaña **Programaciones** del asistente para **Crear un plan de escalado**, selecciona **+ Agregar programación**.
+1. En la pestaña **General** del asistente **Agregar programación**, especifica la siguiente información y haz clic en **Siguiente**.
 
    |Configuración|Valor|
    |---|---|
    |Nombre de programación|**az140-51-schedule**|
-   |Repetir|**7 seleccionado** (seleccione todos los días de la semana)|
+   |Repetir|**7 seleccionado** (selecciona todos los días de la semana)|
 
-1. En la pestaña **Aumento** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
+1. En la pestaña **Aumento** del asistente **Agregar programación**, especifica la siguiente información y haz clic en **Siguiente**.
 
    |Configuración|Valor|
    |---|---|
@@ -143,18 +143,18 @@ Las tareas principales de este ejercicio son las siguientes:
    |Porcentaje mínimo de hosts (%)|**20**|
    |Umbral de capacidad (%)|**60**|
 
-   >**Nota**: La preferencia de equilibrio de carga que seleccione aquí invalidará la que seleccionó para la configuración del grupo de hosts original.
+   >**Nota**: la preferencia de equilibrio de carga que selecciones aquí invalidará la que seleccionaste para la configuración del grupo de hosts original.
 
-   >**Nota**: El porcentaje mínimo de hosts designa el porcentaje de hosts de sesión en los que desea permanecer siempre activado. Si el porcentaje especificado no es un número entero, se redondea al número entero más cercano. 
+   >**Nota**: el porcentaje mínimo de hosts designa el porcentaje de hosts de sesión que deseas que siempre estén activados. Si el porcentaje especificado no es un número entero, se redondea al número entero más cercano. 
 
-   >**Nota**: El umbral de capacidad representa el porcentaje de capacidad del grupo de hosts disponible que desencadenará una acción de escalado que tendrá lugar. Por ejemplo, si dos hosts de sesión del grupo de hosts con un límite máximo de sesión de 20 están activados, la capacidad del grupo de hosts disponible es 40. Si establece el umbral de capacidad en el 75 % y los hosts de sesión tienen más de 30 sesiones de usuario, se activará un tercer host de sesión durante la escalabilidad automática. Esto cambiará la capacidad del grupo de host disponible de 40 a 60.
+   >**Nota**: el umbral de capacidad representa el porcentaje de capacidad del grupo de hosts disponible que desencadenará la acción de escalado que tendrá lugar. Por ejemplo, si dos hosts de sesión del grupo de hosts con un límite máximo de sesión de 20 están activados, la capacidad del grupo de hosts disponible es 40. Si estableces el umbral de capacidad en el 75 % y los hosts de sesión tienen más de 30 sesiones de usuario, se activará un tercer host de sesión durante la escalabilidad automática. Esto cambiará la capacidad del grupo de host disponible de 40 a 60.
 
-1. En la pestaña **Horas punta** del asistente **Añadir programación**, especifique la siguiente información y haga clic en **Siguiente**.
+1. En la pestaña **Horas punta** del asistente **Añadir programación**, especifica la siguiente información y haz clic en **Siguiente**.
 
    |Configuración|Valor|
    |---|---|
    |Hora de inicio (sistema de 24horas)|la hora actual menos 8 horas|
-   |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+   |Algoritmo de equilibrio de carga|**Equilibrio de carga en profundidad**|
 
    >**Nota**: La hora de inicio designa la hora de finalización de la fase de aumento.
 
@@ -165,7 +165,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Configuración|Valor|
    |---|---|
    |Hora de inicio (sistema de 24horas)|la hora actual menos 2 horas|
-   |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+   |Algoritmo de equilibrio de carga|**Equilibrio de carga en profundidad**|
    |Porcentaje mínimo de hosts (%)|**10**
           |
    |Umbral de capacidad (%)|**90**|
@@ -181,31 +181,31 @@ Las tareas principales de este ejercicio son las siguientes:
    |Configuración|Valor|
    |---|---|
    |Hora de inicio (sistema de 24horas)|la hora actual menos 1 hora|
-   |Algoritmo de equilibrio de carga|**Con prioridad a la profundidad**|
+   |Algoritmo de equilibrio de carga|**Equilibrio de carga en profundidad**|
 
-   >**Nota**: El valor del umbral de capacidad en esta fase viene determinado por el valor del umbral de capacidad de descenso.
+   >**Nota**: el valor del umbral de capacidad en esta fase viene determinado por el valor del umbral de capacidad de descenso.
 
-1. De nuevo en la pestaña **Programaciones** del asistente de **Creación de un plan de escalado**, seleccione **Siguiente: Asignaciones del grupo de hosts >**:
-1. En la página **Asignaciones de grupos de host**, en la lista desplegable **Seleccionar grupo de host**, seleccione **az140-21-hp1**, asegúrese de que la casilla **Habilitar escalabilidad automática** está activada, seleccione **Revisar y crear** y, después, seleccione **Crear**.
+1. De nuevo en la pestaña **Programaciones** del asistente de **Creación de un plan de escalado**, selecciona **Siguiente: Asignaciones del grupo de hosts >**:
+1. En la página **Asignaciones de grupos de host**, en la lista desplegable **Seleccionar grupo de host**, selecciona **az140-21-hp1**, asegúrate de que la casilla **Habilitar escalabilidad automática** está activada, selecciona **Revisar y crear** y, después, selecciona **Crear**.
 
 
-### Ejercicio 2: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
+### Ejercicio 2: Verificación de la escalabilidad automática de hosts de sesión de Azure Virtual Desktop
 
 Las tareas principales de este ejercicio son las siguientes:
 
-1. Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
+1. Verificación de la escalabilidad automática de hosts de sesión de Azure Virtual Desktop
 
 
-#### Tarea 1: Verificar el escalado automático de hosts de sesión de Azure Virtual Desktop
+#### Tarea 1: Verificación de la escalabilidad automática de hosts de sesión de Azure Virtual Desktop
 
-1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abra una sesión de **PowerShell** en el panel de **Cloud Shell**.
-1. Desde la sesión de PowerShell en el panel de Cloud Shell, ejecute el siguiente comando para iniciar la sesión del host de Azure Virtual Desktop de las máquinas virtuales de Azure que usará en este laboratorio:
+1. En el equipo de laboratorio, en la ventana del explorador web donde se muestra Azure Portal, abre una sesión de **PowerShell** en el panel de **Cloud Shell**.
+1. Desde la sesión de PowerShell en el panel de Cloud Shell, ejecuta el siguiente comando para iniciar la sesión del host de Azure Virtual Desktop de las máquinas virtuales de Azure que usarás en este laboratorio:
 
    ```powershell
    Get-AzVM -ResourceGroup 'az140-21-RG' | Start-AzVM
    ```
 
-   >**Nota**: Espere hasta que se ejecuten las máquinas virtuales de Azure del host de sesión.
+   >**Nota**: espera hasta que se ejecuten las máquinas virtuales de Azure del host de sesión.
 
 1. En el equipo del laboratorio, en la ventana del explorador web que muestra Azure Portal, navegue hasta la página del grupo de hosts **az140-21-hp1**.
 1. En la página **az140-21-hp1**, seleccione **Host de sesión**.
