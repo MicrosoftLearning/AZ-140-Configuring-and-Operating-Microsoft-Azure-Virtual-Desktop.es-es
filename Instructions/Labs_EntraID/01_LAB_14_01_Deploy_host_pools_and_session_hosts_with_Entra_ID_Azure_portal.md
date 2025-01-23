@@ -46,7 +46,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En el equipo de laboratorio, inicia un explorador web, ve a Azure Portal en [https://portal.azure.com](https://portal.azure.com) e inicia sesión con las credenciales de una cuenta de usuario con el rol de propietario en la suscripción que usarás en este laboratorio.
 
-    > **Nota**: usa las credenciales de la cuenta `User1-` que aparecen en la pestaña Recursos del lado derecho de la ventana de sesión del laboratorio.
+    > **Nota**: Usa las credenciales de la cuenta `User1-` que aparecen en la pestaña Recursos del lado derecho de la ventana de sesión del laboratorio.
 
 1. En Azure Portal, inicia una sesión de PowerShell en Azure Cloud Shell.
 
@@ -66,7 +66,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|Nombre de la suscripción de Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-11e-RG**|
     |Nombre de la red virtual|**az140-vnet11e**|
     |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
@@ -80,7 +80,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. Selecciona el icono de edición (lápiz) situado junto a la entrada de subred **predeterminada**, en el panel **Editar**, especifica la siguiente configuración (deja los otros valores con su configuración predeterminada) y selecciona **Guardar**:
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Nombre|**hp1-Subnet**|
     |Dirección inicial|**10.20.1.0**|
@@ -127,7 +127,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Configuración|Valor|
     |---|---|
     |Agregar máquinas virtuales|**Sí**|
-    |Resource group|**El valor predeterminado es el mismo que el del grupo de hosts**|
+    |Grupo de recursos|**El valor predeterminado es el mismo que el del grupo de hosts**|
     |Prefijo de nombre|**sh**-*random*|
     |Tipo de máquina virtual|**Máquina virtual de Azure**|
     |Ubicación de la máquina virtual|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
@@ -155,7 +155,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Registro de un grupo de aplicación de escritorio|**No**|
+    |Registro de un grupo de aplicaciones de escritorio|**No**|
 
 1. En la pestaña **Revisar y crear** de la página **Crear un grupo de hosts**, selecciona **Crear**.
 
@@ -252,7 +252,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Descripción|**Símbolo del sistema de Windows**|
     |Requiere línea de comandos|**No**|
 
-1. En la pestaña **Icono**, especifique la siguiente configuración y seleccione **Revisar + agregar**, y luego seleccione **Agregar**: :
+1. En la pestaña **Icono**, especifica la siguiente configuración y selecciona **Revisar + agregar**y, a continuación, selecciona **Agregar**:
 
     |Configuración|Valor|
     |---|---|

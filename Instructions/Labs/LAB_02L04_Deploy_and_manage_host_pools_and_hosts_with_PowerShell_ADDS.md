@@ -70,7 +70,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la sesión de Bastion a **az140-dc-vm11**, en Azure Portal, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar y navegar a **Redes virtuales** y, en la hoja **Redes virtuales**, seleccione **az140-adds-vnet11**. 
 1. En la hoja **az140-adds-vnet11**, seleccione **Subredes**, y en la hoja **Subredes**, seleccione **+ Subred**. Después, en la hoja **Agregar subred**, especifique la siguiente configuración (deje todas las demás opciones con sus valores predeterminados) y haga clic en **Guardar**:
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**hp3-Subnet**|
    |Intervalo de direcciones de subred|**10.0.3.0/24**|

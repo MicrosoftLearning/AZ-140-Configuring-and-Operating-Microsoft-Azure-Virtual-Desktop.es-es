@@ -95,7 +95,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la sesión de Bastion a **az140-dc-vm11**, en Azure Portal, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar y navegar a **Redes virtuales** y, en la hoja **Redes virtuales**, seleccione **az140-adds-vnet11**. 
 1. En la hoja **az140-adds-vnet11**, seleccione **Subredes**, y en la hoja **Subredes**, seleccione **+ Subred**. Después, en la hoja **Agregar subred**, especifique la siguiente configuración (deje todas las demás opciones con sus valores predeterminados) y haga clic en **Guardar**:
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**hp2-Subnet**|
    |Intervalo de direcciones de subred|**10.0.2.0/24**|
@@ -118,7 +118,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Grupo de recursos|cree un **nuevo** grupo de recursos denominado **az140-23-RG**|
    |Region|el nombre de la región de Azure en la que implementó máquinas virtuales de Azure que hospedan controladores de dominio de AD DS en el laboratorio **Preparación para la implementación de Azure Virtual Desktop (AD DS)**.|
    |Location|el nombre de la misma región de Azure que la establecida como el valor de los parámetros **Región**.|
@@ -173,7 +173,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Grupo de recursos|**az140-23-RG**|
    |Token de grupo de hosts|el valor del token que generó en la tarea anterior.|
    |Ubicación del grupo de hosts|el nombre de la región de Azure en la que implementó el grupo de hosts anteriormente en este laboratorio.|

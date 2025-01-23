@@ -60,7 +60,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la sesión de Bastion a **az140-dc-vm11**, desde el panel de la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para crear una unidad organizativa que hospedará los objetos de equipo de los hosts de Azure Virtual Desktop:
 
    ```powershell
-   New-ADOrganizationalUnit 'WVDInfra' –path 'DC=adatum,DC=com' -ProtectedFromAccidentalDeletion $false
+   New-ADOrganizationalUnit 'WVDInfra' -path 'DC=adatum,DC=com' -ProtectedFromAccidentalDeletion $false
    ```
 
 1. Desde la consola **Administrador: Windows PowerShell ISE**, ejecute lo siguiente para identificar el nombre de usuario principal de la cuenta **aduser1**:
@@ -81,7 +81,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la sesión de Bastion a **az140-dc-vm11**, en Azure Portal, utilice el cuadro de texto **Buscar recursos, servicios y documentos** en la parte superior de la página de Azure Portal para buscar y navegar a **Redes virtuales** y, en la hoja **Redes virtuales**, seleccione **az140-adds-vnet11**. 
 1. En la hoja **az140-adds-vnet11**, seleccione **Subredes**, y en la hoja **Subredes**, seleccione **+ Subred**. Después, en la hoja **Agregar subred**, especifique la siguiente configuración (deje todas las demás opciones con sus valores predeterminados) y haga clic en **Guardar**:
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**hp1-Subnet**|
    |Dirección inicial|**10.0.1.0**|
@@ -94,14 +94,14 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|crear un **nuevo** grupo de recursos denominado **az140-21-RG**|
    |Nombre del grupo de hosts|**az140-21-hp1**|
    |Location|nombre de la región de Azure en la que implementó recursos en el primer ejercicio de este laboratorio o región cercana a la misma |
    |Entorno de validación|**No**|
    |Tipo de grupo de aplicaciones preferido|**Dispositivo de escritorio**|
    |Tipo de grupo de hosts|**Agrupado**|
-   |Algoritmo de equilibrio de carga|**Con prioridad a la amplitud**|
+   |Algoritmo de equilibrio de carga|**Equilibrio de carga en amplitud**|
    |Límite máximo de sesión|**12**
           |
 
@@ -112,7 +112,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Configuración|Valor|
    |---|---|
    |Agregar máquinas virtuales|**Sí**|
-   |Resource group|**El valor predeterminado es el mismo que el del grupo de hosts**|
+   |Grupo de recursos|**El valor predeterminado es el mismo que el del grupo de hosts**|
    |Prefijo de nombre|**az140-21-p1**|
    |Tipo de máquina virtual|Máquina virtual de Azure|
    |Ubicación de la máquina virtual|el nombre de la región Azure en la que implementó los recursos en el laboratorio anterior|
@@ -128,12 +128,12 @@ Las tareas principales de este ejercicio son las siguientes:
    |Subred|**hp1-Subnet (10.0.1.0/24)**|
    |Grupo de seguridad de red|**Basic**|
    |Puertos de entrada públicos|**No**|
-   |Seleccione el directorio al que quiera unirse|**Active Directory**|
+   |Seleccionar el directorio al que quieras unirte|**Active Directory**|
    |UPN de unión a un dominio de AD|**student@adatum.com**|
    |Contraseña|**Pa55w.rd1234**|
    |Confirmar contraseña|**Pa55w.rd1234**|
-   |Especifique el nombre de dominio o la unidad|**Sí**|
-   |Dominio al que desea unirse|**adatum.com**|
+   |Especificar el nombre de dominio o la unidad|**Sí**|
+   |Dominio al que deseas unirte|**adatum.com**|
    |Ruta de acceso de unidad organizativa|**OU=WVDInfra,DC=adatum,DC=com**|
    |Nombre de usuario|**Estudiante**|
    |Contraseña|**Pa55w.rd1234**|
@@ -158,7 +158,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la pestaña **Datos básicos** de la hoja **Agregar máquinas virtuales al grupo de hosts**, revisa la configuración preconfigurada y selecciona **Siguiente: Máquinas virtuales**.
 1. En la pestaña **Máquinas virtuales** de la hoja **Agregar máquinas virtuales a un grupo de hosts**, especifica la siguiente configuración y selecciona **Revisar y crear** (deja los otros valores con su configuración predeterminada):
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Resource group|**az140-21-RG**|
    |Prefijo de nombre|**az140-21-p1**|
@@ -171,15 +171,15 @@ Las tareas principales de este ejercicio son las siguientes:
    |Tamaño de disco del SO|**Tamaño predeterminado (128GiB)**|
    |Diagnósticos de arranque|**Habilitar con la cuenta de almacenamiento administrada (recomendado)**|
    |Red virtual|**az140-adds-vnet11**|
-   |Subnet|**hp1-Subnet (10.0.1.0/24)**|
+   |Subred|**hp1-Subnet (10.0.1.0/24)**|
    |Grupo de seguridad de red|**Basic**|
    |Puertos de entrada públicos|**No**|
-   |Seleccione el directorio al que quiera unirse|**Active Directory**|
+   |Seleccionar el directorio al que quieras unirte|**Active Directory**|
    |UPN de unión a un dominio de AD|**student@adatum.com**|
    |Contraseña|**Pa55w.rd1234**|
    |Confirmar contraseña|**Pa55w.rd1234**|
-   |Especifique el nombre de dominio o la unidad|**Sí**|
-   |Dominio al que desea unirse|**adatum.com**|
+   |Especificar el nombre de dominio o la unidad|**Sí**|
+   |Dominio al que deseas unirte|**adatum.com**|
    |Ruta de acceso de unidad organizativa|**OU=WVDInfra,DC=adatum,DC=com**|   
    |Nombre de usuario|**Estudiante**|
    |Contraseña|**Pa55w.rd1234**|
@@ -219,7 +219,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Descripción|**Microsoft Word**|
    |Requiere línea de comandos|**No**|
 
-1. De nuevo en la pestaña **Aplicaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **+ Agregar aplicaciones**.
+1. De vuelta en la pestaña **Aplicaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **+ Agregar aplicaciones**.
 1. En la hoja **Agregar aplicación**, especifica la siguiente configuración y selecciona **Revisar y agregar **y, a continuación, selecciona **Agregar**:
 
    |Configuración|Valor|
@@ -387,7 +387,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. Desde el equipo de laboratorio, cambie la sesión de Bastion a **az140-dc-vm11**.
 1. Dentro de la sesión Bastion a **az140-dc-vm11**, en la ventana del navegador web que muestra el portal Azure, busca y selecciona **Azure Virtual Desktop** y, en el panel **Azure Virtual Desktop**, en la barra de menú vertical, en la **sección Administrar**, selecciona **Grupos de hosts**.
-1. En la hoja **Grupos de hosts de \|Azure Virtual Desktop**, en la lista de grupos de hosts, seleccione **az140-21-hp1**.
+1. En la hoja **Grupos de hosts de \|Azure Virtual Desktop**, en la lista de grupos de hosts, selecciona **az140-21-hp1**.
 1. En el panel **az140-21-hp1**, en la barra de menú vertical, en la sección **Configuración**, selecciona **Propiedades**; en el **tipo de grupo de aplicaciones preferido**, selecciona **Aplicación remota** y, luego, selecciona **Guardar**. 
 1. Desde el equipo de laboratorio, cambia a la sesión de Bastion a **az140-cl-vm11**.
 1. En la sesión de Bastion a **az140-cl-vm11**, en la ventana del cliente **Escritorio remoto**, selecciona el símbolo de puntos suspensivos en la esquina superior derecha y, en el menú desplegable, selecciona **Actualizar**.

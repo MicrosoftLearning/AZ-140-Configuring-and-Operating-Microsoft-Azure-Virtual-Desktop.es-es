@@ -97,8 +97,8 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
-   |Resource group|**az140-25-RG**|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
+   |Grupo de recursos|**az140-25-RG**|
    |Nombre|**az140-25-bastion**|
    |Region|la misma región de Azure en la que se han implementado los recursos en las tareas anteriores de este ejercicio.|
    |Nivel|**Basic**|
@@ -290,7 +290,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Grupo de recursos|**El valor predeterminado es el mismo que el del grupo de hosts**|
    |Prefijo de nombre|**az140-25-p4**|
    |Tipo de máquina virtual|**Máquina virtual de Azure**|
-   |Ubicación de la máquina virtual|Nombre de la región de Azure en la que implementaste los recursos en el primer ejercicio de este laboratorio|
+   |Ubicación de la máquina virtual|nombre de la región de Azure en la que implementaste los recursos en el primer ejercicio de este laboratorio|
    |Opciones de disponibilidad|**No se requiere redundancia de la infraestructura**|
    |Tipo de seguridad|**Estándar**|
    

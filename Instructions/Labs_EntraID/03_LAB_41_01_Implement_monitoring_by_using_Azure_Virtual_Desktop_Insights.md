@@ -10,9 +10,9 @@ lab:
 ## Dependencias de laboratorio
 
 - Una suscripción a Azure que usarás en este laboratorio.
-- Una cuenta de usuario de Microsoft Entra con los roles de Propietario o Colaborador en la suscripción a Azure que usarás en este laboratorio y con los permisos suficientes para unir dispositivos al inquilino de Microsoft Entra asociado a esa suscripción a Azure.
+- Una cuenta de usuario de Microsoft Entra con el rol Propietario o Colaborador en la suscripción de Azure que vas a usar en este laboratorio y con los permisos suficientes para unir dispositivos al inquilino de Entra asociado con esa suscripción a Azure.
 - Haber completado el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)*
-- Haber completado el laboratorio *Implementación de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)*
+- Haber completado el laboratorio *Administración de grupos de hosts y hosts de sesión mediante Azure Portal (Entra ID)*
 
 ## Tiempo estimado
 

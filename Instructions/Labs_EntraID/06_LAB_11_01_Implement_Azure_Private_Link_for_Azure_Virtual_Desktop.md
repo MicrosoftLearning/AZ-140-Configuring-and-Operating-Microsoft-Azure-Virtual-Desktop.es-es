@@ -138,7 +138,7 @@ Las tareas principales de este ejercicio son las siguientes:
 #### Tarea 4: Implementación de un punto de conexión privado para la descarga de fuentes
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en la página **Azure Virtual Desktop**, selecciona **Áreas de trabajo**.
-1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
+1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
 1. En la página **az140-21-ws1**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Redes**.
 1. En la página **az140-21-ws1 \| Redes**, selecciona **Conexiones de punto de conexión privado** y, después, **+ Nuevo punto de conexión privado**.
 1. En la pestaña **Datos básicos** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: Recurso >**:
@@ -171,7 +171,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Configuración|Valor|
     |---|---|
     |Integración con una zona DNS privada|**Sí**|
-    |Suscripción|El nombre de la suscripción de Azure que usa en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-11e-RG**|
 
     > **Nota**: este paso aprovechará la zona DNS privada denominada **privatelink.wvd.microsoft.com** que creaste en la tarea anterior.
@@ -186,14 +186,14 @@ Las tareas principales de este ejercicio son las siguientes:
 #### Tarea 5: Implementación de un punto de conexión privado para la detección inicial de fuentes
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en la página **Azure Virtual Desktop**, selecciona **Áreas de trabajo**.
-1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
+1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
 1. En la página **az140-21-ws1**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Redes**.
 1. En la página **az140-21-ws1 \| Redes**, selecciona **Conexiones de punto de conexión privado** y, después, **+ Nuevo punto de conexión privado**.
 1. En la pestaña **Datos básicos** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: Recurso >**:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|El nombre de la suscripción de Azure que usa en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-11e-RG**|
     |Nombre|**az140-11-pefeeddisc**|
     |Nombre de la interfaz de red|**az140-11-pefeeddisc-nic**|
@@ -207,7 +207,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En la pestaña **Red virtual** de la página **Crear un punto de conexión privado**, especifica la siguiente configuración y selecciona **Siguiente: DNS >** (deja los otros valores con su configuración predeterminada):
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Red virtual|**az140-vnet11e (az140-11e-RG)**|
     |Subred|**pe-Subnet**|
@@ -244,7 +244,7 @@ Las tareas principales de este ejercicio son las siguientes:
 > **Nota**: de forma predeterminada, se permite la conectividad con áreas de trabajo de Azure Virtual Desktop y grupos de hosts desde redes públicas. Comenzarás cambiando la configuración predeterminada y aplicando el acceso privado.
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en la página **Azure Virtual Desktop**, selecciona **Áreas de trabajo**.
-1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
+1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
 1. En la página **az140-21-ws1**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Redes**.
 1. En la página **az140-21-ws1 \| Redes**, en la pestaña **Acceso público**, selecciona la opción **Deshabilitar el acceso público y usar el acceso privado** y, a continuación, selecciona **Guardar**.
 1. En el equipo de laboratorio, en el explorador web que muestra Azure Portal, busca y selecciona **Azure Virtual Desktop**, en la página **Azure Virtual Desktop**, en la sección **Administrar** del menú de navegación vertical, selecciona **Grupos de hosts** y, en la página **Azure Virtual Desktop \| Grupos de hosts**, selecciona **az140-21-hp1**. 
@@ -354,12 +354,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     > **Nota**: para minimizar los cargos asociados con la ejecución del entorno de laboratorio, detendrás y desasignarás la VM de Azure recién aprovisionada.
 
-1. Cambia a la sesión de consola al equipo de laboratorio, en el explorador web que muestra Azure Portal, en la página **az140-111e-vm0**, selecciona **Información general** y, después, en la barra de herramientas, selecciona **Detener**.
-1. En la ventana emergente **Detener esta máquina virtual**, selecciona **Sí**.
-
 #### Tarea 7: Permiso para acceder a la red pública para un grupo de hosts y un área de trabajo
-
-> **Nota**: para eliminar el impacto en otros laboratorios que usan el mismo entorno de Azure Virtual Desktop, revertirás los cambios aplicados en la tarea anterior y permitirás el acceso de red pública al grupo de hosts y al área de trabajo que forman parte del entorno de Azure Virtual Desktop.
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en la página **Azure Virtual Desktop**, selecciona **Áreas de trabajo**.
 1. En la página **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **az140-21-ws1**.
