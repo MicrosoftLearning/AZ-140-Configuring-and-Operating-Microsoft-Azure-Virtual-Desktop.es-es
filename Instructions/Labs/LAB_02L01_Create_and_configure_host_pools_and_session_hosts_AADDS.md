@@ -75,7 +75,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|nombre de un nuevo grupo de recursos **az140-21a-RG**.|
    |Nombre del grupo de hosts|**az140-21a-hp1**|
    |Ubicación|Nombre de la región de Azure en la que implementaste la instancia de Microsoft Entra DS anteriormente en este laboratorio|
@@ -112,18 +112,18 @@ Las tareas principales de este ejercicio son las siguientes:
    |UPN de unión a un dominio de AD|**aadadmin1@adatum.com**|
    |Contraseña|Utilice la contraseña de aadadmin1|
    |Especifique el nombre de dominio o la unidad|**Sí**|
-   |Dominio al que desea unirse|**adatum.com**|
+   |Dominio al que deseas unirte|**adatum.com**|
    |Ruta de acceso de unidad organizativa|**OU=equipos AADDC,DC=adatum,DC=com**|
    |Nombre de usuario de la cuenta de administrador de máquina virtual|**estudiante**|
    |Contraseña de la cuenta de administrador de máquina virtual|**Pa55w.rd1234**|
 
-1. En la pestaña **Área de trabajo** de la hoja **Crear un grupo de hosts**, especifique la siguiente configuración y seleccione **Revisar y crear**:
+1. En la pestaña **Área de trabajo** de la hoja **Crear un grupo de hosts**, especifica la siguiente configuración y selecciona **Revisar y crear**:
 
    |Configuración|Valor|
    |---|---|
-   |Registro de un grupo de aplicación de escritorio|**No**|
+   |Registro de un grupo de aplicaciones de escritorio|**No**|
 
-1. En la pestaña **Revisar y crear** de la hoja **Crear un grupo de hosts**, seleccione **Crear**.
+1. En la pestaña **Revisar y crear** de la hoja **Crear un grupo de hosts**, selecciona **Crear**.
 
    > **Nota**: Espere a que la implementación se complete. Este proceso tardará aproximadamente 15 minutos.
 
@@ -139,7 +139,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21a-RG**|
    |Grupo de hosts|**az140-21a-hp1**|
    |Tipo de grupo de aplicaciones|**RemoteApp**|
@@ -176,10 +176,10 @@ Las tareas principales de este ejercicio son las siguientes:
    |Requiere línea de comandos|**No**|
 
 1. De nuevo en la pestaña **Aplicaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **Siguiente: Asignaciones >**.
-1. En la pestaña **Asignaciones** de la hoja **Crear un grupo de aplicaciones**, seleccione **+ Agregar usuarios o grupos de usuarios de Microsoft Entra**.
+1. En la pestaña **Asignaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **+ Agregar usuarios o grupos de usuarios de Microsoft Entra**.
 1. En la hoja **Seleccionar usuarios o grupos de usuarios de Microsoft Entra**, seleccione **az140-wvd-aremote-app** y haga clic en **Seleccionar**.
 1. De nuevo en la pestaña **Asignaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **Siguiente: Área de trabajo >**.
-1. En la pestaña **Área de trabajo** de la hoja **Crear un área de trabajo**, especifique la siguiente configuración y seleccione **Revisar y crear**:
+1. En la pestaña **Área de trabajo** de la hoja **Crear un área de trabajo**, especifica la siguiente configuración y selecciona **Revisar y crear**:
 
    |Configuración|Valor|
    |---|---|
@@ -190,12 +190,12 @@ Las tareas principales de este ejercicio son las siguientes:
    > **Nota**: Ahora creará un grupo de aplicaciones basado en la ruta de acceso del archivo como origen de la aplicación.
 
 1. En la sesión de Bastion a **az140-cl-vm11a**, en la ventana del explorador web que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop** y, en la hoja **Azure Virtual Desktop**, seleccione **Grupos de aplicaciones**.
-1. En la hoja **Grupos de aplicaciones \|de Azure Virtual Desktop**, seleccione **+ Crear**. 
+1. En la hoja **Azure Virtual Desktop \| Grupos de aplicaciones**, selecciona **+ Crear**. 
 1. En la pestaña **Datos básicos** de la hoja **Crear un grupo de aplicaciones**, especifica la siguiente configuración y selecciona **Siguiente: Aplicaciones >**:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21a-RG**|
    |Grupo de hosts|**az140-21a-hp1**|
    |Tipo de grupo de aplicaciones|**RemoteApp**|
@@ -207,7 +207,7 @@ Las tareas principales de este ejercicio son las siguientes:
    |Configuración|Valor|
    |---|---|
    |Origen de aplicación|**Ruta de acceso del archivo**|
-   |Application path|**C:\Windows\system32\cmd.exe**|
+   |Ruta de acceso de la aplicación|**C:\Windows\system32\cmd.exe**|
    |Nombre de la aplicación|**Símbolo del sistema**|
    |Nombre para mostrar|**Símbolo del sistema**|
    |Ruta de icono|**C:\Windows\system32\cmd.exe**|
@@ -216,10 +216,10 @@ Las tareas principales de este ejercicio son las siguientes:
    |Requiere línea de comandos|**No**|
 
 1. De nuevo en la pestaña **Aplicaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **Siguiente: Asignaciones >**.
-1. En la pestaña **Asignaciones** de la hoja **Crear un grupo de aplicaciones**, seleccione **+ Agregar usuarios o grupos de usuarios de Microsoft Entra**.
+1. En la pestaña **Asignaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **+ Agregar usuarios o grupos de usuarios de Microsoft Entra**.
 1. En la hoja **Seleccionar usuarios o grupos de usuarios de Microsoft Entra**, seleccione **az140-wvd-aremote-app** y **az140-wvd-aadmins** y haga clic en **Seleccionar**.
 1. De nuevo en la pestaña **Asignaciones** de la hoja **Crear un grupo de aplicaciones**, selecciona **Siguiente: Área de trabajo >**.
-1. En la pestaña **Área de trabajo** de la hoja **Crear un área de trabajo**, especifique la siguiente configuración y seleccione **Revisar y crear**:
+1. En la pestaña **Área de trabajo** de la hoja **Crear un área de trabajo**, especifica la siguiente configuración y selecciona **Revisar y crear**:
 
    |Configuración|Valor|
    |---|---|
@@ -230,12 +230,12 @@ Las tareas principales de este ejercicio son las siguientes:
 #### Tarea 4: Configuración de áreas de trabajo de Azure Virtual Desktop
 
 1. En la sesión de Bastion a **az140-cl-vm11a**, en la ventana de Microsoft Edge que muestra Azure Portal, busque y seleccione **Azure Virtual Desktop** y, en la hoja **Azure Virtual Desktop**, seleccione **Áreas de trabajo**.
-1. En la hoja **Áreas de trabajo de \|Azure Virtual Desktop**, seleccione **+ Crear**. 
+1. En la hoja **Azure Virtual Desktop \| Áreas de trabajo**, selecciona **+ Crear**. 
 1. En la pestaña **Datos básicos** de la hoja **Crear un área de trabajo**, especifica la siguiente configuración y selecciona **Siguiente: Grupos de aplicaciones >**:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-21a-RG**|
    |Nombre del área de trabajo|**az140-21a-ws1**|
    |Nombre descriptivo|**az140-21a-ws1**|
@@ -250,7 +250,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la pestaña **Área de trabajo** de la hoja **Crear un área de trabajo**, seleccione **+ Registrar grupos de aplicaciones**.
 1. En la hoja **Agregar grupos de aplicaciones**, seleccione el signo más junto a **az140-21a-hp1-DAG**, **az140-21a-hp1-Office365-RAG** y **az140-21a-hp1-Utilities-RAG** y haga clic en **Seleccionar**. 
 1. De nuevo en la pestaña **Grupos de aplicaciones** de la hoja **Crear un área de trabajo**, seleccione **Revisar y crear**.
-1. En la pestaña **Revisar y crear** de la hoja **Crear un área de trabajo**, seleccione **Crear**.
+1. En la pestaña **Revisar y crear** de la hoja **Crear un área de trabajo**, selecciona **Crear**.
 
 ### Ejercicio 2: Validación de un entorno de Azure Virtual Desktop
   
@@ -294,7 +294,7 @@ Las tareas principales de este ejercicio son las siguientes:
    > **Nota**: A continuación, modificarás el **tipo de grupo de aplicaciones preferido** al establecerlo en **RemoteApp**.
 
 1. Dentro de la sesión Bastion a **az140-cl-vm11a**, en la ventana del navegador web que muestra Azure Portal, busca y selecciona **Azure Virtual Desktop** y, en el panel **Azure Virtual Desktop**, en la barra de menú vertical, en la **sección Administrar**, selecciona **Grupos de hosts**.
-1. En la hoja **Grupos de hosts de \|Azure Virtual Desktop**, en la lista de grupos de hosts, seleccione **az140-21-hp1**.
+1. En la hoja **Grupos de hosts de \|Azure Virtual Desktop**, en la lista de grupos de hosts, selecciona **az140-21-hp1**.
 1. En el panel **az140-21-hp1**, en la barra de menú vertical, en la sección **Configuración**, selecciona **Propiedades**; en el **tipo de grupo de aplicaciones preferido**, selecciona **Aplicación remota** y, luego, selecciona **Guardar**. 
 1. En la sesión de Bastion a **az140-cl-vm11**, en la ventana del cliente **Escritorio remoto**, selecciona el símbolo de puntos suspensivos en la esquina superior derecha y, en el menú desplegable, selecciona **Actualizar**.
 1. Comprueba que la página **Escritorio remoto** muestra las aplicaciones individuales que se incluyen en los dos grupos de aplicaciones por ti creados y publicados en el área de trabajo, que también están asociados a la cuenta de usuario **aduser1** mediante su pertenencia a grupos. 

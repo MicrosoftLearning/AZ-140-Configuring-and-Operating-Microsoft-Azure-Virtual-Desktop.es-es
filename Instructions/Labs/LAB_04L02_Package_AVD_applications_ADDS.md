@@ -404,7 +404,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la hoja Cuenta de almacenamiento, en el menú vertical situado en el lado izquierdo, en la sección **Almacenamiento de datos**, seleccione **Recursos compartidos de archivos** y, después, **+ Recurso compartido de archivos**.
 1. En el panel **Nuevo recurso compartido** de archivos, especifique la siguiente configuración y seleccione **Siguiente : Copia de seguridad > **(deje los demás ajustes con sus valores por defecto):
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**az140-42-msixvhds**|
    |Nivel de acceso|**Transacción optimizada**|

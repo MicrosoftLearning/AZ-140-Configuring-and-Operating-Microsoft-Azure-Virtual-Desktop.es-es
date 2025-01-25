@@ -61,7 +61,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|crear un **nuevo** grupo de recursos denominado **az140-22-RG**|
    |Nombre de la cuenta de almacenamiento|cualquier nombre único global de entre 3 y 15 caracteres, que conste de letras en minúsculas y dígitos, y que empiece por una letra.|
    |Region|nombre de una región de Azure que hospeda el entorno de laboratorio de Azure Virtual Desktop.|
@@ -81,7 +81,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la hoja Cuenta de almacenamiento, en la sección **Almacenamiento de datos**, seleccione **Recurso compartido de archivos** y, después, seleccione **+ Recurso compartido de archivos**.
 1. En el panel **Nuevo recurso compartido de archivos**, especifique la siguiente configuración y seleccione **Siguiente : Copia de seguridad > **(deje los demás ajustes con sus valores por defecto):
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**az140-22-profiles**|
    |Nivel de acceso|**Transacción optimizada**|

@@ -54,9 +54,9 @@ Las tareas principales de este ejercicio son las siguientes:
 
 #### Tarea 1: Registro de los proveedores de recursos necesarios
 
-1. De ser necesario, en el equipo de laboratorio, inicia un explorador web, ve a Azure Portal e inicia sesión con las credenciales de una cuenta de usuario con el rol de propietario en la suscripción que usarás en este laboratorio.
+1. Si es necesario, desde el equipo de laboratorio, inicia un explorador web, ve al portal de Azure e inicia sesión con las credenciales de una cuenta de usuario con el rol Propietario en la suscripción que vas a usar en este laboratorio.
 
-    > **Nota**: usa las credenciales de la cuenta `User1-` que aparecen en la pestaña Recursos del lado derecho de la ventana de sesión del laboratorio.
+    > **Nota**: Usa las credenciales de la cuenta `User1-` que aparecen en la pestaña Recursos del lado derecho de la ventana de sesión del laboratorio.
 
 1. En Azure Portal, inicia una sesión de PowerShell en Azure Cloud Shell.
 
@@ -88,7 +88,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|El nombre de la suscripción a Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-15a-RG**|
     |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
     |Nombre|**az140**-*random*-**uami**|
@@ -158,7 +158,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|El nombre de la suscripción a Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-15b-RG**|
     |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
 
@@ -181,7 +181,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|El nombre de la suscripción a Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-15b-RG**|
     |Nombre|**az14015computegallery**|
     |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
@@ -228,7 +228,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |---|---|
     |Nombre de plantilla|**az140-15b-imagetemplate**|
     |Importación desde una plantilla existente|**No**|
-    |Suscripción|El nombre de la suscripción a Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-15b-RG**|
     |Ubicación|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
     |Identidad administrada|**az140**-*random*-**uami**|
@@ -263,7 +263,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Tamaño de la máquina virtual de compilación|**Standard_DC2s_v3**|
     |Tamaño del disco del sistema operativo (GB)|**127**|
     |Grupo de almacenamiento provisional|**az140-15c-RG**|
-    |Red virtual|Deja en no establecido|
+    |VNet|Deja en no establecido|
 
     > **Nota**: El **grupo de almacenamiento provisional** es el grupo de recursos que se usa para almacenar provisionalmente los recursos para compilar la imagen y almacenar los registros. Si no proporcionas un nombre, se generará automáticamente. Si no se establece el nombre de **VNet**, se crea uno temporal, junto con una dirección IP pública para la máquina virtual que se usa para crear la compilación.
 
@@ -314,11 +314,11 @@ Las tareas principales de este ejercicio son las siguientes:
 > **Nota**: opcionalmente, considera la posibilidad de recorrer paso a paso las fases iniciales de la implementación de los hosts de sesión de Azure Virtual Desktop mediante la imagen personalizada que creaste. 
 
 1. En el equipo de laboratorio, en el explorador web donde se muestra Azure Portal, busca y selecciona **Redes virtuales** y, en la página **Redes virtuales**, selecciona **Crear +**.
-1. En la pestaña **Aspectos básicos** de la página **Crear red virtual**, especifique la siguiente configuración y seleccione **Siguiente**:
+1. En la pestaña **Datos básicos** de la página **Crear red virtual**, especifica la siguiente configuración y selecciona **Siguiente**:
 
     |Configuración|Valor|
     |---|---|
-    |Suscripción|Nombre de la suscripción de Azure que usas en este laboratorio|
+    |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|Nombre de un nuevo grupo de recursos **az140-15d-RG**.|
     |Nombre de la red virtual|**az140-vnet15d**|
     |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
@@ -332,7 +332,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. Selecciona el icono de edición (lápiz) situado junto a la entrada de subred **predeterminada**, en el panel **Editar**, especifica la siguiente configuración (deja los otros valores con su configuración predeterminada) y selecciona **Guardar**:
 
-    |Configuración|Value|
+    |Configuración|Valor|
     |---|---|
     |Nombre|**hp1-Subnet**|
     |Dirección inicial|**10.30.1.0**|
@@ -400,7 +400,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Registro de un grupo de aplicación de escritorio|**No**|
+    |Registro de un grupo de aplicaciones de escritorio|**No**|
 
 1. En la pestaña **Revisar y crear** de la página **Crear un grupo de hosts**, selecciona **Crear**.
 

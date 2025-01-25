@@ -90,7 +90,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    **Nota:** La solicitud de aumento de cuota requiere que se inicie de sesión con autenticación multifactor (MFA). Si necesita configurar su cuenta con MFA, consulte [Planear una implementación de autenticación multifactor de Azure Active Directory](https://learn.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-getstarted). 
    
-1. En la hoja **Pase para Azure: Patrocinio | Uso y cuotas**, seleccione **Región**, en la lista desplegable, seleccione la casilla situada junto al nombre de la región de Azure que tiene intención de usar para este laboratorio, seleccione **Aplicar**asegúrese de que la entrada **Proceso** aparece en la lista desplegable que está a la izquierda de la entrada **Región** y, en el cuadro de búsqueda, escriba **DSv3 estándar**. 
+1. En la hoja **Pase para Azure - Patrocinio | Uso y cuotas**, selecciona **Región**, en la lista desplegable, selecciona la casilla situada junto al nombre de la región de Azure que tienes intención de usar para este laboratorio, selecciona **Aplicar**, asegúrate de que la entrada **Proceso** aparece en la lista desplegable que está a la izquierda de la entrada **Región** y, en el cuadro de búsqueda, escribe **DSv3 estándar**. 
 1. En la lista de resultados, seleccione la casilla situada junto al elemento **CPU virtuales de la familia DSv3 estándar**, seleccione la entrada **Solicitar aumento de cuota** en la barra de herramientas y, en la lista desplegable, seleccione **Escribir un nuevo límite**.
 1. En el panel **Solicitar un aumento de la cuota**, en el cuadro de texto de la columna **Nuevo límite**, escriba **30** y, después, seleccione **Enviar**.
 1. Si se le solicita, en el panel **Solicitar aumento de cuota**, seleccione **Autenticar con autenticación multifactor** y siga las indicaciones para autenticarse.
@@ -139,7 +139,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-11-RG**|
    |Nombre de dominio|**adatum.com**|
 
@@ -202,7 +202,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-11-RG**|
    |Nombre|**az140-11-bastion**|
    |Region|la misma región de Azure en la que se han implementado los recursos en las tareas anteriores de este ejercicio.|

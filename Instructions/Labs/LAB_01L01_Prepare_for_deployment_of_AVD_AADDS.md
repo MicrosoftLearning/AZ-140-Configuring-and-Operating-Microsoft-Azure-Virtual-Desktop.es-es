@@ -85,7 +85,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En Azure Portal, busque y seleccione **Suscripciones** y, en la hoja **Suscripciones**, seleccione la entrada que representa la suscripción de Azure que desea usar en este laboratorio.
 1. En Azure Portal, en la hoja Suscripciones, en la sección **Configuración** del menú vertical de la izquierda, seleccione **Uso y cuotas**. 
-1. En la hoja  **Pase para Azure - Patrocinio | Uso y cuotas** , seleccione las siguientes flechas desplegables en la barra de búsqueda superior:
+1. En la hoja  **Pase para Azure - Patrocinio | Uso y cuotas** , selecciona las siguientes flechas desplegables en la barra de búsqueda superior:
 
    |**Configuración**|**Valor**|
    |---|---|
@@ -179,7 +179,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|Seleccione Crear nuevo > **az140-11a-RG**|
    |Nombre de dominio DNS|**adatum.com**|
    |Region|Nombre de la región donde desea hospedar la implementación de AVD|
@@ -190,7 +190,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la pestaña **Redes** de la hoja **Creación de Microsoft Entra Domain Services**, junto a la lista desplegable **Red virtual**, seleccione **Crear nuevo**.
 1. En la hoja **Crear red virtual**, asigne la siguiente configuración y seleccione **Aceptar**:
 
-   |Configuración|Value|
+   |Configuración|Valor|
    |---|---|
    |Nombre|**az140-aadds-vnet11a**|
    |Intervalo de direcciones|**10.10.0.0/16**|
@@ -312,7 +312,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
    |Configuración|Valor|
    |---|---|
-   |Suscripción|nombre de la suscripción a Azure que usas en este laboratorio|
+   |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
    |Resource group|**az140-11a-RG**|
    |Nombre|**az140-11a-bastion**|
    |Region|La misma región de Azure donde implementamos los recursos en la tarea anterior de este ejercicio|
