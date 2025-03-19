@@ -144,7 +144,7 @@ Las tareas principales de este ejercicio son las siguientes:
     New-AzRoleAssignment @parameters
     ```
 
-1. Cierre el panel de Cloud Shell.
+1. Cierra el panel de Cloud Shell.
 
 #### Tarea 4: Configuración de actualizaciones programadas del agente
 
