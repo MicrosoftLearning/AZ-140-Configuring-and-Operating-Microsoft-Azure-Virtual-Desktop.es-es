@@ -292,7 +292,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Red virtual|**az140-vnet11e**|
     |Subred|**client-Subnet**|
     |Dirección IP pública|**(nuevo) az140-111e-vm0-ip**|
-    |Grupo de seguridad de red de NIC|**Avanzadas**|
+    |Grupo de seguridad de red de NIC|**Avanzado**|
 
 1. En la pestaña **Redes** de la página **Crear una máquina virtual**, al lado de la lista desplegable **Configurar grupo de seguridad de red**, selecciona **Crear nuevo**.
 1. En la página **Crear grupo de seguridad de red**, elimina la regla entrante creada previamente **1000: default-allow-rdp** y, a continuación, selecciona **+ Agregar una regla entrante**.
@@ -301,7 +301,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     |Configuración|Valor|
     |---|---|
-    |Source|**Direcciones IP**|
+    |Origen|**Direcciones IP**|
     |Intervalos de direcciones IP de origen y CIDR|Deja sin cambios (esto debe contener la dirección IP pública)|
     |Intervalos de puertos de origen|*|
     |Destino|**Cualquiera**|
