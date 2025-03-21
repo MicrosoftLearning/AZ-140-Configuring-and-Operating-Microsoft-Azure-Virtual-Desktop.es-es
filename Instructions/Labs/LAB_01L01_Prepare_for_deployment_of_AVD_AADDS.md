@@ -85,7 +85,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
 1. En Azure Portal, busque y seleccione **Suscripciones** y, en la hoja **Suscripciones**, seleccione la entrada que representa la suscripción de Azure que desea usar en este laboratorio.
 1. En Azure Portal, en la hoja Suscripciones, en la sección **Configuración** del menú vertical de la izquierda, seleccione **Uso y cuotas**. 
-1. En la hoja  **Pase para Azure - Patrocinio | Uso y cuotas** , selecciona las siguientes flechas desplegables en la barra de búsqueda superior:
+1. En la hoja  **Uso + cuotas** , selecciona las siguientes flechas desplegables de la barra de búsqueda superior:
 
    |**Configuración**|**Valor**|
    |---|---|
