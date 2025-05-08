@@ -14,7 +14,7 @@ lab:
 
 ## Tiempo estimado
 
-30 minutos
+60 minutos
 
 ## Escenario del laboratorio
 
@@ -72,7 +72,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Región|Nombre de la región de Azure donde implementaste el entorno de Azure Virtual Desktop|
 
 1. En la pestaña **Seguridad**, acepta la configuración predeterminada y selecciona **Siguiente**.
-1. En la pestaña **Direcciones IP**, especifica la siguiente configuración:
+1. En la pestaña **Direcciones IP**, aplica la siguiente configuración (modifica el valor predeterminado si es necesario):
 
     |Configuración|Valor|
     |---|---|

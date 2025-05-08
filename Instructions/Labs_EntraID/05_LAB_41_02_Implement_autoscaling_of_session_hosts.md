@@ -175,7 +175,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Porcentaje mínimo de hosts activos (%)|**10**
           |
     |Umbral de capacidad (%)|**80**|
-    |Forzar el cierre de sesión de los usuarios|**No**|
+    |Forzar a los usuarios a cerrar sesión|**No**|
     |Detén las máquinas virtuales cuando|**Las máquinas virtuales no tienen sesiones activas o desconectadas**|
 
     > **Nota**: la opción **Porcentaje mínimo de hosts activos (%)** designa el porcentaje mínimo de máquinas virtuales del host de sesión a las que te gustaría llegar para las horas de aumento y de poca actividad. Por ejemplo, si el **porcentaje mínimo de hosts activos (%)** está establecido en 10 % y el número total de hosts de sesión del grupo de hosts es 3, la escalabilidad automática garantizará que haya un mínimo de 1 host de sesión disponible para tomar conexiones de usuario.
@@ -234,7 +234,7 @@ Las tareas principales de este ejercicio son las siguientes:
 
     > **Nota**: a continuación, evaluarás la configuración del umbral de capacidad de **aumento** ajustando su período de tiempo. 
 
-1. En la página **az140-21-hp1 \| Hosts de sesión**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Planes de escalado** y, a continuación, en la página **Planes de escalado**, selecciona **az140-scalingplan412e**.
+1. En la página **az140-21-hp1 \| Hosts de sesión**, en el menú de navegación vertical, en la sección **Administración**, selecciona **Planes de escalado** y, a continuación, en la página **Planes de escalado**, selecciona **az140-scalingplan412e**.
 1. En la página **az140-scalingplan412e**, en el menú de navegación vertical, en la sección **Configuración**, selecciona **Programaciones** y, a continuación, selecciona **week_schedule**.
 1. En el panel **week_schedule**, ve a la pestaña **Descenso** y ajusta el valor de la configuración **Hora de inicio (sistema de 12 horas)** en cualquier momento entre la **Hora de inicio (sistema de 12 horas)** de la fase **Horas punta** y la hora actual.
 
