@@ -85,7 +85,7 @@ Las tareas principales de este ejercicio son las siguientes:
 1. En la lista de libros de **Windows Virtual Desktop**, en la sección **Windows Virtual Desktop**, selecciona el libro **Insights**.
 1. En la página **Azure Virtual Desktop \| Libros \| Insights**, revisa los mensajes de advertencia que indican que el área de trabajo y los hosts de sesión no envían datos al área de trabajo y, a continuación, selecciona el vínculo **Libro de configuración** para reparar el problema.
 1. En la página **CheckAMAConfiguration**, en la pestaña **Configuración de diagnósticos de recursos**, en la lista desplegable **Área de trabajo de Log Analytics**, selecciona **az140-laworkspace41e**.
-1. En la página **CheckAMAConfiguration**, en la pestaña **Configuración de diagnósticos de recursos**, en la sección **Grupo de hosts az140-21-hp1**, ten en cuenta el mensaje de advertencia que indica que no se encontró ninguna configuración de diagnósticos para el grupo de hosts seleccionado y, a continuación, selecciona **Configurar grupo de hosts**.
+1. En la página **CheckAMAConfiguration**, en la pestaña **Configuración de diagnósticos de recursos**, en la sección **Grupo de hosts az140-21-hp1**, revisa el mensaje de advertencia que indica que no se encontró ninguna configuración de diagnósticos para el grupo de hosts seleccionado y, a continuación, selecciona **Configurar grupo de hosts**.
 1. En el panel **Implementar plantilla**, selecciona **Implementar**.
 
     > **Nota**: esto habilita eficazmente las siguientes tablas de diagnósticos en el área de trabajo de Log Analytics de destino:
@@ -116,27 +116,26 @@ Las tareas principales de este ejercicio son las siguientes:
 
     > **Nota**: espera a que la implementación se complete. Esto suele tardar menos de un minuto.
 
-1. En la página **CheckAMAConfiguration**, en la pestaña **Seleccionar configuración de datos de host**, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
+1. En la página **CheckAMAConfiguration**, en la pestaña **Configuración de datos de host de sesión**, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
 
     > **Nota**: antes de continuar, asegúrate de que el DCR recién creado aparece en la subsección **DCR disponibles** de la sección **Crear DCR**. Si no es así, espera otro minuto y actualiza la página de nuevo.
 
-1. En la pestaña **Seleccionar configuración de datos de host**, en la lista desplegable **DCR seleccionado**, selecciona la entrada a partir del prefijo **microsoft-avdi-**.
-1. En la pestaña **Seleccionar configuración de datos de host**, en la sección **Asociaciones de DCR**, selecciona **Implementar asociación**.
-1. En el panel **Implementar plantilla**, selecciona **Implementar**.
+1. En la pestaña **Configuración de datos de host de sesión**, en la lista desplegable **DCR seleccionado**, selecciona la entrada a partir del prefijo **microsoft-avdi-**.
+1. Si es necesario, en la pestaña **Configuración de datos del host de sesión**, en la sección **Asociaciones de DCR**, selecciona **Implementar asociación** y, en el panel **Implementar plantilla**, selecciona **Implementar**.
 
     > **Nota**: esto asocia eficazmente el DCR recién creado a los hosts de sesión en el grupo de hosts **az140-21-hp1**.
 
     > **Nota**: espera a que la implementación se complete. Esto suele tardar menos de un minuto.
 
-1. En la página **CheckAMAConfiguration**, en la pestaña **Seleccionar configuración de datos de host**, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
-1. En la pestaña **Seleccionar configuración de datos de host**, en la sección **Extensiones de Azure Monitor que le faltan a los hosts de sesión**, selecciona **Agregar extensión**.
+1. En la página **CheckAMAConfiguration**, en la pestaña **Configuración de datos de host de sesión**, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
+1. En la pestaña **Configuración de datos de host de sesión**, en la sección **Extensión de Azure Monitor que falta a los hosts de sesión**, selecciona **Agregar extensión**.
 1. En el panel **Implementar plantilla**, selecciona **Implementar**.
 
     > **Nota**: esto instala eficazmente la extensión de Azure Monitor en los hosts de sesión en el grupo de hosts **az140-21-hp1**.
 
     > **Nota**: espera a que la implementación se complete. Esto puede tardar 1 minuto.
 
-1. En la página **CheckAMAConfiguration**, en la pestaña **Seleccionar configuración de datos de host**, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
+1. En la página **CheckAMAConfiguration**, en la pestaña **Configuración de datos de host de sesión**, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
 1. Comprueba que no se muestran mensajes de error o advertencia. 
 1. Ve a la parte superior de la página **CheckAMAConfiguration**, selecciona la pestaña **Datos generados** y, a continuación, selecciona el icono **Actualizar** (una flecha circular) de la barra de herramientas.
 1. Revisa las secciones que muestran gráficos que representan los datos recopilados, incluidos los **datos facturados en las últimas 24 horas**, **contadores de rendimiento** y **eventos**.

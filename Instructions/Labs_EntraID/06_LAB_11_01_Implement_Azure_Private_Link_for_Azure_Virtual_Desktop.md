@@ -15,7 +15,7 @@ lab:
 
 ## Tiempo estimado
 
-40 minutos
+60 minutos
 
 ## Escenario del laboratorio
 
@@ -222,14 +222,14 @@ Las tareas principales de este ejercicio son las siguientes:
     |Suscripción|Nombre de la suscripción a Azure que usas en este laboratorio|
     |Grupo de recursos|**az140-11e-RG**|
 
-    > **Nota**: este paso aprovechará la zona DNS privada denominada **privatelink.wvd.microsoft.com** que creaste en una de las tareas anteriores.
+    > **Nota**: este paso dará lugar a la creación de una zona DNS privada denominada **privatelink-global.wvd.microsoft.com**.
 
 1. En la pestaña **Etiquetas** de la página **Crear punto de conexión privado**, selecciona **Siguiente: Revisar y crear**.
 1. En la pestaña **Revisar y crear** de la página **Crear punto de conexión privado**, selecciona **Crear**.
 
     > **Nota**: no esperes a que se completen las implementaciones, sino que avanza a la siguiente tarea. La implementación puede tardar un minuto.
 
-    > **Nota**: debes crear un punto de conexión privado para el recurso secundario de fuente para cada área de trabajo que quieras usar con Private Link.
+    > **Nota**: debes crear un punto de conexión privado para el recurso secundario global para cada área de trabajo que quieras usar con Private Link.
 
     > **Nota**: para que los cambios de red surtan efecto, debes reiniciar los hosts de sesión en el grupo de hosts de destino.
 
@@ -275,7 +275,7 @@ Las tareas principales de este ejercicio son las siguientes:
     |Región|Nombre de la región de Azure donde implementaste el entorno de laboratorio de Azure Virtual Desktop|
     |Opciones de disponibilidad|**No se requiere redundancia de la infraestructura**|
     |Tipo de seguridad|**Estándar**|
-    |Imagen|**Windows 11 Pro, versión 23H2 - x64 Gen2**|
+    |Imagen|**Windows 11 Pro, versión 24H2 - x64 Gen2**|
     |Tamaño|**Standard DC2s_v3**|
     |Nombre de usuario|Cualquier nombre de usuario válido de tu elección|
     |Contraseña|Cualquier contraseña válida de tu elección|
