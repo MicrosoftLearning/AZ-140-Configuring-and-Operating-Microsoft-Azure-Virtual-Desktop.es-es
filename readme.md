@@ -32,7 +32,7 @@
 
 > **Importante**: los laboratorios se han actualizado para dirigirse a escenarios basados en Microsoft Entra ID de implementación de Azure Virtual Desktop (las instrucciones para este laboratorio se encuentran en el directorio **Instructions** -&gt;**Labs_EntraID**). 
 
-> **Importante**: las dos pistas siguientes ya no se mantienen o admiten y se eliminarán el 1 de junio de 2025 (las instrucciones para este laboratorio se encuentran en el directorio **Instructions** -&gt;**Labs**)
+> **Importante**: las dos pistas siguientes ya no se mantienen ni reciben soporte (las instrucciones para este laboratorio se encuentran en el directorio **Instructions** -&gt;**Labs_Legacy**).
 
 - Active Directory Domain Services (AD DS). Esta pista consta de los siguientes laboratorios:
 
